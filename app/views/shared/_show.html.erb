@@ -1,0 +1,19 @@
+<% content_for :title do %>
+  <%= title %>
+<% end %>
+ 
+<div class="mt-8 grid grid-cols-1 gap-6 lg:grid-flow-col-dense lg:grid-cols-3">
+  <div class="space-y-6 lg:col-start-1 lg:col-span-2">
+    <section>
+      <div class="bg-white overflow-hidden sm:rounded-lg">
+        <div class="py-5">
+          <%= detail_dl_rows(model_instance.attributes) %>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
+    <%= render "shared/panel", actions: actions %>
+  </section>
+</div>

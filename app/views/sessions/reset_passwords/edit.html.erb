@@ -1,0 +1,18 @@
+<%= render "shared/form_page", 
+  title: "",
+  model: nil,
+  method: "patch",
+  url: sessions_reset_password_update_path(token: @token),
+  form_title: "Reset your password",
+  form_subtitle: "",
+  form_fields: [
+    ["password","password", :password, "password",nil],
+    ["password","password confirmation", :password_confirmation, "password", nil],
+  ],
+  form_footer: "",
+  form_primary_button_label: "Save my password",
+  form_secondary_button_label: "",
+  form_secondary_button_href: "",
+  form_tertiary_button_label: "",
+  form_tertiary_button_href: ""
+%>

@@ -1,0 +1,43 @@
+<% content_for :title do %>
+  Checkout - Card Setup
+<% end %>
+
+<div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+
+    <div class="bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-10">
+      <div class="space-y-6">
+        <div class="space-y-2 items-center">
+          <h1 class="text-xl font-bold">Enter your payment details</h1>
+          <p class="text-base"></p>
+        </div>
+        
+        <%= form_with class: "space-y-4", 
+          id: "payment-form", 
+          data: { 
+            controller: "stripe-card-setup", 
+            stripe_publishable_key: Rails.application.credentials.dig(:stripe, :publishable_key), 
+            stripe_client_secret: @setup_intent_client_secret,
+            base_url: @base_url,
+            tokujo_id: @tokujo_id,
+            user_patron_id: @user_patron_id,
+            order_id: @order_id,
+            checkout_session_id: @checkout_session_id
+          } do |form| %>
+
+          <div id="error-message">
+            <!-- Display error message to your customers here -->
+          </div>
+          <div id="payment-element">
+            <!-- Elements will create form elements here -->
+          </div>
+          
+          <div class="grid gap-2 sm:flex sm:flex-row-reverse">
+            <%= form.submit "Complete order" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,11 @@
+  <nav>
+    <div class="flex px-3 py-5 items-center justify-between">
+      <%= link_to root_url, class: "font-medium text-base sm:text-xl" do %>
+        ablejo
+      <% end %>
+      <div class="flex items-center space-x-3">
+        <%# render partial: "shared/button_outline", locals: { text: "Log in", href: session_new_path }
+        render partial: "shared/button_solid", locals: { text: "Sign up", href: sign_up_new_path } %>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,23 @@
+<head>
+	<title>ablejo</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
+	<%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+	<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+	<%= javascript_importmap_tags %>
+	<%= javascript_include_tag "application", "data-track-turbo": "true", defer: true %>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TESRZNTENY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TESRZNTENY');
+  </script>
+
+  <%# The Payment Element is automatically available as a feature of Stripe.js. Include the Stripe.js script. %>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>

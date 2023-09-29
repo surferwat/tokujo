@@ -1,0 +1,16 @@
+<% content_for :title do %>
+  Onboarding Processed
+<% end %>
+
+<div class="mt-8 min-h-full flex flex-col justify-center lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-lg">
+    <div class="space-y-6">
+      <div class="flex items-center space-x-3">
+        <p class="text-base"><%= @message %></p>
+      </div>
+      <% if @status == 2 %>
+        <%= render partial: "shared/button_solid", locals: { text: "Provide missing information", href: accounts_cards_path } %> 
+      <% end %>
+    </div>
+  </div>
+</div>  

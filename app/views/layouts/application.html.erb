@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="h-full">
+  <%= render partial: "shared/head" %>
+
+  <body class="h-full">
+    <div>
+      <% if Current.user %>
+        <%= render partial: "shared/flash" %>
+        <%= render partial: "shared/navbar_private" %>
+        <main class="px-3">
+          <%= render partial: "shared/main_private" %>
+        </main>
+      <% else %>
+        <%# ToDo(rw): show an unauthorized view %>
+      <% end %>
+    </div>
+  </body>
+</html>

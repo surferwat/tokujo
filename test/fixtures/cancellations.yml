@@ -1,0 +1,7 @@
+cancellation_one:
+  user_id: 1
+  user_email: "example@test.com"
+  user_username: "user_one"
+  user_created_at: <%= 1.day.ago %>
+  user_updated_at: <%= 1.hour.ago %>
+  user_stripe_customer_id: "cus_stripe123"

@@ -1,0 +1,33 @@
+<% content_for :title do %>
+  Change your password
+<% end %>
+
+<div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <%= form_with class: "space-y-6", model: @user, method: "patch", url: settings_password_edit_path do |form| %>
+        
+        <%= render partial: "shared/form_errors", locals: { form: form } %>
+
+        <div>
+          <%= form.label "password"  %>
+          <div class="mt-1">
+            <%= form.password_field :password %>
+          </div>
+        </div>
+
+        <div>
+          <%= form.label "password confirmation"   %>
+          <div class="mt-1">
+            <%= form.password_field :password_confirmation %>
+          </div>
+        </div>
+
+        <div>
+          <%= form.submit "Update password"  %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<%= render "shared/form_page", 
+  title: "",
+  model: @user,
+  method: "post",
+  url: sign_ups_path,
+  form_title: "Sign up",
+  form_subtitle: "",
+  form_fields: [
+    ["text","email", :email, "email", nil],
+    ["password", "password", :password, "password", nil],
+    ["password", "password_confirmation", :password_confirmation, "password", nil],
+  ],
+  form_footer: "",
+  form_primary_button_label: "Create Account",
+  form_secondary_button_label: "",
+  form_secondary_button_href: "",
+  form_tertiary_button_label: "Already have account? Log in.",
+  form_tertiary_button_href: session_new_path
+%>

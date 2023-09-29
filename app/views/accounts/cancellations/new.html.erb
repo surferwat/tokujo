@@ -1,0 +1,15 @@
+<%= render "shared/form_page", 
+  title: "Cancel account",
+  model: @cancellation,
+  method: "post",
+  url: accounts_cancellations_path,
+  form_title: "",
+  form_subtitle: "Are you sure you want to cancel your account",
+  form_fields: [],
+  form_footer: "",
+  form_primary_button_label: "Cancel my account",
+  form_secondary_button_label: "Back",
+  form_secondary_button_href: accounts_path,
+  form_tertiary_button_label: "",
+  form_tertiary_button_href: ""
+%>

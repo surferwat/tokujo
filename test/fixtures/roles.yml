@@ -1,0 +1,9 @@
+admin:
+  name: admin
+  users: admin
+  # resource_type: User
+  # resource_id: <%= User.find_by(email: "admin@example.com")&.id %>
+    
+user:
+  name: user
+  # resource_type: User

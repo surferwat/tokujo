@@ -1,0 +1,94 @@
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  root "main#index"
+
+  # Registrations
+  get "sign-up", to: "registrations#new", as: "sign_up_new"
+  post "sign-up", to: "registrations#create", as: "sign_ups"
+
+  # Sessions
+  namespace :sessions do
+    get "forgot_password", to: "forgot_passwords#new", as: "forgot_password_new" # resolves to sessions_forgot_password_new
+    post "forgot_password", to: "forgot_passwords#create"
+
+    get "reset_password", to: "reset_passwords#edit", as: "reset_password_edit" # resolves to sessions_reset_password_edit
+		patch "reset_password", to: "reset_passwords#update", as: "reset_password_update" # resolves to sessions_reset_password_update
+  end
+  get "sign-in", to: "sessions#new", as: "session_new"
+  post "sign-in", to: "sessions#create", as: "sessions"
+  delete "logout", to: "sessions#destroy", as: "session"
+
+  # Policies
+  get "policies", to: "policies#index"
+
+  # Settings
+  namespace :settings do
+    get "profiles/edit", to: "profiles#edit", as: "profile_edit" # resolves to settings_profile_edit
+    patch "profiles/edit", to: "profiles#update", as: "profiles_update" # resolves to settings_profile_update
+
+    get "passwords/edit", to: "passwords#edit", as: "password_edit" # resolves to settings_password_edit
+    patch "passwords/edit", to: "passwords#update", as: "passwords_update" # resolves to settings_passwords_update
+
+    get "my_menu_items", to: "my_menu_items#index", as: "my_menu_items" # resolves to settings_my_menu_items
+    get "my_menu_items/new", to: "my_menu_items#new", as: "my_menu_item_new" # resolves to settings_my_menu_item_new
+    post "my_menu_items", to: "my_menu_items#create"
+    get "my_menu_items/:id", to: "my_menu_items#show", as: "my_menu_item" # resolves to settings_my_menu_item
+    get "my_menu_items/:id/edit", to: "my_menu_items#edit", as: "my_menu_item_edit" # resolves to settings_my_menu_items
+    put "my_menu_items/:id/update", to: "my_menu_items#update", as: "my_menu_item_update" # resolves to settings_my_menu_items
+  end
+  get "settings", to: "settings#index"
+
+  # Accounts
+  namespace :accounts do 
+    get "plans", to: "plans#index" # resolves to accounts_plans
+
+    get "cards", to: "cards#index"
+    namespace :cards do
+      get "onboardings", to: "onboardings#index"
+      namespace :onboardings do
+        get "processed", to: "processed#index" # resolves to accounts_cards_onboardings_processed
+        get "dead_link", to: "dead_link#index" # resolves to accounts_cards_onboardings_dead_link
+      end
+    end
+
+    get "cancellations/new", to: "cancellations#new" # resolves to accounts_new_cancellation
+    post "cancellations", to: "cancellations#create" # resolves to accounts_cancellations
+  end
+  get "accounts", to: "accounts#index"
+
+  # Policies
+  get "policies", to: "policies#index"
+
+  # Tokujos
+  resources :tokujos
+
+  # Tokujo Sales
+  namespace :tokujo_sales do 
+    scope ":tokujo_id" do
+      get "patrons/new", to: "patrons#new", as: "new_patron" # resolves to tokujo_sales_new_patron
+      post "patrons/create", to: "patrons#create", as: "patrons" # resolves to tokujo_sales_patrons
+      
+      namespace :patrons do
+        scope ":patron_id" do
+          get "orders/new", to: "orders#new", as: "new_order" # resolves to tokujo_sales_patrons_new_order
+          post "orders/create", to: "orders#create", as: "orders" # resolves to tokujo_sales_patrons_orders
+
+          namespace :orders do 
+            scope ":id" do
+              get "card_setups", to: "card_setups#index", as: "card_setups" # resolves to tokujo_sales_patrons_orders_card_setups
+              get "succeeded", to: "succeeded#index", as: "succeeded" # resolves to tokujo_sales_patrons_orders_succeeded
+            end
+          end
+        end
+      end
+    end
+  end
+  get "tokujo_sales/:tokujo_id", to: "tokujo_sales#show", as: "tokujo_sale"
+
+  # Webhooks
+  namespace :webhooks do
+    get "stripe", to: "stripe#index" # resolves to webhooks_stripe
+  end
+end

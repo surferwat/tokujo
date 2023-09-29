@@ -1,0 +1,9 @@
+menu_item_one:
+  sku: abc123
+  name: Menu item one name
+  description: Menu item one description
+  max_ingredient_storage_life: 1
+  max_ingredient_delivery_time: 1
+  price_cents: 10000
+  currency: USD
+  user: user_one

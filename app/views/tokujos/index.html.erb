@@ -1,0 +1,12 @@
+<% content_for :title do %>
+  Your Tokus
+<% end %>
+ 
+<div class="mt-8">
+  <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
+    <% @tokujos&.each do |tokujo| %>
+      <%= render "tokujo", tokujo: tokujo %>
+    <% end %>
+    <%= render "add_tokujo" %>
+  </div>
+</div>

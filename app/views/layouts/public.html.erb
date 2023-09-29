@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<%= render partial: "shared/head" %>
+
+  <body>
+    <%= render partial: "shared/flash" %>
+    <div class="px-3 flex flex-col h-screen">
+      <%= render partial: "shared/navbar" %>
+      <main class="flex-grow">
+        <%= render partial: "shared/main_public" %>
+      </main>
+      <footer class="mt-auto h-12">
+        <%= render partial: "shared/footer" %>
+      </footer>
+    </div>
+  </body>
+</html>

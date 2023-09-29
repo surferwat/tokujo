@@ -1,0 +1,4 @@
+user_patron_one:
+  email: "user_patron_one@example.com"
+  stripe_customer_id: "cus_789"
+

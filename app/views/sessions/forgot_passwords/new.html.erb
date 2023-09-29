@@ -1,0 +1,17 @@
+<%= render "shared/form_page", 
+  title: "",
+  model: @user,
+  method: "post",
+  url: sessions_forgot_password_path,
+  form_title: "Forgot your password",
+  form_subtitle: "Enter your email address below and we will send you password reset instructions.",
+  form_fields: [
+    ["text","email", :email, "Enter your email address", nil],
+  ],
+  form_footer: "If you don't see your reset email, then check your spam filter.",
+  form_primary_button_label: "Email me reset instructions",
+  form_secondary_button_label: "",
+  form_secondary_button_href: "",
+  form_tertiary_button_label: "Nevermind, go back",
+  form_tertiary_button_href: root_path
+%>

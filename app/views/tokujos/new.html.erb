@@ -1,0 +1,19 @@
+<%= render "shared/form_page", 
+  title: "Add Tokujo",
+  model: @tokujo,
+  method: "post",
+  url: tokujos_path,
+  form_title: "",
+  form_subtitle: "",
+  form_fields: [
+    ["select",:menu_item,:menu_item_id,nil,@menu_items,nil],
+    ["text",:number_of_items_available,:number_of_items_available,"number of orders available"],
+    ["date",:ends_at,:ends_at,"tokujo end date"]
+  ],
+  form_footer: "",
+  form_primary_button_label: "Add this tokujo",
+  form_secondary_button_label: "Back",
+  form_secondary_button_href: tokujos_path,
+  form_tertiary_button_label: "",
+  form_tertiary_button_href: ""
+%>

@@ -1,0 +1,38 @@
+<% content_for :title do %>
+  <%= title %>
+<% end %>
+
+<div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+
+    <div class="bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-10">
+      <div class="space-y-6">
+        <div class="space-y-2 items-center">
+          <h1 class="text-xl font-bold"><%= form_title.presence || "" %></h1>
+          <p class="text-base"><%= form_subtitle.presence || "" %></p>
+        </div>
+        <%= form_with class: "space-y-4", model: model, method: method, url: url do |form| %>
+          <%= render partial: "shared/form_errors", locals: { form: form } %>
+          
+          <%= form_fields(form, form_fields) %>
+
+          <div class="grid gap-2 sm:flex sm:flex-row-reverse">
+            <%= form.submit form_primary_button_label %>
+            <% if form_secondary_button_label.present? %>
+              <%= render partial: "shared/button_outline", locals: { text: form_secondary_button_label, href: form_secondary_button_href } %>
+            <% end %>
+          </div>
+
+        <% end %>
+        <div class="flex items-center text-sm text-slate-500">
+          <p><%= form_footer.presence || "" %></p>
+        </div>
+      </div>
+    </div>
+    
+    <% if form_tertiary_button_label.present? %>
+      <%= render partial: "shared/button_transparent", locals: { text: form_tertiary_button_label, href: form_tertiary_button_href } %>
+    <% end %>
+  </div>
+</div>
+

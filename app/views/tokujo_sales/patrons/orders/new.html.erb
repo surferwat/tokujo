@@ -1,0 +1,58 @@
+<% content_for :title do %>
+  Checkout - Order Summary
+<% end %>
+
+<div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="space-y-3">
+      <p>
+        Please review your order. 
+      </p>
+    </div>
+
+    <%= form_with class: "space-y-6", model: @order, url: tokujo_sales_patrons_orders_path do |form| %>
+      <%= render partial: "shared/form_errors", locals: { form: form } %>
+
+        <table class="min-w-full">        
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Tokujo ID</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.id%></th>
+              <%= form.hidden_field :tokujo_id, value: @tokujo.id %>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.menu_item.name%></th>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Description</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.menu_item.description%></th>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_cents, with_tax_text: false } %></th>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order size</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @size %></th>
+              <%= form.hidden_field :size, value: @size %>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Total Price (incl. tax)</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @total_price_with_tax, with_tax_text: false } %></th>
+              <%= form.hidden_field :payment_amount, value: @total_price_with_tax %>
+            </tr>
+          </tbody>
+        </table>
+
+        <%= hidden_field_tag :checkout_session_id, @checkout_session_id %>
+        
+        <div class="grid gap-2 sm:flex sm:flex-row-reverse">
+          <%# data: { turbo: false } is hack to make Stripe Checkout work with Rails 7 %>
+          <%= form.submit "Proceed to card setup", data: { turbo: false } %>
+          <%= render partial: "shared/button_outline", locals: { text: "Back", href: tokujo_sale_path(@tokujo) } %>
+        </div>
+
+      <% end %>
+  </div>
+</div>
