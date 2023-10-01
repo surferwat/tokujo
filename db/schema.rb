@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_075104) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_30_071126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,15 +104,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_075104) do
   end
 
   create_table "tokujos", force: :cascade do |t|
-    t.datetime "ends_at", null: false
+    t.datetime "ends_at"
     t.datetime "closed_at"
     t.integer "status", default: 0, null: false
-    t.integer "number_of_items_available", null: false
-    t.integer "number_of_items_taken", default: 0
+    t.integer "number_of_items_available"
+    t.integer "number_of_items_taken"
     t.bigint "menu_item_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payment_collection_timing", null: false
     t.index ["menu_item_id"], name: "index_tokujos_on_menu_item_id"
     t.index ["user_id"], name: "index_tokujos_on_user_id"
   end

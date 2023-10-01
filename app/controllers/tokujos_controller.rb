@@ -1,6 +1,7 @@
 class TokujosController < ApplicationController
   before_action :get_user_tokujos, only: %i[ index show edit update ]
-  before_action :get_user_menu_items, only: %i[ new edit ]
+  before_action :get_user_menu_item_options, only: %i[ new edit ]
+  before_action :get_payment_collection_timing_options, only: %i[ new edit ]
 
   def index
     authorize :tokujo, :index?
@@ -50,16 +51,27 @@ class TokujosController < ApplicationController
   def tokujo_params
     params.require(:tokujo).permit(
       :menu_item_id,
+      :payment_collection_timing,
       :number_of_items_available,
       :ends_at,
     )
   end
 
+
+
   def get_user_tokujos
     @tokujos = Current.user.tokujos.where(status: "open") # where returns [] if no match
   end
 
-  def get_user_menu_items
-    @menu_items = Current.user.menu_items
+
+
+  def get_user_menu_item_options
+    @menu_item_options = Current.user.menu_items.map { |option| [option.name, option.id] }
+  end
+
+
+
+  def get_payment_collection_timing_options
+    @payment_collection_timing_options = Tokujo.payment_collection_timings.keys.map { |option| [option.humanize, option] }
   end
 end

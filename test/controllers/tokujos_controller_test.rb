@@ -19,15 +19,32 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create tokujo" do
+  test "should create tokujo where payment_collection_timing value is set to delayed" do
     sign_in(@user)
     
     assert_difference("Tokujo.count") do
       post tokujos_url,
         params: {
           tokujo: {
+            payment_collection_timing: "delayed",
             ends_at: Time.now,
             number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_redirected_to tokujo_url(Tokujo.last)
+  end
+
+  test "should create tokujo where payment_collection_timing value is set to immediate" do
+    sign_in(@user)
+    
+    assert_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            payment_collection_timing: "immediate",
             menu_item_id: @menu_item.id
           }
         }

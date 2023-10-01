@@ -2,6 +2,8 @@ require "test_helper"
 
 class TokujoTest < ActiveSupport::TestCase
   def setup
+    @user = users(:user_one)
+    @menu_item = menu_items(:menu_item_one)
     @tokujo = tokujos(:tokujo_one)
   end
 
@@ -10,28 +12,56 @@ class TokujoTest < ActiveSupport::TestCase
     assert @tokujo.valid?
   end
 
-  test "ends_at should be present" do 
-    @tokujo.ends_at = nil
-    assert_not @tokujo.valid?
-  end
-
   test "status should be present" do 
     @tokujo.status = nil
     assert_not @tokujo.valid?
   end
 
-  test "number_of_items_available should be present and greater than 0" do
-    @tokujo.number_of_items_available = nil
-    assert_not @tokujo.valid?
+  test "should not save a record with invalid attributes related to payment collection timing value of delayed" do
+    tokujo_with_immediate = Tokujo.new
+    tokujo_with_immediate.user_id = @user.id
+    tokujo_with_immediate.menu_item_id = @menu_item.id
+    tokujo_with_immediate.payment_collection_timing = :immediate
+    tokujo_with_immediate.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_immediate.number_of_items_available = 100
 
-    @tokujo.number_of_items_available = 0
-    assert_not @tokujo.valid?
+    tokujo_with_delayed = Tokujo.new
+    tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.menu_item_id = @menu_item.id
+    tokujo_with_delayed.payment_collection_timing = :delayed
 
-    @tokujo.number_of_items_available = -1
-    assert_not @tokujo.valid?
+    assert_not tokujo_with_immediate.save
+    assert_not tokujo_with_delayed.save
+  end
 
-    @tokujo.number_of_items_available = 9.99
-    assert @tokujo.valid?
+  test "should save a record with valid attributes related to payment collection timing value of delayed" do
+    tokujo_with_immediate = Tokujo.new
+    tokujo_with_immediate.user_id = @user.id
+    tokujo_with_immediate.menu_item_id = @menu_item.id
+    tokujo_with_immediate.payment_collection_timing = :immediate
+
+    tokujo_with_delayed = Tokujo.new
+    tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.menu_item_id = @menu_item.id
+    tokujo_with_delayed.payment_collection_timing = :delayed
+    tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_delayed.number_of_items_available = 100
+
+    assert tokujo_with_immediate.save
+    assert tokujo_with_delayed.save
+  end
+
+  # Callbacks
+  test "should set default value for number_of_items_taken if payment_collection_timing value is delayed" do
+    tokujo_with_delayed = Tokujo.new
+    tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.menu_item_id = @menu_item.id
+    tokujo_with_delayed.payment_collection_timing = :delayed
+    tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_delayed.number_of_items_available = 100
+
+    assert tokujo_with_delayed.save
+    assert_equal 0, tokujo_with_delayed.number_of_items_taken
   end
 
   # Associations
