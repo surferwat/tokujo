@@ -1,0 +1,2 @@
+module TokujoSaleOrders::CardSetupsHelper
+end

@@ -1,0 +1,2 @@
+module TokujoSaleOrders::SucceededHelper
+end

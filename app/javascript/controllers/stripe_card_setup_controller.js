@@ -9,7 +9,6 @@ export default class extends Controller {
     
     const base_url = this.element.getAttribute("data-base-url")
     const tokujo_id = this.element.getAttribute("data-tokujo-id")
-    const user_patron_id = this.element.getAttribute("data-user-patron-id")
     const order_id = this.element.getAttribute("data-order-id")
     const checkout_session_id = this.element.getAttribute("data-checkout-session-id")
 
@@ -24,7 +23,7 @@ export default class extends Controller {
 
       const { error } = await stripe.confirmSetup({
         elements, confirmParams: {
-          return_url: `http://${base_url}/tokujo_sales/${tokujo_id}/patrons/${user_patron_id}/orders/${order_id}/succeeded?checkout_session_id=${checkout_session_id}`
+          return_url: `http://${base_url}/tokujo_sale_orders/${order_id}/succeeded?checkout_session_id=${checkout_session_id}&tokujo_id=${tokujo_id}`
         }
       })
 

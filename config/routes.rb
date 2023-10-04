@@ -87,6 +87,20 @@ Rails.application.routes.draw do
   end
   get "tokujo_sales/:tokujo_id", to: "tokujo_sales#show", as: "tokujo_sale"
 
+  # Tokujo Sale Patrons
+  get "tokujo_sale_patrons/new", to: "tokujo_sale_patrons#new", as: "new_tokujo_sale_patron"
+  post "tokujo_sale_patrons/create", to: "tokujo_sale_patrons#create", as: "tokujo_sale_patrons"
+
+  # Tokujo Sale Orders
+  namespace :tokujo_sale_orders do 
+    scope ":id" do
+      get "card_setups", to: "card_setups#index", as: "card_setups" # resolves to tokujo_sale_orders_card_setups
+      get "succeeded", to: "succeeded#index", as: "succeeded" # resolves to tokujo_orders_succeeded
+    end
+  end
+  get "tokujo_sale_orders/new", to: "tokujo_sale_orders#new", as: "new_tokujo_sale_order" # resolves to new_tokujo_sale_order
+  post "tokujo_sale_orders/create", to: "tokujo_sale_orders#create", as: "tokujo_sale_orders" # resolves to tokujo_sale_orders
+
   # Webhooks
   namespace :webhooks do
     get "stripe", to: "stripe#index" # resolves to webhooks_stripe
