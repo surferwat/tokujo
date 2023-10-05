@@ -87,3 +87,6 @@ gem "letter_opener", group: :development
 gem 'money-rails', '~> 1.12'
 
 gem "aws-sdk-s3", require: false
+
+# Use assert_template for testing
+gem 'rails-controller-testing'

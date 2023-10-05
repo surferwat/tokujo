@@ -7,3 +7,9 @@ tokujo_one:
   number_of_items_taken: 0
   menu_item: menu_item_one
   user: user_one
+
+tokujo_two:
+  payment_collection_timing: immediate
+  status: 0
+  menu_item: menu_item_one
+  user: user_one

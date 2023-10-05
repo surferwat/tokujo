@@ -1,0 +1,50 @@
+<% content_for :title do %>
+  Tokujo For Sale
+<% end %>
+
+<div class="mx-auto py-16 sm:px-6 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+  
+  <!-- Tokujo details -->
+<%= render partial: "details", locals: { tokujo_name: @tokujo.menu_item.name, tokujo_description: @tokujo.menu_item.description } %>
+
+  <!-- Tokujo image -->
+<%= render partial: "image", locals: { tokujo_image_attached: @tokujo.menu_item.image_one.attached?, tokujo_image: @tokujo.menu_item.image_one } %>
+
+  <!-- Tokujo form -->
+  <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
+    <section aria-labelledby="options-heading">
+      <div> 
+        <p class="flex text-lg text-gray-900 sm:text-xl">
+          <%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_with_tax_cents, with_tax_text: true } %>
+        </p>
+        <p class="flex text-lg text-gray-900 sm:text-xl">
+          <span>             
+            <% if @tokujo.number_of_items_taken = 0 %>
+              <%= @tokujo.number_of_items_available %>
+            <% else %>
+              <%= @tokujo.number_of_items_taken %> 
+            <% end %>
+          </span>    
+          <span>&nbspof</span>
+          <span>&nbsp<%= @tokujo.number_of_items_available %></span>
+          <span>&nbspavailable</span>
+        </p>
+        <p class="flex text-lg text-gray-900 sm:text-xl">
+          Tokujo ends on <%= @tokujo.ends_at %>
+        <p>
+      </div>
+      
+      <div class="mt-10">
+        <%= form_with class: "space-y-6", method: "get", url: new_tokujo_sale_patron_path do |form| %>
+          <div class="flex items-center space-x-3">
+              <span><%= label_tag :size %></span>
+              <span class="w-16"><%= number_field_tag :size, 1, { min: 1, step: 1 }%></span>
+          </div>
+          <%= form.hidden_field :checkout_session_id, value: @checkout_session_id %>
+          <%= form.hidden_field :tokujo_id, value: @tokujo.id %>
+          <%= form.submit "Proceed to checkout" %>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>
