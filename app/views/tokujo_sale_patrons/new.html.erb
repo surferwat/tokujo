@@ -20,6 +20,7 @@
       </div>
 
       <%= hidden_field_tag :checkout_session_id, @checkout_session_id %>
+      
       <div class="grid gap-2 sm:flex sm:flex-row-reverse">
         <%# data: { turbo: false } is hack to make Stripe Checkout work with Rails 7 %>
         <%= form.submit "Next", data: { turbo: false } %>

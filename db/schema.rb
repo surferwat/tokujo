@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_071126) do
     t.string "currency", null: false
     t.index ["user_id"], name: "index_menu_items_on_user_id"
   end
-
+  
   create_table "orders", force: :cascade do |t|
     t.integer "size", null: false
     t.integer "payment_amount_cents", default: 0, null: false
