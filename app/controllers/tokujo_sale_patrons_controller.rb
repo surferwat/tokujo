@@ -7,7 +7,6 @@ class TokujoSalePatronsController < ApplicationController
   def new    
     authorize :tokujo_sale_patron, :new?
 
-    checkout_session_id = params[:checkout_session_id]
     tokujo_id = params[:tokujo_id]
     size = params[:size]
     size_i = size.to_i
@@ -46,46 +45,65 @@ class TokujoSalePatronsController < ApplicationController
   def create
     authorize :tokujo_sale_patron, :create?
 
-    checkout_session_id = params[:checkout_session_id]
     tokujo_id = params[:tokujo_id]
     size = params[:size]
     total_price_with_tax = params[:total_price_with_tax]
     email = params[:user_patron][:email]
+    checkout_session = @checkout_session
 
     tokujo = Tokujo.find(tokujo_id)
 
     # Set patron for this checkout session
     user_patron = nil
     begin
-      if @checkout_session.user_patron_id.nil?
+      user_patron = UserPatron.find_by(email: email)
+
+      case true
+      # Case 1
+      # First time that patron is providing email address during this checkout session. 
+      # Email address provided does not exist in db.
+      when checkout_session.user_patron_id.nil? && user_patron.nil?
         ActiveRecord::Base.transaction do
           user_patron = create_user_patron(email)
-          update_checkout_session_with_patron_id(@checkout_session, user_patron.id)
+          update_checkout_session_with_patron_id(checkout_session, user_patron.id)
         end
-      else
-        user_patron = UserPatron.find_by(email: email)
-
-        if user_patron == nil
-          # New email was provided by patron, so create new UserPatron object
+      # Case 2
+      # First time that patron is providing email address during this checkout session. 
+      # Email address provided does exist in db.
+      when checkout_session.user_patron_id.nil? && !user_patron.nil?
+        update_checkout_session_with_patron_id(checkout_session, user_patron.id)
+      # Case 3
+      # Not first time that patron is providing email address during this checkout session. 
+      # Email address provided does not exist in db.
+      when !checkout_session.user_patron_id.nil? && user_patron.nil?
+        ActiveRecord::Base.transaction do
           user_patron = create_user_patron(email)
-          update_checkout_session_with_patron_id(@checkout_session, user_patron.id)
-        else
-          # At the moment, we allow the patron to navigate to this page even after they 
-          # have moved onto the next step. This creates the possibility for a case whereby
-          # such a patron provides another email address that was used to create another
-          # UserPatron object.
-          if @checkout_session.user_patron_id != user_patron.id
-            update_checkout_session_with_patron_id(@checkout_session, user_patron.id)
+          update_checkout_session_with_patron_id(checkout_session, user_patron.id)
 
-            order = Order.find(@checkout_session.order_id)
+          if !checkout_session.order_id.nil?
+            order = Order.find(checkout_session.order_id)
             order.user_patron_id = user_patron.id
             order.save!
+          end
+        end
+      # Case 4
+      # Not first time that patron is providing email address during this checkout session. 
+      # Email address provided does exist in db.
+      when !checkout_session.user_patron_id.nil? && !user_patron.nil?
+        if checkout_session.user_patron_id != user_patron.id
+          ActiveRecord::Base.transaction do
+            update_checkout_session_with_patron_id(checkout_session, user_patron.id)
+            if !checkout_session.order_id.nil?
+              order = Order.find(checkout_session.order_id)
+              order.user_patron_id = user_patron.id
+              order.save!
+            end
           end
         end
       end
     rescue StandardError => e
       # Set instance variables for views
-      @checkout_session_id =  @checkout_session.id
+      @checkout_session_id =  checkout_session.id
       @user_patron = UserPatron.new
       @tokujo = tokujo
       @size = size
@@ -94,7 +112,7 @@ class TokujoSalePatronsController < ApplicationController
       render :new, status: :unprocessable_entity
       return
     end
-    redirect_to new_tokujo_sale_order_path(tokujo_id: tokujo.id, patron_id: user_patron.id, checkout_session_id: @checkout_session.id, size: size, total_price_with_tax: total_price_with_tax)
+    redirect_to new_tokujo_sale_order_path(tokujo_id: tokujo.id, patron_id: user_patron.id, checkout_session_id: checkout_session.id, size: size, total_price_with_tax: total_price_with_tax)
   end
 
 
@@ -124,6 +142,7 @@ class TokujoSalePatronsController < ApplicationController
     user_patron.save!
     user_patron
   end
+
 
 
   def update_checkout_session_with_patron_id(checkout_session, user_patron_id)
