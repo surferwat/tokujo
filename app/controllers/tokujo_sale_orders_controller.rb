@@ -1,66 +1,70 @@
 class TokujoSaleOrdersController < ApplicationController
+  include CheckoutSessionExistable
   layout "public_for_patrons"
 
+
+
   def new
-    authorize :tokujo_sale, :new?
+    authorize :tokujo_sale_order, :new?
 
     tokujo_id = params[:tokujo_id]
     patron_id = params[:patron_id]
+    size = params[:size]
+    total_price_with_tax = params[:total_price_with_tax]
+    checkout_session = @checkout_session # Instantiated in CheckoutSessionExistable
 
-    # Check whether checkout session exists
-    checkout_session = CheckoutSession.find_by(id: params[:checkout_session_id])
-    if checkout_session == nil
-      redirect_to tokujo_sale_path(tokujo_id)
-      return
-    end
+    tokujo = Tokujo.find(tokujo_id)
 
     # Set instance variables for views
     @checkout_session_id = checkout_session.id
     @order = Order.new
-    @tokujo = Tokujo.find(tokujo_id)
+    @tokujo = tokujo
     @patron_id = patron_id
-    @size = params[:size]
-    @total_price_with_tax = params[:total_price_with_tax]
+    @size = size
+    @total_price_with_tax = total_price_with_tax
   end
 
+
+
   def create
-    authorize :tokujo_sale, :create?
+    authorize :tokujo_sale_order, :create?
 
-    tokujo_id = params[:tokujo_id]
+    tokujo_id = params[:order][:tokujo_id]
+    user_patron_id = params[:patron_id]
+    size = params[:order][:size]
+    total_price_with_tax = params[:order][:total_price_with_tax]
+    checkout_session = @checkout_session # Instantiated in CheckoutSessionExistable
 
-    # Check whether checkout session exists
-    checkout_session = CheckoutSession.find_by(id: params[:checkout_session_id])
-    if checkout_session == nil
-      redirect_to tokujo_sale_path(tokujo_id)
-      return
-    end
+    tokujo = Tokujo.find(tokujo_id)
+    user_patron = UserPatron.find(user_patron_id)
 
-    # Handle where patron comes to this page from another page ahead in the 
-    # checkout session process and decides to press the set up card button again.
-    # We don't want to create a new order for this session. Just use the
-    # existing order.
     if checkout_session.order_id != nil
       order = Order.find(checkout_session.order_id)
-      redirect_to tokujo_sale_orders_card_setups_path(tokujo_id: order.tokujo_id, patron_id: order.user_patron_id, id: order.id, checkout_session_id: checkout_session.id)
-      return
+    else
+      order = user_patron.orders.new(order_params)
+      if order.save
+        checkout_session.order_id = order.id
+        checkout_session.save
+      else
+        # Set instance variables for views
+        @checkout_session_id = checkout_session.id
+        @order = Order.new
+        @tokujo = Tokujo.find(tokujo_id)
+        @size = size
+        @total_price_with_tax = total_price_with_tax
+        @user_patron = UserPatron.new
+
+        # Render new
+        render :new, status: :unprocessable_entity
+        return
+      end
     end
 
-    # Create new order
-    user_patron = UserPatron.find(params[:patron_id])
-    order = user_patron.orders.new(order_params)
-    if order.save
-      redirect_to tokujo_sale_orders_card_setups_path(tokujo_id: order.tokujo_id, patron_id: order.user_patron_id, id: order.id, checkout_session_id: checkout_session.id)
-    else
-      # Set instance variables for views
-      @checkout_session_id = checkout_session.id
-      @order = Order.new
-      @tokujo = Tokujo.find(tokujo_id)
-      @size = params[:size]
-      @total_price_with_tax = params[:total_price_with_tax]
-      @user_patron = UserPatron.new
-
-      # Render new
-      render :new, status: :unprocessable_entity
+    case tokujo.payment_collection_timing
+    when "immediate"
+      redirect_to tokujo_sale_orders_card_payments_path(tokujo_id: order.tokujo_id, patron_id: order.user_patron_id, id: checkout_session.order_id, checkout_session_id: checkout_session.id)
+    when "delayed"
+      redirect_to tokujo_sale_orders_card_setups_path(tokujo_id: order.tokujo_id, patron_id: order.user_patron_id, id: checkout_session.order_id, checkout_session_id: checkout_session.id)
     end
   end
 
@@ -72,5 +76,5 @@ class TokujoSaleOrdersController < ApplicationController
       :payment_amount, 
       :tokujo_id
     )
-  end 
+  end
 end

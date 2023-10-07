@@ -95,6 +95,7 @@ Rails.application.routes.draw do
   namespace :tokujo_sale_orders do 
     scope ":id" do
       get "card_setups", to: "card_setups#index", as: "card_setups" # resolves to tokujo_sale_orders_card_setups
+      get "card_payments", to: "card_payments#index", as: "card_payments" # resolves to tokujo_sale_orders_card_payments
       get "succeeded", to: "succeeded#index", as: "succeeded" # resolves to tokujo_orders_succeeded
     end
   end
