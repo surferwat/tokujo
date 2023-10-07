@@ -1,18 +1,13 @@
 require 'test_helper'
 
 class TokujoSalePatronPolicyTest < ActiveSupport::TestCase
-  def test_scope
-  end
-
-  def test_show
+  def test_new
+    policy = TokujoSalePatronPolicy.new(nil, nil)
+    assert policy.new?
   end
 
   def test_create
-  end
-
-  def test_update
-  end
-
-  def test_destroy
+    policy = TokujoSalePatronPolicy.new(nil, nil)
+    assert policy.create?
   end
 end
