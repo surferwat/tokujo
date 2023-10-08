@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_30_071126) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_08_072030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,7 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_071126) do
     t.string "currency", null: false
     t.index ["user_id"], name: "index_menu_items_on_user_id"
   end
-  
+
   create_table "orders", force: :cascade do |t|
     t.integer "size", null: false
     t.integer "payment_amount_cents", default: 0, null: false
@@ -89,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_30_071126) do
     t.datetime "updated_at", null: false
     t.bigint "user_patron_id", null: false
     t.string "stripe_setup_intent_id"
+    t.string "stripe_payment_intent_id"
     t.index ["tokujo_id"], name: "index_orders_on_tokujo_id"
     t.index ["user_patron_id"], name: "index_orders_on_user_patron_id"
   end

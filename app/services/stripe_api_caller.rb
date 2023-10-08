@@ -2,19 +2,26 @@ require 'stripe'
 
 module StripeApiCaller
   class PaymentIntent
-    def create_payment_intent(payment_method_types: ["card"], amount: , currency: "usd", customer_id: , payment_method_id: , off_session: , confirm: , metadata: )
+    def initialize
       Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
-    
+    end
+
+    def create_payment_intent(payment_method_types: ["card"], amount: , currency: "usd", stripe_customer_id: , payment_method_id: nil, off_session: false, confirm: false, metadata: , on_behalf_of: )
       payment_intent = Stripe::PaymentIntent.create({
         payment_method_types: payment_method_types,
         amount: amount,
         currency: currency,
-        customer: customer_id,
+        customer: stripe_customer_id,
         payment_method: payment_method_id,
         off_session: off_session,
         confirm: confirm,
         metadata: metadata,
+        on_behalf_of: on_behalf_of
       })
+    end
+
+    def retrieve_payment_intent(stripe_payment_intent_id)
+      payment_intent = Stripe::PaymentIntent.retrieve(stripe_payment_intent_id)
     end
   end
 

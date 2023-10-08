@@ -54,7 +54,7 @@
         
         <div class="grid gap-2 sm:flex sm:flex-row-reverse">
           <%# data: { turbo: false } is hack to make Stripe Checkout work with Rails 7 %>
-          <%= form.submit "Proceed to card setup", data: { turbo: false } %>
+          <%= form.submit @button_label, data: { turbo: false } %>
           <%= render partial: "shared/button_outline", locals: { text: "Back", href: tokujo_sale_path(@tokujo) } %>
         </div>
 
