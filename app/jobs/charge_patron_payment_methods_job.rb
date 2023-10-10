@@ -12,7 +12,8 @@ class ChargePatronPaymentMethodsJob < ApplicationJob
         payment_method_id: setup_intent.payment_method, 
         off_session: true,
         confirm: true, 
-        metadata: { order_id: order.id }
+        metadata: { order_id: order.id },
+        on_behalf_of: setup_intent.on_behalf_of
       )
 
       if payment_intent.amount_received == payment_intent.amount
