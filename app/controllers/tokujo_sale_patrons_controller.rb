@@ -10,6 +10,7 @@ class TokujoSalePatronsController < ApplicationController
     tokujo_id = params[:tokujo_id]
     size = params[:size]
     size_i = size.to_i
+    checkout_session = @checkout_session
 
     tokujo = Tokujo.find(tokujo_id)
     
@@ -33,7 +34,7 @@ class TokujoSalePatronsController < ApplicationController
     end
 
     # Set instance variables for views
-    @checkout_session_id = @checkout_session.id
+    @checkout_session_id = checkout_session.id
     @user_patron = UserPatron.new
     @tokujo = tokujo
     @size = size
