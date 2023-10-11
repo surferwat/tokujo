@@ -1,9 +1,9 @@
 class RegistrationPolicy < ApplicationPolicy
   def new?
-    true
+    false
   end
 
   def create?
-    true
+    false
   end
 end
