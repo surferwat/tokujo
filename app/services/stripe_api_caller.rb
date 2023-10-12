@@ -97,7 +97,10 @@ module StripeApiCaller
     end
 
     def create_account
-      account = Stripe::Account.create({type: "standard"})
+      account = Stripe::Account.create({
+        country: "JP",
+        type: "standard",
+      })
     end
 
     def retrieve_account(stripe_account_id)
