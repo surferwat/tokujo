@@ -10,8 +10,6 @@ class Accounts::Cards::Onboardings::ProcessedController < ApplicationController
       message = "Thank you for onboarding your account."
     when 2
       message = "Thank you for onboarding your account, but you are still missing capabilities or required verification information."
-    else
-      # TODO: How to handle? Status should always be 1 or 2. If this block executes, then unexpected behavior.
     end
 
     # Set instance variables for views
