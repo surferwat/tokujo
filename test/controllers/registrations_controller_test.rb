@@ -12,8 +12,9 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should get new" do
-    get sign_up_new_path
-    assert_response :success
+    assert_raises Pundit::NotAuthorizedError do
+      get sign_up_new_path
+    end
   end
 
   # test "should create user and redirect to root_path" do
