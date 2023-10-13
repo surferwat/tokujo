@@ -7,10 +7,15 @@ class Accounts::Cards::OnboardingsController < ApplicationController
     stripe_account_id = user.stripe_account_id
 
     if stripe_account_id.nil?
-      stripe_account = StripeApiCaller::Account.new.create_account
-      user.stripe_account_id = stripe_account.id 
-      user.save
-      stripe_account_id = user.stripe_account.id
+      begin
+        stripe_account = StripeApiCaller::Account.new.create_account
+        user.stripe_account_id = stripe_account.id 
+        user.save
+        stripe_account_id = user.stripe_account.id
+      rescue Stripe::InvalidRequestError => e
+        flash[:error] = "The onboarding window could not be launched. Please try again or contact us at #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}."
+        redirect_to accounts_path
+      end
     end
 
 		# Create Stripe Account Link
