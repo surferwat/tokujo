@@ -24,8 +24,8 @@ class Accounts::Cards::OnboardingsController < ApplicationController
     begin
       stripe_account_link = StripeApiCaller::AccountLink.new.create_account_link(
         stripe_account_id: stripe_account_id, 
-        refresh_url: "http://#{base_url}/accounts/cards/onboardings/dead_link", 
-        return_url: "http://#{base_url}/accounts/cards/onboardings/processed"
+        refresh_url: "https://#{base_url}/accounts/cards/onboardings/dead_link", 
+        return_url: "https://#{base_url}/accounts/cards/onboardings/processed"
       )
     rescue Stripe::InvalidRequestError => e
       flash[:alert] = "The onboarding window could not be launched. Please try again or contact us at #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}."
