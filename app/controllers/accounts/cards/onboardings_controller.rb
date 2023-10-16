@@ -21,11 +21,17 @@ class Accounts::Cards::OnboardingsController < ApplicationController
 
 		# Create Stripe Account Link
     base_url = Rails.env.production? ? ENV["RAILS_DEFAULT_URL_HOST"] : "localhost:3000"
-    stripe_account_link = StripeApiCaller::AccountLink.new.create_account_link(
-      stripe_account_id: stripe_account_id, 
-      refresh_url: "http://#{base_url}/accounts/cards/onboardings/dead_link", 
-      return_url: "http://#{base_url}/accounts/cards/onboardings/processed"
-    )
+    begin
+      stripe_account_link = StripeApiCaller::AccountLink.new.create_account_link(
+        stripe_account_id: stripe_account_id, 
+        refresh_url: "http://#{base_url}/accounts/cards/onboardings/dead_link", 
+        return_url: "http://#{base_url}/accounts/cards/onboardings/processed"
+      )
+    rescue Stripe::InvalidRequestError => e
+      flash[:alert] = "The onboarding window could not be launched. Please try again or contact us at #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}."
+      redirect_to accounts_path
+      return
+    end
 
 		# Redirect user to account link URL
     redirect_to  stripe_account_link.url, allow_other_host: true
