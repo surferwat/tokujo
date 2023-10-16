@@ -14,7 +14,7 @@ class Accounts::Cards::OnboardingsController < ApplicationController
         stripe_account_id = user.stripe_account_id
       rescue Stripe::InvalidRequestError => e
         flash[:alert] = "The onboarding window could not be launched. Please try again or contact us at #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}."
-        redirect_to accounts_path
+        redirect_to accounts_cards_path
         return
       end
     end
@@ -29,7 +29,7 @@ class Accounts::Cards::OnboardingsController < ApplicationController
       )
     rescue Stripe::InvalidRequestError => e
       flash[:alert] = "The onboarding window could not be launched. Please try again or contact us at #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}."
-      redirect_to accounts_path
+      redirect_to accounts_cards_path
       return
     end
 
