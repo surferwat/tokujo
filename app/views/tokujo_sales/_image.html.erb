@@ -1,7 +1,11 @@
+<div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
   <% if tokujo_image_attached %>
-    <div class="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-      <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">
-        <%= image_tag tokujo_image %>
-      </div>
+    <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">    
+      <%= image_tag tokujo_image %>
+    </div>
+  <% else %>
+    <div class="hidden lg:block aspect-h-1 aspect-w-1 overflow-hidden rounded-lg">    
+      <%= image_tag "https://images.unsplash.com/photo-1520670255513-79161a36e39c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80" %>
     </div>
   <% end %>
+</div>
