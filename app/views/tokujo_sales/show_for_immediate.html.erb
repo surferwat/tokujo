@@ -9,7 +9,6 @@
   <!-- Tokujo image -->
   <%= render partial: "image", locals: { tokujo_image_attached: @tokujo.menu_item.image_one.attached?, tokujo_image: @tokujo.menu_item.image_one } %>
 
-  <!-- Tokujo form -->
   <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
     <section aria-labelledby="options-heading">
       <div> 
@@ -17,16 +16,9 @@
           <%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_with_tax_cents, with_tax_text: true } %>
         </p>
       </div>
+      <!-- Tokujo form -->
       <div class="mt-10">
-        <%= form_with class: "space-y-6", method: "get", url: new_tokujo_sale_patron_path do |form| %>
-          <div class="flex items-center space-x-3">
-              <span><%= label_tag :size %></span>
-              <span class="w-16"><%= number_field_tag :size, 1, { min: 1, step: 1 }%></span>
-          </div>
-          <%= form.hidden_field :checkout_session_id, value: @checkout_session_id %>
-          <%= form.hidden_field :tokujo_id, value: @tokujo.id %>
-          <%= form.submit "Proceed to checkout" %>
-        <% end %>
+        <%= render partial: "form", locals: { new_tokujo_sale_patron_path: new_tokujo_sale_patron_path, checkout_session_id: @checkout_session_id, tokujo_id: @tokujo.id } %>
       </div>
     </section>
   </div>
