@@ -4,7 +4,15 @@ class StripeConnectAccountStatusSetter
   def set_account_status
     stripe_account_id = Current.user.stripe_account_id
     stripe_account = get_stripe_connect_account(stripe_account_id)
-    if stripe_account_id.nil?
+
+    # Handle edge case where the user deletes their account directly through Stripe's website.
+    if stripe_account_id.present? && stripe_account.nil?
+      user = Current.user
+      user.stripe_account_id = nil
+      user.save
+    end
+
+    if stripe_account.nil?
       status = StripeAccountOnboardingStatus::VALUES[:not_onboarded]
     else
       if stripe_account.charges_enabled && stripe_account.payouts_enabled
