@@ -15,7 +15,7 @@ class Accounts::CardsController < ApplicationController
       message = "You have onboarded your bank account."
       stripe_account_detail = { charges_enabled: stripe_account.charges_enabled, payouts_enabled: stripe_account.payouts_enabled }
     when 2
-      message = "You have onboarded your bank account, but are still missing capabilities or required verification information."
+      message = "You have started the onboarded process, but are still missing capabilities or required verification information."
       stripe_account_detail = { charges_enabled: stripe_account.charges_enabled, payouts_enabled: stripe_account.payouts_enabled }
       button_label = "Go fill out missing information"
     else
@@ -27,5 +27,7 @@ class Accounts::CardsController < ApplicationController
     @message = message
     @stripe_account_detail = stripe_account_detail
     @button_label = button_label
+
+    @stripe_account = stripe_account
   end
 end

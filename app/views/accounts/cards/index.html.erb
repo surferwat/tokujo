@@ -11,6 +11,33 @@
       <div class="flex items-center space-x-3">
         <p class="text-base"><%= @message %></p>
       </div>
+      <div class="space-x-3">
+        <p class="text-base">created <%= @stripe_account.created %></p>
+        <p class="text-base">email <%= @stripe_account.email %></p>
+        <p class="text-base">type <%= @stripe_account.type %></p>
+      </div>
+      <div class="space-x-3">
+        <p class="text-base">Charges</p>
+        <p class="text-base">charges_enabled <%= @stripe_account.charges_enabled %></p>
+        <p class="text-base">Futures requirements</p>
+        <p class="text-base">current_deadline <%= @stripe_account.future_requirements.current_deadline %></p>
+        <p class="text-base">currently_due <%= @stripe_account.future_requirements.currently_due %></p>
+        <p class="text-base">disabled_reason <%= @stripe_account.future_requirements.disabled_reason %></p>
+        <p class="text-base">errors <%= @stripe_account.future_requirements.errors %></p>
+        <p class="text-base">eventually_due <%= @stripe_account.future_requirements.eventually_due %></p>
+        <p class="text-base">past_due <%= @stripe_account.future_requirements.past_due %></p>
+        <p class="text-base">pending_verification <%= @stripe_account.future_requirements.pending_verification %></p>
+      </div>
+      <div class="space-x-3">
+        <p class="text-base">Payouts</p>
+        <p class="text-base">payouts_enabled <%= @stripe_account.payouts_enabled %></p>
+        <p class="text-base">currently_due <%= @stripe_account.requirements.currently_due %></p>
+        <p class="text-base">disabled_reason <%= @stripe_account.requirements.disabled_reason %></p>
+        <p class="text-base">errors <%= @stripe_account.requirements.errors %></p>
+        <p class="text-base">eventually_due <%= @stripe_account.requirements.eventually_due %></p>
+        <p class="text-base">past_due <%= @stripe_account.requirements.past_due %></p>
+        <p class="text-base">pending_verification <%= @stripe_account.requirements.pending_verification %></p>
+      </div>
       <% if @status != 1 %>
         <%= render partial: "shared/button_solid", locals: { text: @button_label, href: accounts_cards_onboardings_path } %> 
       <% end %>
