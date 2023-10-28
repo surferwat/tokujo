@@ -10,6 +10,7 @@
       </div>
       <div class="flex items-center space-x-3">
         <p class="text-base"><%= @message %></p>
+          <p class="text-base"><%= @stripe_account %></p>
       </div>
       <div class="space-x-3">
         <p class="text-base">created <%= @stripe_account.created %></p>
@@ -19,6 +20,7 @@
       <div class="space-x-3">
         <p class="text-base">Charges</p>
         <p class="text-base">charges_enabled <%= @stripe_account.charges_enabled %></p>
+        <p class="text-base">details_submitted <%= @stripe_account.details_submitted %></p>
         <p class="text-base">Futures requirements</p>
         <p class="text-base">current_deadline <%= @stripe_account.future_requirements.current_deadline %></p>
         <p class="text-base">currently_due <%= @stripe_account.future_requirements.currently_due %></p>

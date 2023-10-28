@@ -9,7 +9,7 @@ class Accounts::Cards::Onboardings::ProcessedController < ApplicationController
     when 1
       message = "Thank you for onboarding your account."
     when 2
-      message = "Thank you for onboarding your account, but you are still missing capabilities or required verification information."
+      message = "Thank you for starting the onboarding process, but you are still missing capabilities or required verification information."
     end
 
     # Set instance variables for views
