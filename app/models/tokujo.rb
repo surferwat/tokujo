@@ -10,6 +10,7 @@ class Tokujo < ApplicationRecord
 
   # Validations
   validates :status, presence: true
+  validates :headline, presence: true, uniqueness: true
   validates :menu_item_id, presence: true
   validates :user_id, presence: true
   validate :payment_collection_timing_delayed_attributes

@@ -26,6 +26,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
       post tokujos_url,
         params: {
           tokujo: {
+            headline: "this is a catchy headline",
             payment_collection_timing: "delayed",
             ends_at: Time.now,
             number_of_items_available: 100,
@@ -44,6 +45,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
       post tokujos_url,
         params: {
           tokujo: {
+            headline: "this is a catchy headline",
             payment_collection_timing: "immediate",
             menu_item_id: @menu_item.id
           }

@@ -50,6 +50,7 @@ class TokujosController < ApplicationController
 
   def tokujo_params
     params.require(:tokujo).permit(
+      :headline,
       :menu_item_id,
       :payment_collection_timing,
       :number_of_items_available,

@@ -1,4 +1,5 @@
 tokujo_one:
+  headline: catchy headline
   payment_collection_timing: delayed
   ends_at: 2023-08-27 11:55:33
   closed_at: 2023-08-27 11:55:33
@@ -9,6 +10,7 @@ tokujo_one:
   user: user_one
 
 tokujo_two:
+  headline: super headline
   payment_collection_timing: immediate
   status: 0
   menu_item: menu_item_one

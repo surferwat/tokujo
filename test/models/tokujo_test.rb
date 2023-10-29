@@ -20,15 +20,25 @@ class TokujoTest < ActiveSupport::TestCase
   test "should not save a record with invalid attributes related to payment collection timing value of delayed" do
     tokujo_with_immediate = Tokujo.new
     tokujo_with_immediate.user_id = @user.id
+    tokujo_with_immediate.headline = "headline for immediate"
     tokujo_with_immediate.menu_item_id = @menu_item.id
+    # Payment collection timing, so the values for the ends_at and 
+    # number_of_items_available attribuets should be nil, otherwise 
+    # not save
     tokujo_with_immediate.payment_collection_timing = :immediate
     tokujo_with_immediate.ends_at = "2023-08-27 11:55:33"
     tokujo_with_immediate.number_of_items_available = 100
 
     tokujo_with_delayed = Tokujo.new
     tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.headline = "headline for delayed"
     tokujo_with_delayed.menu_item_id = @menu_item.id
+    # Payment collection timing, so the values for the ends_at and 
+    # number_of_items_available attribuets should be not nil, otherwise 
+    # not save
     tokujo_with_delayed.payment_collection_timing = :delayed
+    tokujo_with_delayed.ends_at = nil
+    tokujo_with_delayed.number_of_items_available = nil
 
     assert_not tokujo_with_immediate.save
     assert_not tokujo_with_delayed.save
@@ -37,11 +47,13 @@ class TokujoTest < ActiveSupport::TestCase
   test "should save a record with valid attributes related to payment collection timing value of delayed" do
     tokujo_with_immediate = Tokujo.new
     tokujo_with_immediate.user_id = @user.id
+    tokujo_with_immediate.headline = "headline for immediate"
     tokujo_with_immediate.menu_item_id = @menu_item.id
     tokujo_with_immediate.payment_collection_timing = :immediate
 
     tokujo_with_delayed = Tokujo.new
     tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.headline = "headline for delayed"
     tokujo_with_delayed.menu_item_id = @menu_item.id
     tokujo_with_delayed.payment_collection_timing = :delayed
     tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
@@ -55,6 +67,7 @@ class TokujoTest < ActiveSupport::TestCase
   test "should set default value for number_of_items_taken if payment_collection_timing value is delayed" do
     tokujo_with_delayed = Tokujo.new
     tokujo_with_delayed.user_id = @user.id
+    tokujo_with_delayed.headline = "another catchy headline"
     tokujo_with_delayed.menu_item_id = @menu_item.id
     tokujo_with_delayed.payment_collection_timing = :delayed
     tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
