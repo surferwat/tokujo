@@ -4,7 +4,7 @@
 <div class="mx-auto py-16 sm:px-6 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8">
   
   <!-- Tokujo details -->
-  <%= render partial: "details", locals: { tokujo_name: @tokujo.menu_item.name, tokujo_description: @tokujo.menu_item.description } %>
+  <%= render partial: "details", locals: { tokujo_headline: @tokujo.headline, tokujo_description: @tokujo.menu_item.description } %>
 
   <!-- Tokujo image -->
   <%= render partial: "image", locals: { tokujo_image_attached: @tokujo.menu_item.image_one.attached?, tokujo_image: @tokujo.menu_item.image_one } %>
