@@ -22,22 +22,32 @@ class TokujoTest < ActiveSupport::TestCase
     tokujo_with_immediate.user_id = @user.id
     tokujo_with_immediate.headline = "headline for immediate"
     tokujo_with_immediate.menu_item_id = @menu_item.id
-    # Payment collection timing, so the values for the ends_at and 
-    # number_of_items_available attribuets should be nil, otherwise 
-    # not save
+    # Immediate payment collection timing, so the values for attributes
+    # related to this value for payment collection timing should be nil, 
+    # otherwise not save
     tokujo_with_immediate.payment_collection_timing = :immediate
-    tokujo_with_immediate.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_immediate.ingredients_procurement_time = 3
+    tokujo_with_immediate.ingredients_expiration_time = 10
+    tokujo_with_immediate.order_period_starts_at = Time.now + 1.days # Needs to be >= to current time, so add 1 day
+    tokujo_with_immediate.order_period_ends_at = Time.now + 5.days
+    tokujo_with_immediate.eat_period_starts_at = Time.now + 5.days + 3.days
+    tokujo_with_immediate.eat_period_ends_at = Time.now + 5.days + 3.days + 10.days
     tokujo_with_immediate.number_of_items_available = 100
 
     tokujo_with_delayed = Tokujo.new
     tokujo_with_delayed.user_id = @user.id
     tokujo_with_delayed.headline = "headline for delayed"
     tokujo_with_delayed.menu_item_id = @menu_item.id
-    # Payment collection timing, so the values for the ends_at and 
-    # number_of_items_available attribuets should be not nil, otherwise 
-    # not save
+    # Delayed payment collection timing, so the values for attributes
+    # related to this value for payment collection timing should not be nil, 
+    # otherwise not save
     tokujo_with_delayed.payment_collection_timing = :delayed
-    tokujo_with_delayed.ends_at = nil
+    tokujo_with_delayed.ingredients_procurement_time = nil
+    tokujo_with_delayed.ingredients_expiration_time = nil
+    tokujo_with_delayed.order_period_starts_at = nil # Needs to be >= to current time, so add 1 day
+    tokujo_with_delayed.order_period_ends_at = nil
+    tokujo_with_delayed.eat_period_starts_at = nil
+    tokujo_with_delayed.eat_period_ends_at = nil
     tokujo_with_delayed.number_of_items_available = nil
 
     assert_not tokujo_with_immediate.save
@@ -56,7 +66,12 @@ class TokujoTest < ActiveSupport::TestCase
     tokujo_with_delayed.headline = "headline for delayed"
     tokujo_with_delayed.menu_item_id = @menu_item.id
     tokujo_with_delayed.payment_collection_timing = :delayed
-    tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_delayed.ingredients_procurement_time = 3
+    tokujo_with_delayed.ingredients_expiration_time = 10
+    tokujo_with_delayed.order_period_starts_at = Time.now + 1.days # Needs to be >= to current time, so add 1 day
+    tokujo_with_delayed.order_period_ends_at = Time.now + 5.days
+    tokujo_with_delayed.eat_period_starts_at = Time.now + 5.days + 3.days
+    tokujo_with_delayed.eat_period_ends_at = Time.now + 5.days + 3.days + 9.days
     tokujo_with_delayed.number_of_items_available = 100
 
     assert tokujo_with_immediate.save
@@ -70,7 +85,12 @@ class TokujoTest < ActiveSupport::TestCase
     tokujo_with_delayed.headline = "another catchy headline"
     tokujo_with_delayed.menu_item_id = @menu_item.id
     tokujo_with_delayed.payment_collection_timing = :delayed
-    tokujo_with_delayed.ends_at = "2023-08-27 11:55:33"
+    tokujo_with_delayed.ingredients_procurement_time = 3
+    tokujo_with_delayed.ingredients_expiration_time = 10
+    tokujo_with_delayed.order_period_starts_at = Time.now + 1.days # Needs to be >= to current time, so add 1 day
+    tokujo_with_delayed.order_period_ends_at = Time.now + 5.days
+    tokujo_with_delayed.eat_period_starts_at = Time.now + 5.days + 3.days
+    tokujo_with_delayed.eat_period_ends_at = Time.now + 5.days + 3.days + 9.days
     tokujo_with_delayed.number_of_items_available = 100
 
     assert tokujo_with_delayed.save

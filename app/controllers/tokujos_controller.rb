@@ -1,7 +1,7 @@
 class TokujosController < ApplicationController
   before_action :get_user_tokujos, only: %i[ index show edit update ]
-  before_action :get_user_menu_item_options, only: %i[ new edit ]
-  before_action :get_payment_collection_timing_options, only: %i[ new edit ]
+  before_action :get_user_menu_item_options, only: %i[ new create ]
+  before_action :get_payment_collection_timing_options, only: %i[ new create edit update ]
 
   def index
     authorize :tokujo, :index?
@@ -57,8 +57,13 @@ class TokujosController < ApplicationController
       :headline,
       :menu_item_id,
       :payment_collection_timing,
-      :number_of_items_available,
-      :ends_at,
+      :ingredients_procurement_time,
+      :ingredients_expiration_time,
+      :order_period_starts_at,
+      :order_period_ends_at,
+      :eat_period_starts_at,
+      :eat_period_ends_at,
+      :number_of_items_available
     )
   end
 

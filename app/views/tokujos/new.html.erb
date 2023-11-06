@@ -9,8 +9,13 @@
     ["text",:headline,:headline,"catchy headline"],
     ["select",:menu_item,:menu_item_id,nil,@menu_item_options,nil],
     ["select",:payment_collection_timing,:payment_collection_timing,nil,@payment_collection_timing_options,nil],
-    ["text",:number_of_items_available,:number_of_items_available,"number of orders available"],
-    ["date",:ends_at,:ends_at,"tokujo end date"]
+    ["text",:number_of_items_available,:number_of_items_available,"number of items available"],
+    ["text",:number_of_days_to_procure_ingredients,:ingredients_procurement_time,"number of days to procure ingredients"],
+    ["text",:number_of_days_until_ingredients_expiration, :ingredients_expiration_time,"nnumbr of days until expiration of ingredients"],
+    ["date",:order_period_start_date,:order_period_starts_at,"tokujo order period start date"],
+    ["date",:order_period_end_date,:order_period_ends_at,"tokujo order period end date"],
+    ["date",:eat_period_start_date,:eat_period_starts_at,"tokujo eat period start date"],
+    ["date",:eat_period_end_date,:eat_period_ends_at,"tokujo eat period end date"]
   ],
   form_footer: "",
   form_primary_button_label: "Add this tokujo",

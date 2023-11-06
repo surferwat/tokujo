@@ -7,37 +7,21 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     @menu_item = menu_items(:menu_item_one)
   end
 
+  # For index
   test "should get index" do
     sign_in(@user)
     get tokujos_url
     assert_response :success
   end
 
+  # For new
   test "should get new" do
     sign_in(@user)
     get new_tokujo_url
     assert_response :success
   end
 
-  test "should create tokujo where payment_collection_timing value is set to delayed" do
-    sign_in(@user)
-    
-    assert_difference("Tokujo.count") do
-      post tokujos_url,
-        params: {
-          tokujo: {
-            headline: "this is a catchy headline",
-            payment_collection_timing: "delayed",
-            ends_at: Time.now,
-            number_of_items_available: 100,
-            menu_item_id: @menu_item.id
-          }
-        }
-    end
-
-    assert_redirected_to tokujo_url(Tokujo.last)
-  end
-
+  # For create
   test "should create tokujo where payment_collection_timing value is set to immediate" do
     sign_in(@user)
     
@@ -54,6 +38,164 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tokujo_url(Tokujo.last)
   end
+
+
+
+  test "should create tokujo where payment_collection_timing value is set to delayed" do
+    sign_in(@user)
+    
+    assert_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now + 5.days,
+            eat_period_starts_at: Time.now + 5.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 3.days + 10.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_redirected_to tokujo_url(Tokujo.last)
+  end
+
+
+
+  test "should not create tokujo where payment_collection_timing value is set to delayed and order_period_starts_at is after current beginning of day" do
+    sign_in(@user)
+    
+    assert_no_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now - 1.days, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now + 5.days,
+            eat_period_starts_at: Time.now + 5.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 3.days + 10.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+
+
+  test "should not create tokujo where payment_collection_timing value is set to delayed and order_period_ends_at <= order_period_starts_at" do
+    sign_in(@user)
+    
+    assert_no_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now,
+            eat_period_starts_at: Time.now + 5.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 3.days + 10.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+
+
+  test "should not create tokujo where payment_collection_timing value is set to delayed and eat_period_starts_at <= (order_period_ends_at + ingredients_procurement_time.days)" do
+    sign_in(@user)
+    
+    assert_no_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now + 5.days,
+            eat_period_starts_at: Time.now + 2.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 3.days + 10.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+
+
+  test "should not create tokujo where payment_collection_timing value is set to delayed and eat_period_starts_at <= eat_period_starts_at" do
+    sign_in(@user)
+    
+    assert_no_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now + 5.days,
+            eat_period_starts_at: Time.now + 5.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 4.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+
+
+  test "should not create tokujo where payment_collection_timing value is set to delayed and eat_period_ends_at > (eat_period_starts_at + ingredients_expiration_time.days)" do
+    sign_in(@user)
+    
+    assert_no_difference("Tokujo.count") do
+      post tokujos_url,
+        params: {
+          tokujo: {
+            headline: "this is a catchy headline",
+            payment_collection_timing: "delayed",
+            ingredients_procurement_time: 3,
+            ingredients_expiration_time: 10,
+            order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+            order_period_ends_at: Time.now + 5.days,
+            eat_period_starts_at: Time.now + 5.days + 4.days,
+            eat_period_ends_at: Time.now + 5.days + 4.days + 11.days,
+            number_of_items_available: 100,
+            menu_item_id: @menu_item.id
+          }
+        }
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+
 
   test "should show tokujo" do
     sign_in(@user)

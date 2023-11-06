@@ -1,8 +1,13 @@
 tokujo_one:
   headline: catchy headline
   payment_collection_timing: delayed
-  ends_at: 2023-08-27 11:55:33
-  closed_at: 2023-08-27 11:55:33
+  ingredients_procurement_time: 3
+  ingredients_expiration_time: 10
+  order_period_starts_at: <%= Time.now %>
+  order_period_ends_at: <%= Time.now + 5.days %>
+  eat_period_starts_at: <%= Time.now + 5.days + 4.days %>
+  eat_period_ends_at: <%= Time.now + 5.days + 4.days + 9.days %>
+  closed_at: <%= Time.now + 2.days %>
   status: 0
   number_of_items_available: 100
   number_of_items_taken: 0
