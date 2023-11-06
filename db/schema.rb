@@ -48,9 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_070136) do
     t.string "user_username", null: false
     t.datetime "user_created_at", null: false
     t.datetime "user_updated_at", null: false
-    t.string "user_stripe_customer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_stripe_customer_id"
   end
 
   create_table "checkout_sessions", force: :cascade do |t|
@@ -136,12 +136,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_04_070136) do
     t.string "email", null: false
     t.string "username"
     t.string "password_digest", null: false
-    t.string "stripe_customer_id", null: false
     t.string "password_reset_token"
     t.datetime "password_reset_token_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "stripe_account_id"
+    t.string "stripe_customer_id"
     t.index ["password_reset_token"], name: "index_users_on_password_reset_token"
   end
 
