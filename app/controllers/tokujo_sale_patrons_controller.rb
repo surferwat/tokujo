@@ -19,17 +19,10 @@ class TokujoSalePatronsController < ApplicationController
     when "immediate"
     when "delayed"
       # Check whether order size is possible
-      curr_aggr_placed_size = tokujo.number_of_items_taken
-      max_aggr_size = tokujo.number_of_items_available
-      validate_order_size(size_i, curr_aggr_placed_size, max_aggr_size)
-
-      # If the number of orders placed by the patron results in the
-      # number_of_items_taken == number_of_items_available, then
-      # we need to close this tokujo instance.
-      is_at_max_aggr_size = check_max_aggr_size(size_i, tokujo.number_of_items_taken, tokujo.number_of_items_available)
-      if is_at_max_aggr_size
-        tokujo.status = "closed"
-        tokujo.save
+      is_valid, max_allowed = is_valid_order_size(size_i, tokujo.number_of_items_taken, tokujo.number_of_items_available)
+     
+      if !is_valid
+        redirect_to tokujo_sale_path(tokujo.id), alert: "Number of orders selected should be less than #{max_allowed}"
       end
     end
 
@@ -120,19 +113,12 @@ class TokujoSalePatronsController < ApplicationController
 
   private
   
-  def validate_order_size(size, curr_aggr_placed_size, max_aggr_size)
-    new_curr_aggr_placed_size = new_curr_aggr_placed_size(size, curr_aggr_placed_size)
-    max_allowed = max_aggr_size - curr_aggr_placed_size
-    if new_curr_aggr_placed_size > max_aggr_size
-      redirect_to tokujo_sale_path(tokujo.id), alert: "Number of orders selected should be less than #{max_allowed}"
-    end
-  end
-
 
   
-  def check_max_aggr_size(size, curr_aggr_placed_size, max_aggr_size)
-    new_aggr_size = new_curr_aggr_placed_size(size, curr_aggr_placed_size)
-    new_aggr_size == max_aggr_size
+  def is_valid_order_size(size, curr_aggr_placed_size, max_aggr_size)
+    new_curr_aggr_placed_size = new_curr_aggr_placed_size(size, curr_aggr_placed_size)
+    max_allowed = max_aggr_size - curr_aggr_placed_size
+    [new_curr_aggr_placed_size <= max_aggr_size, max_allowed]
   end
 
 

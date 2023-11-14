@@ -25,10 +25,25 @@ class Order < ApplicationRecord
   validates :item_status, presence: true
   validates :tokujo_id, presence: true
   validate :tokujo_must_be_open
+  validate :not_all_items_taken
 
+
+
+  private 
+
+
+  
   def tokujo_must_be_open
     if tokujo && tokujo.closed?
       errors.add(:tokujo_id, "is closed")
+    end
+  end
+
+
+
+  def not_all_items_taken
+    if tokujo && (tokujo.payment_collection_timing == "delayed") && ((size.to_i + tokujo.number_of_items_taken) > tokujo.number_of_items_available)
+      errors.add(:size, "is too much")
     end
   end
 end

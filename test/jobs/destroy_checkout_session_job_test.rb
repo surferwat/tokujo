@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Webhooks::StripeControllerTest < ActionDispatch::IntegrationTest
+class DestroyCheckoutSessionJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

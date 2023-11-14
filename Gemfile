@@ -90,3 +90,5 @@ gem "aws-sdk-s3", require: false
 
 # Use assert_template for testing
 gem 'rails-controller-testing'
+
+gem "sinatra"

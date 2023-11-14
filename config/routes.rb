@@ -103,7 +103,5 @@ Rails.application.routes.draw do
   post "tokujo_sale_orders/create", to: "tokujo_sale_orders#create", as: "tokujo_sale_orders" # resolves to tokujo_sale_orders
 
   # Webhooks
-  namespace :webhooks do
-    get "stripe", to: "stripe#index" # resolves to webhooks_stripe
-  end
+  post "webhooks", to: "webhooks#create" # resolves to webhooks_stripe
 end

@@ -1,9 +1,10 @@
 require 'json'
+require 'sinatra'
 require 'stripe'
 require "./lib/stripe_account_onboarding_status.rb"
 
 class StripeWebhookHandler
-  def evaluate_event
+  def evaluate_event(request)
     payload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
     event = nil
@@ -27,10 +28,75 @@ class StripeWebhookHandler
 
     # Handle the event
     case event.type
-      when "account.updated" 
-        # Not used
+      when "payment_intent.succeeded" 
+        payment_intent = event.data.object
+        handle_payment_intent(payment_intent)
+      when "setup_intent.succeeded"
+        setup_intent = event.data.object
+        handle_setup_intent(setup_intent)
       else
         puts "Unhandled event type: #{event.type}"
+    end
+  end
+
+
+
+  private
+
+
+
+  def handle_payment_intent(payment_intent)
+    order_id = payment_intent.metadata.order_id
+    order = Order.find(order_id)
+    tokujo = Tokujo.find(order.tokujo_id)
+    checkout_session = CheckoutSession.find_by(order_id: order.id, user_patron_id: order.user_patron_id)
+    
+    # There are two situations where a "payment_intent.succeeded" event occurs. The first
+    # is when we are able to successfully process a card payment for tokujos with 
+    # payment_collection_timing set to immediate. The second for tokujos with 
+    # payment_collection_timing set to delayed. In the second situation, we process card
+    # payments for multiple orders in batch, so handle changing the status for the tokujo
+    # in a different way. Thus, we only want to execute the following code for the first
+    # situation (i.e., where payment_collection_timing is set to immediate).
+    if tokujo.payment_collection_timing == "immediate"
+      # Payment was collected, so we need to update the item_status and 
+      # status for this order.
+      order.item_status = :payment_received
+      order.status = :closed
+      order.save
+
+      # Close tokujo
+      tokujo.status = :closed
+      tokujo.save
+
+      # The checkout session is finished as soon as the patron has reached this page, 
+      # so we need to destroy the checkout session instance in our database. We want
+      # to provide some time for the server to render the relevant view for the client, 
+      # so add a time delay.
+      if !checkout_session.nil?
+        DestroyCheckoutSessionJob.set(wait: 1.minute).perform_later(checkout_session)
+      end
+    end
+  end
+
+
+
+  def handle_setup_intent(setup_intent)
+    order_id = setup_intent.metadata.order_id
+ 
+    order = Order.find(order_id)
+    tokujo = Tokujo.find(order.tokujo_id)
+
+    # A payment method has been successfully attached to the setup intent object 
+    # stored in Stripe's database, so we need to update the item_status for 
+    # this order.
+    order.update_columns(item_status: "payment_due")
+
+    # If the Tokujo status == "closed" and number_of_items_taken == number_of_items_available, 
+    # then we need to queue a job to charge all of the patrons that placed an order for 
+    # this Tokujo.
+    if tokujo.status == :closed and tokujo.number_of_items_taken == tokujo.number_of_items_available
+      ChargePatronPaymentMethodsJob.perform_later tokujo.orders
     end
   end
 end
