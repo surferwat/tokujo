@@ -1,5 +1,5 @@
 class Sessions::ForgotPasswordMailer < ApplicationMailer
-  default from: "able #{ENV["RAILS_FORGOT_PASSWORD_EMAIL_FROM"]}"
+  default from: "ablejo #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}"
   layout "mailer"
 
   def forgot_password_email

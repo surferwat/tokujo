@@ -13,6 +13,7 @@ class Tokujo < ApplicationRecord
   validates :headline, presence: true, uniqueness: true
   validates :menu_item_id, presence: true
   validates :user_id, presence: true
+  validates :payment_collection_timing, presence: true
   validate :payment_collection_timing_delayed_attributes
 
   # Callbacks

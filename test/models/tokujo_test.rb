@@ -17,6 +17,11 @@ class TokujoTest < ActiveSupport::TestCase
     assert_not @tokujo.valid?
   end
 
+  test "payment_collection_timing should be present" do 
+    @tokujo.payment_collection_timing = nil
+    assert_not @tokujo.valid?
+  end
+
   test "should not save a record with invalid attributes related to payment collection timing value of delayed" do
     tokujo_with_immediate = Tokujo.new
     tokujo_with_immediate.user_id = @user.id

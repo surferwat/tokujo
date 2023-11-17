@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      Thank you for placing your order with <%= @username %>.
+    </p>
+    <%= @card_action_message %>
+    <h1>
+      Order summary
+    </h1>
+    <table class="min-w-full">        
+      <tbody class="divide-y divide-gray-200">
+        <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order ID</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @order_id%></th>
+        </tr>
+                <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Tokujo headline</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo_headline%></th>
+        </tr>
+        <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Description</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo_description%></th>
+        </tr>
+        <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @price, with_tax_text: false } %></th>
+        </tr>
+        <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order size</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @size %></th>
+        </tr>
+        <tr>
+          <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Total Price (incl. tax)</th>
+          <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @total_price_with_tax, with_tax_text: true } %></th>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -92,3 +92,5 @@ gem "aws-sdk-s3", require: false
 gem 'rails-controller-testing'
 
 gem "sinatra"
+
+gem 'dotenv-rails', groups: [:development, :test]
