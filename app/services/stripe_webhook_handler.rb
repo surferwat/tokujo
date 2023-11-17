@@ -103,12 +103,12 @@ class StripeWebhookHandler
     order_id = setup_intent.metadata.order_id
  
     order = Order.find(order_id)
+
     user_patron = UserPatron.find(order.user_patron_id)
     tokujo = Tokujo.find(order.tokujo_id)
     user = User.find(tokujo.user_id)
     checkout_session = CheckoutSession.find_by(order_id: order.id, user_patron_id: user_patron.id)
-
-
+    
     # A payment method has been successfully attached to the setup intent object 
     # stored in Stripe's database, so we need to update the item_status for 
     # this order.
@@ -120,8 +120,8 @@ class StripeWebhookHandler
     # If the Tokujo status == "closed" and number_of_items_taken == number_of_items_available, 
     # then we need to queue a job to charge all of the patrons that placed an order for 
     # this Tokujo.
-    if tokujo.status == :closed and tokujo.number_of_items_taken == tokujo.number_of_items_available
-      ChargePatronPaymentMethodsJob.perform_later tokujo.orders
+    if tokujo.status == "closed" and tokujo.number_of_items_taken == tokujo.number_of_items_available
+      ChargePatronPaymentMethodsJob.perform_later tokujo.orders.ids
     end
 
     # The checkout session is finished as soon as the patron has reached this page, 

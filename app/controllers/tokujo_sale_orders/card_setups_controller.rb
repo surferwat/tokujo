@@ -25,8 +25,7 @@ class TokujoSaleOrders::CardSetupsController < ApplicationController
       stripe_customer_id = user_patron.stripe_customer_id
       stripe_automatic_payment_methods = {enabled: true, allow_redirects: "never"}    
       setup_intent = StripeApiCaller::SetupIntent.new.create_setup_intent(stripe_customer_id: stripe_customer_id, metadata: {order_id: order_id}, stripe_automatic_payment_methods: stripe_automatic_payment_methods, on_behalf_of: on_behalf_of)
-      order.stripe_setup_intent_id = setup_intent.id
-      order.save
+      order.update_columns(stripe_setup_intent_id: setup_intent.id) # use update_columns instead of save because save would run all validations
     end
     
     # Set instance variables for the view

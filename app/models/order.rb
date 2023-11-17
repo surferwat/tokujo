@@ -12,7 +12,7 @@ class Order < ApplicationRecord
   #   open = the associated tokujo has not ended or has not been closed
   #   canceled = order has been canceled prior to the closing of the tokujo
   #   expired = order has been canceled because the payment method wasnt provided prior to the closing of the tokujo OR the tokujo ended without fulfilling the orders needed
-  #   closed = the associated tokujo and payment has closed and have been made, respectively
+  #   closed = the associated tokujo has closed, payment has been collected, and correspondnig service has been rendered.
   enum status: { open: 0, canceled: 1, expired: 2, closed: 3 }
 
   # Status of the ordered item
