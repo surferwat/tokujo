@@ -1,10 +1,15 @@
 class TokujosController < ApplicationController
-  before_action :get_user_tokujos, only: %i[ index show edit update ]
+  before_action :get_user_tokujos, only: %i[ show edit update ]
   before_action :get_user_menu_item_options, only: %i[ new create ]
   before_action :get_payment_collection_timing_options, only: %i[ new create edit update ]
 
   def index
     authorize :tokujo, :index?
+    
+    tokujos = Current.user.tokujos.where(status: "open")
+
+    # Set instance variables for view
+    @tokujos = tokujos
   end
 
   def show
@@ -70,7 +75,7 @@ class TokujosController < ApplicationController
 
 
   def get_user_tokujos
-    @tokujos = Current.user.tokujos.where(status: "open") # where returns [] if no match
+    @tokujos = Current.user.tokujos # where returns [] if no match
   end
 
 
