@@ -1,0 +1,2 @@
+module Tokujos::DirectoryHelper
+end

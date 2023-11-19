@@ -62,6 +62,9 @@ Rails.application.routes.draw do
   get "policies", to: "policies#index"
 
   # Tokujos
+  namespace :tokujos do 
+    get "/directory", to: "directory#index", as: "directory" # resolves to tokujos_directory_path
+  end
   resources :tokujos
 
   # Tokujo Sales

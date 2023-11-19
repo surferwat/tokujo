@@ -1,0 +1,11 @@
+<% content_for :title do %>
+  <%= title %>
+<% end %>
+
+<div class="mt-8">
+  <div class="">
+    <section>
+      <%= render "shared/directory_table", items: items, keys: keys, route_helper_method_to_detail: route_helper_method_to_detail %>
+    </section>
+  </div>
+</div>
