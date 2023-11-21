@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   # Dashboard
   get "dashboard", to: "dashboards#index", as: "dashboard"
 
+  # Menu Items
+  resources :menu_items, only: [ :index ]
+
   # Registrations
   get "sign-up", to: "registrations#new", as: "sign_up_new"
   post "sign-up", to: "registrations#create", as: "sign_ups"

@@ -1,0 +1,7 @@
+<%= render "shared/directory", 
+  title: "Menu Items", 
+  items: @menu_items, 
+  keys: @keys, 
+  route_helper_method_to_detail: method(:settings_my_menu_item_path),
+  actions: [["Create menu item", settings_my_menu_item_new_path]] 
+%>
