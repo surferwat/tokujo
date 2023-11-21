@@ -2,7 +2,7 @@ class TokujoPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       if user.present?
-        scope.all
+        scope.where(user_id: user.id)
       else
         scope.none
       end
