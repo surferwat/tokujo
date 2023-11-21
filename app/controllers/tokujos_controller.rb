@@ -5,11 +5,10 @@ class TokujosController < ApplicationController
 
   def index
     authorize :tokujo, :index?
-    
-    tokujos = Current.user.tokujos.where(status: "open")
 
     # Set instance variables for view
-    @tokujos = tokujos
+    @keys = Tokujo.column_names
+    @tokujos = Tokujo.where(user_id: Current.user.id)
   end
 
   def show

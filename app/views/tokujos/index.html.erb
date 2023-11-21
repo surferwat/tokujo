@@ -1,12 +1,7 @@
-<% content_for :title do %>
-  Your Tokujos
-<% end %>
- 
-<div class="mt-8">
-  <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
-    <% @tokujos&.each do |tokujo| %>
-      <%= render "tokujo", tokujo: tokujo %>
-    <% end %>
-    <%= render "add_tokujo" %>
-  </div>
-</div>
+<%= render "shared/directory", 
+  title: "Tokujos", 
+  items: @tokujos, 
+  keys: @keys, 
+  route_helper_method_to_detail: method(:tokujo_path),
+  actions: [["Create tokujo", new_tokujo_path]] 
+%>
