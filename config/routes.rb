@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "main#index"
 
+  # Dashboard
+  get "dashboard", to: "dashboards#index", as: "dashboard"
+
   # Registrations
   get "sign-up", to: "registrations#new", as: "sign_up_new"
   post "sign-up", to: "registrations#create", as: "sign_ups"

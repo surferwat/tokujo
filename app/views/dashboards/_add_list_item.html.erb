@@ -1,0 +1,14 @@
+<%= link_to list_items&.size < 2 ? route_path : accounts_plans_path do %>
+  <div class="h-36 mt-3 sm:mt-0 p-6 shadow-md rounded-lg border border-gray-300 bg-whiteshadow hover:border-gray-400">
+    <div class="flex flex-col items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mx-auto w-12 h-12">
+        <path fill-rule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+      </svg>
+      <% if list_items&.size > 0 %>
+        <p class="mt-2 text-base">Add another <%= list_item_name %></p>
+      <% else %>
+        <p class="mt-2 text-base">Add a <%= list_item_name %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

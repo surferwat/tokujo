@@ -1,0 +1,20 @@
+<div class="space-y-12">
+  <div class="space-y-8">
+    <h1 class="text-xl font-semibold">Your Tokujos</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
+      <% @tokujos&.each do |tokujo| %>
+        <%= render partial: "list_item", locals: { route_path: tokujo_path(tokujo.id), list_item: tokujo, attribute_name: "headline" } %>
+      <% end %>
+      <%= render partial: "add_list_item", locals: { route_path: new_tokujo_path, list_items: @tokujos, list_item_name: "tokujo" } %>
+    </div>
+  </div>
+  <div class="space-y-8">
+    <h1 class="text-xl font-semibold">Your Menu Items</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
+      <% @menu_items&.each do |menu_item| %>
+        <%= render partial: "list_item", locals: { route_path: settings_my_menu_item_path(menu_item.id), list_item: menu_item, attribute_name: "name" } %>
+      <% end %>
+      <%= render partial: "add_list_item", locals: { route_path: settings_my_menu_item_new_path, list_items: @menu_items, list_item_name: "menu item" } %>
+    </div>
+  </div>
+</div>
