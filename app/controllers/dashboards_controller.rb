@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   def index
-    authorize :tokujo, :index?
+    authorize :dashboard, :index?
     
     tokujos = Current.user.tokujos.where(status: "open")
     menu_items = Current.user.menu_items
