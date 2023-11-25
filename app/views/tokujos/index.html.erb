@@ -2,6 +2,7 @@
   title: "Tokujos", 
   items: @tokujos, 
   keys: @keys, 
-  route_helper_method_to_detail: method(:tokujo_path),
+  route_path_helper_method: :tokujo_path,
+  route_path_params: { "id" => "id" },
   actions: [["Create tokujo", new_tokujo_path]] 
 %>

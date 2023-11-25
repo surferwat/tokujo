@@ -9,7 +9,8 @@
       <tbody class="divide-y divide-gray-200 bg-white">
         <% items&.each do |item| %>
           <tr class="hover:bg-gray-100 cursor-pointer">
-            <%= td_for_row(route_helper_method_to_detail, item.id, item.attributes.values) %>
+            <% url_params = route_path_params.transform_keys(&:to_sym).transform_values { |key| item.send(key) } %>
+            <%= td_for_row(send(route_path_helper_method, url_params), item.attributes.values) %>
           </tr>
         <% end %>
       </tbody>

@@ -5,6 +5,19 @@ Rails.application.routes.draw do
   root "main#index"
 
   # Dashboard
+  # Notice how the path name "dashboard" is different than the controller name "dashboards".
+  namespace :dashboards do
+    get "tokujos/:id", to: "tokujos#index", as: "tokujo" # resolves to dashboard_tokujo
+    namespace :tokujos do
+      scope ":id" do
+        get "orders", to: "orders#index", as: "orders" # resolves to dashboard_tokujo_orders
+        get "orders/:order_id", to: "orders#show", as: "order" # resolves to dashboard_tokujo_order
+        get "patrons", to: "user_patrons#index", as: "user_patrons" # resolves to dashboard_tokujo_user_patrons
+        get "patrons/:user_patron_id", to: "user_patrons#show", as: "user_patron" # resolves to dashboard_tokujo_user_patron
+        get "menu_items", to: "menu_items#index", as: "menu_items" # resolves to dashboard_tokujo_menu_item
+      end
+    end
+  end
   get "dashboard", to: "dashboards#index", as: "dashboard"
 
   # Menu Items

@@ -7,12 +7,16 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     @menu_item = menu_items(:menu_item_one)
   end
 
+
+
   # For index
   test "should get index" do
     sign_in(@user)
     get tokujos_url
     assert_response :success
   end
+
+
 
   # For new
   test "should get new" do
@@ -21,6 +25,8 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+
+  
   # For create
   test "should create tokujo where payment_collection_timing value is set to immediate" do
     sign_in(@user)
@@ -197,17 +203,13 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
 
 
 
-  test "should show tokujo" do
-    sign_in(@user)
-    get tokujo_path(@tokujo)
-    assert_response :success
-  end
-
   test "should get edit" do
     sign_in(@user)
     get edit_tokujo_url(@tokujo)
     assert_response :success
   end
+
+
 
   test "should update tokujo" do
     sign_in(@user)
@@ -217,6 +219,8 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     assert_equal 101, @tokujo.number_of_items_available
   end
 
+
+
   test "should not update tokujo status" do
     sign_in(@user)
     put tokujo_url(@tokujo), params: { tokujo: { status: 1 } }
@@ -225,8 +229,12 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
     assert_not_equal 1, @tokujo.status
   end
 
+
+
   private 
   
+
+
   def sign_in(user)
     post session_new_url, params: { email: user.email, password: 'password' }
   end

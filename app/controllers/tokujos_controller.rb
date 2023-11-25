@@ -11,19 +11,14 @@ class TokujosController < ApplicationController
     @tokujos = Tokujo.where(user_id: Current.user.id)
   end
 
-  def show
-    authorize :tokujo, :show?
-    tokujo = @tokujos.find(params[:id])
 
-    # Set instance variables for view
-    @tokujo_sales_url = url_for(action: "show", controller: "tokujo_sales", tokujo_id: tokujo.id, only_path: false)
-    @tokujo = tokujo
-  end
 
   def new
     authorize :tokujo, :new?
     @tokujo = Tokujo.new
   end
+
+
 
   def create
     authorize :tokujo, :create?
@@ -37,10 +32,14 @@ class TokujosController < ApplicationController
     end
   end
 
+
+
   def edit
     authorize :tokujo, :edit?
     @tokujo = @tokujos.find(params[:id]) # triggers ActiveRecord::RecordNotFound if no record found
   end
+
+
 
   def update
     authorize :tokujo, :update?
@@ -54,7 +53,11 @@ class TokujosController < ApplicationController
     end
   end
 
+
+
   private
+
+
 
   def tokujo_params
     params.require(:tokujo).permit(

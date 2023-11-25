@@ -3,7 +3,7 @@
     <h1 class="text-xl font-semibold">Your Tokujos</h1>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
       <% @tokujos&.each do |tokujo| %>
-        <%= render partial: "list_item", locals: { route_path: tokujo_path(tokujo.id), list_item: tokujo, attribute_name: "headline" } %>
+        <%= render partial: "list_item", locals: { route_path: dashboards_tokujo_path(tokujo.id), list_item: tokujo, attribute_name: "headline" } %>
       <% end %>
       <%= render partial: "add_list_item", locals: { route_path: new_tokujo_path, list_items: @tokujos, list_item_name: "tokujo" } %>
     </div>

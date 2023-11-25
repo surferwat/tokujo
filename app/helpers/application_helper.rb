@@ -98,9 +98,7 @@ module ApplicationHelper
 
   # Helper to generate action panel buttons
   def action_panel_buttons(actions)
-    if (actions.blank?)
-      return
-    end
+    return if actions.blank?
 
     actions.map do |action|
       if !action[0].blank? || !action[1].blank?
@@ -137,15 +135,19 @@ module ApplicationHelper
 
   # NOTE: Placing the link tag inside of the td tag maintains valid html table 
   # construction but seems like a bit of a hack.
-  def td_for_row(route_helper_method_to_detail, id, texts)
+  def td_for_row(route_path_helper_method, texts)
+    return if texts.blank?
+
     texts.map do |text|
-      "<td class=\"px-3 text-sm text-gray-500\"><a href=\"#{route_helper_method_to_detail.call(id)}\">#{text}</a></td>"               
+      "<td class=\"px-3 text-sm text-gray-500\"><a href=\"#{route_path_helper_method}\">#{text}</a></td>"
     end.join.html_safe
   end 
 
 
 
   def table_headers(texts)
+    return if texts.blank?
+
     count = 0
     texts.map do |text|
       if count == 0
