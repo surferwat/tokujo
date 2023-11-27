@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
   if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to tokujos_path
+      redirect_to dashboard_path
     else
       flash.now[:alert] = "Invalid email or password"
       render :new, status: :unprocessable_entity
