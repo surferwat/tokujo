@@ -6,7 +6,7 @@ class Dashboards::Tokujos::OrdersControllerTest < ActionDispatch::IntegrationTes
     tokujo = tokujos(:tokujo_one)
     user = users(:user_one)
     sign_in(user)
-    get dashboards_tokujos_orders_path(tokujo.id)
+    get dashboard_tokujos_orders_path(tokujo.id)
     assert_response :success
   end
 
@@ -18,7 +18,7 @@ class Dashboards::Tokujos::OrdersControllerTest < ActionDispatch::IntegrationTes
     order = orders(:order_one)
     user = users(:user_one)
     sign_in(user)
-    get dashboards_tokujos_order_path(tokujo.id, order.id)
+    get dashboard_tokujos_order_path(tokujo.id, order.id)
     assert_response :success
   end
 

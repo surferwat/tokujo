@@ -32,17 +32,17 @@
   </section>
 
   <section class="grid grid-cols-3 gap-4">
-    <%= link_to dashboards_tokujos_orders_path(@tokujo.id) do %>
+    <%= link_to dashboard_tokujos_orders_path(@tokujo.id) do %>
       <div class="h-36 items-center mt-3 sm:mt-0 px-6 py-5 shadow-md rounded-lg border border-gray-300 hover:border-gray-400 focus:outline-none">
         <p class="text-lg font-medium text-gray-900">Orders</p>
       </div>
     <% end %>
-    <%= link_to dashboards_tokujos_user_patrons_path(@tokujo.id) do %>
+    <%= link_to dashboard_tokujos_user_patrons_path(@tokujo.id) do %>
       <div class="h-36 items-center mt-3 sm:mt-0 px-6 py-5 shadow-md rounded-lg border border-gray-300 hover:border-gray-400 focus:outline-none">
         <p class="text-lg font-medium text-gray-900">Patrons</p>
       </div>
     <% end %>
-    <%= link_to dashboards_tokujos_menu_items_path(@tokujo.id) do %>
+    <%= link_to dashboard_tokujos_menu_items_path(@tokujo.id) do %>
       <div class="h-36 items-center mt-3 sm:mt-0 px-6 py-5 shadow-md rounded-lg border border-gray-300 hover:border-gray-400 focus:outline-none">
         <p class="text-lg font-medium text-gray-900">Menu Item</p>
       </div>

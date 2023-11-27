@@ -6,7 +6,7 @@ class Dashboards::Tokujos::MenuItemsControllerTest < ActionDispatch::Integration
     tokujo = tokujos(:tokujo_one)
     user = users(:user_one)
     sign_in(user)
-    get dashboards_tokujos_menu_items_url(tokujo.id)
+    get dashboard_tokujos_menu_items_url(tokujo.id)
     assert_response :success
   end
 

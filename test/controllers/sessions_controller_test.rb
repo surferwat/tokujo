@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create session with valid credentials" do
     post sessions_url, params: { email: @user.email, password: "password" }
-    assert_redirected_to tokujos_path
+    assert_redirected_to dashboard_path
     assert_equal @user.id, session[:user_id]
   end
 
