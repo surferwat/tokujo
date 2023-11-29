@@ -94,3 +94,5 @@ gem 'rails-controller-testing'
 gem "sinatra"
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "sidekiq", "~> 7.2"
