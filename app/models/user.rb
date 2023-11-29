@@ -31,6 +31,6 @@ class User < ApplicationRecord
 
   def reset_password
     regenerate_password_reset_token
-    update(password_reset_token_sent_at: Time.current)
+    update_columns(password_reset_token_sent_at: Time.current)
   end
 end
