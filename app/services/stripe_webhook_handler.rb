@@ -45,9 +45,9 @@ class StripeWebhookHandler
 
 
 
-  def destroy_checkout_session(checkout_session)
+  def soft_delete_checkout_session(checkout_session)
     if !checkout_session.nil?
-      DestroyCheckoutSessionJob.set(wait: 1.minute).perform_later(checkout_session)
+      SoftDeleteCheckoutSessionJob.set(wait: 1.minute).perform_later(checkout_session)
     end
   end
 
@@ -90,10 +90,10 @@ class StripeWebhookHandler
       tokujo.save
 
       # The checkout session is finished as soon as the patron has reached this page, 
-      # so we need to destroy the checkout session instance in our database. We want
+      # so we need to soft delete the checkout session instance in our database. We want
       # to provide some time for the server to render the relevant view for the client, 
       # so add a time delay.
-      destroy_checkout_session(checkout_session)
+      soft_delete_checkout_session(checkout_session)
     end
   end
 
@@ -125,9 +125,9 @@ class StripeWebhookHandler
     end
 
     # The checkout session is finished as soon as the patron has reached this page, 
-    # so we need to destroy the checkout session instance in our database. We want
+    # so we need to soft delete the checkout session instance in our database. We want
     # to provide some time for the server to render the relevant view for the client, 
     # so add a time delay.
-    destroy_checkout_session(checkout_session)
+    soft_delete_checkout_session(checkout_session)
   end
 end

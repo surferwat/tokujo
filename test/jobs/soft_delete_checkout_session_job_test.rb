@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DestroyCheckoutSessionJobTest < ActiveJob::TestCase
+class SoftDeleteCheckoutSessionJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end
