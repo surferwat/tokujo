@@ -3,3 +3,7 @@ checkout_session_one:
 
 checkout_session_two:
   user_patron: user_patron_one
+
+checkout_session_three:
+  user_patron: user_patron_one
+  order: order_one
