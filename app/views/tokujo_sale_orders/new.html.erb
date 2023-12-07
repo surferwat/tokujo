@@ -35,7 +35,7 @@
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th>
-              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_cents, with_tax_text: false } %></th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_base, with_tax_text: false } %></th>
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order size</th>

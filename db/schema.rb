@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_04_041518) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_06_064511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,21 +68,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_041518) do
     t.string "name", null: false
     t.integer "max_ingredient_storage_life", null: false
     t.integer "max_ingredient_delivery_time", null: false
-    t.integer "price_cents", default: 0, null: false
+    t.integer "price_base", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
-    t.integer "price_with_tax_cents", default: 0, null: false
+    t.integer "price_with_tax_base", default: 0, null: false
     t.string "price_with_tax_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "description"
-    t.string "currency", null: false
     t.index ["user_id"], name: "index_menu_items_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "size", null: false
-    t.integer "payment_amount_cents", default: 0, null: false
+    t.integer "payment_amount_base", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.integer "item_status", default: 0, null: false
     t.bigint "tokujo_id", null: false

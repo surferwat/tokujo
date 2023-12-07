@@ -30,8 +30,8 @@ class Settings::MyMenuItemsControllerTest < ActionDispatch::IntegrationTest
             description: "This is a new menu item",
             max_ingredient_storage_life: 1,
             max_ingredient_delivery_time: 1,
-            currency: "USD",
-            price_cents: 10000,
+            price_currency: "USD",
+            price: 10000,
             image_one: fixture_file_upload(Rails.root.join('test', 'fixtures', 'files', 'test_image.jpeg'), 'image/jpeg')
           }
         }

@@ -20,7 +20,7 @@ MoneyRails.configure do |config|
   #
   # Example:
   # config.add_rate "USD", "CAD", 1.24515
-  # config.add_rate "CAD", "USD", 0.803115
+  # config.add_rate "USD", "JPY", 100
 
   # To handle the inclusion of validations for monetized fields
   # The default value is true
@@ -29,14 +29,14 @@ MoneyRails.configure do |config|
 
   # Default ActiveRecord migration configuration values for columns:
   #
-  # config.amount_column = { prefix: '',           # column name prefix
-  #                          postfix: '_cents',    # column name  postfix
-  #                          column_name: nil,     # full column name (overrides prefix, postfix and accessor name)
-  #                          type: :integer,       # column type
-  #                          present: true,        # column will be created
-  #                          null: false,          # other options will be treated as column options
-  #                          default: 0
-  #                        }
+  config.amount_column = { prefix: '',           # column name prefix
+                           postfix: '_base',    # column name  postfix
+                           column_name: nil,     # full column name (overrides prefix, postfix and accessor name)
+                           type: :integer,       # column type
+                           present: true,        # column will be created
+                           null: false,          # other options will be treated as column options
+                           default: 0
+                         }
   #
   # config.currency_column = { prefix: '',
   #                            postfix: '_currency',

@@ -59,6 +59,7 @@ class TokujoSalesController < ApplicationController
     # Make instance variables available in view
     @tokujo = tokujo
     @checkout_session_id = checkout_session.id
+    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
 
     # Render appropriate view
     case payment_collection_timing

@@ -24,7 +24,7 @@ class TokujosController < ApplicationController
     authorize :tokujo, :create?
     @tokujo = Current.user.tokujos.new(tokujo_params)
     if @tokujo.save
-      redirect_to tokujo_url(@tokujo), notice: "Tokujo was successfully added"
+      redirect_to dashboard_tokujo_url(@tokujo), notice: "Tokujo was successfully added"
     else
       flash[:alert] = "Tokujo could not be added"
       @tokujo ||= Tokujo.new
@@ -46,7 +46,7 @@ class TokujosController < ApplicationController
     @tokujo = @tokujos.find(params[:id])
 
     if @tokujo.update(tokujo_params)
-      redirect_to tokujo_url(@tokujo), notice: "Tokujo updated"
+      redirect_to dashboard_tokujo_url(@tokujo), notice: "Tokujo updated"
     else
       flash[:alert] = "Tokujo could not be updated"
       render :edit, status: :unprocessable_entity

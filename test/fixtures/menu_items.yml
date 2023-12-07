@@ -4,6 +4,7 @@ menu_item_one:
   description: Menu item one description
   max_ingredient_storage_life: 1
   max_ingredient_delivery_time: 1
-  price_cents: 10000
-  currency: USD
+  price_base: 10000
+  price_with_tax_base: 10800
+  price_currency: USD
   user: user_one

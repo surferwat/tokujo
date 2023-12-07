@@ -1,6 +1,6 @@
 order_one:
   size: 1
-  payment_amount_cents: 10000
+  payment_amount_base: 10000
   status: 0
   item_status: 0
   user_patron: user_patron_one

@@ -31,7 +31,7 @@ class TokujoSalePatronsController < ApplicationController
     @user_patron = UserPatron.new
     @tokujo = tokujo
     @size = size
-    @total_price_with_tax = (size_i * tokujo.menu_item.price_with_tax_cents).to_f
+    @total_price_with_tax = (size_i * tokujo.menu_item.price_with_tax_base).to_f
   end
 
   
@@ -101,7 +101,7 @@ class TokujoSalePatronsController < ApplicationController
       @user_patron = UserPatron.new
       @tokujo = tokujo
       @size = size
-      @total_price_with_tax = (@size.to_i * @tokujo.menu_item.price_with_tax_cents).to_f
+      @total_price_with_tax = (@size.to_i * @tokujo.menu_item.price_with_tax_base).to_f
       @user_patron = UserPatron.new
       render :new, status: :unprocessable_entity
       return

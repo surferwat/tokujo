@@ -43,17 +43,17 @@ class MenuItemTest < ActiveSupport::TestCase
     assert @menu_item.valid?
   end
 
-  test "currency should be present" do 
-    @menu_item.currency = ""
+  test "price_currency should be present" do 
+    @menu_item.price_currency = ""
     assert_not @menu_item.valid?
   end
 
   # Callbacks
   test "should update menu item price with tax when price is changed" do
-    @menu_item.price = 1000
+    @menu_item.price_base = 1000
     @menu_item.save
     expected_price_with_tax = 1000 * 1.08
-    assert_equal expected_price_with_tax, @menu_item.price_with_tax
+    assert_equal expected_price_with_tax, @menu_item.price_with_tax_base
   end
 
   # Associations

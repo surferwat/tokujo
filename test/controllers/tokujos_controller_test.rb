@@ -42,7 +42,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
         }
     end
 
-    assert_redirected_to tokujo_url(Tokujo.last)
+    assert_redirected_to dashboard_tokujo_url(Tokujo.last)
   end
 
 
@@ -68,7 +68,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
         }
     end
 
-    assert_redirected_to tokujo_url(Tokujo.last)
+    assert_redirected_to dashboard_tokujo_url(Tokujo.last)
   end
 
 
@@ -214,7 +214,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
   test "should update tokujo" do
     sign_in(@user)
     put tokujo_url(@tokujo), params: { tokujo: { number_of_items_available: 101 } }
-    assert_redirected_to tokujo_url(@tokujo)
+    assert_redirected_to dashboard_tokujo_url(@tokujo)
     @tokujo.reload
     assert_equal 101, @tokujo.number_of_items_available
   end
@@ -224,7 +224,7 @@ class TokujosControllerTest < ActionDispatch::IntegrationTest
   test "should not update tokujo status" do
     sign_in(@user)
     put tokujo_url(@tokujo), params: { tokujo: { status: 1 } }
-    assert_redirected_to tokujo_url(@tokujo)
+    assert_redirected_to dashboard_tokujo_url(@tokujo)
     @tokujo.reload
     assert_not_equal 1, @tokujo.status
   end

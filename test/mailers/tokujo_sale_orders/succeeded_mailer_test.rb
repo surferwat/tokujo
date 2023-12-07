@@ -14,28 +14,31 @@ class TokujoSaleOrders::SucceededMailerTest < ActionMailer::TestCase
     perform_enqueued_jobs
 
     delivered_email = ActionMailer::Base.deliveries.last
-
+    
+    # Uncomment below to extract string that can be used for assert_includes.
+    # puts
+    # puts delivered_email.text_part.decoded
+    # puts
+    
     assert_equal "ablejo #{ENV["RAILS_CUSTOMER_SUPPORT_EMAIL"]}", delivered_email.from
     assert_equal [user_patron.email], delivered_email.to
     assert_equal "Order #{order.id}", delivered_email.subject
     assert_includes delivered_email.text_part.decoded, <<~EOL
-      Thank you for placing your order with user_one.
-      Your card has been set up. We will charge your card as soon as the tokujo closes.
+    Thank you for placing your order with user_one.
+    Your card has been set up. We will charge your card as soon as the tokujo closes.
     
-      Order summary
-      Order ID: 959957393
-      Tokujo: catchy headline
-      Description: Menu item one description
-      Price: <span>$</span>
-      <span>
-          <span>10000.00</span>
-      </span>
-      Order size: 1
-      Total Price (incl. tax): <span>$</span>
-      <span>
-          <span>0.00</span>
-              <span>&nbsp(incl. tax)</span>
-      </span>
-      EOL
+    Order summary
+    Order ID: 959957393
+    Tokujo: catchy headline
+    Description: Menu item one description
+    Price: <span>
+        <span>$100.00</span>
+    </span> 
+    Order size: 1
+    Total Price (incl. tax): <span>
+        <span>$108.00</span>
+            <span>&nbsp(incl. tax)</span>
+    </span> 
+    EOL
   end
 end

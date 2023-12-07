@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   belongs_to :tokujo
 
   # Monetization
-  monetize :payment_amount_cents, with_model_currency: :currency
+  monetize :payment_amount_base, with_model_currency: :payment_amount_currency
 
   # Enum
   # Status of the order
