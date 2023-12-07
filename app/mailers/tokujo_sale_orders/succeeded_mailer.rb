@@ -14,7 +14,7 @@ class TokujoSaleOrders::SucceededMailer < ApplicationMailer
     @order_id = order.id
     @tokujo_headline = tokujo.headline
     @tokujo_description = tokujo.menu_item.description
-    @price = Money.new(tokujo.menu_item.price_base, tokujo.menu_item.price_currency).format
+    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
     @size = order.size
     @total_price_with_tax = Money.new(order.size.to_i * tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
 

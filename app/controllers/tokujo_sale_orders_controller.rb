@@ -21,7 +21,8 @@ class TokujoSaleOrdersController < ApplicationController
     @tokujo = tokujo
     @patron_id = patron_id
     @size = size
-    @total_price_with_tax = total_price_with_tax
+    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency)
+    @total_price_with_tax = Money.new(total_price_with_tax, tokujo.menu_item.price_currency)
     @button_label = tokujo.payment_collection_timing == "immediate" ? "Proceed to payment" : "Proceed to card setup"
   end
 

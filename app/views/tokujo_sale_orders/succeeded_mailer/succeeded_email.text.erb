@@ -5,6 +5,6 @@ Order summary
 Order ID: <%= @order_id%>
 Tokujo: <%= @tokujo_headline%>
 Description: <%= @tokujo_description%>
-Price: <%= render partial: "shared/price", formats: [:html], locals: { price: @price, with_tax_text: false } %>
+Price (incl. tax): <%= render partial: "shared/price", formats: [:html], locals: { price: @price_with_tax, with_tax_text: false } %>
 Order size: <%= @size %>
-Total Price (incl. tax): <%= render partial: "shared/price", formats: [:html], locals: { price: @total_price_with_tax, with_tax_text: true } %>
+Total Price (incl. tax): <%= render partial: "shared/price", formats: [:html], locals: { price: @total_price_with_tax, with_tax_text: false } %>

@@ -14,7 +14,7 @@
     <section aria-labelledby="options-heading">
       <div> 
         <p class="flex text-lg text-gray-900 sm:text-xl">
-          <%= render partial: "shared/price", locals: { price: @tokujo.menu_item.price_with_tax_base, with_tax_text: true } %>
+          <%= render partial: "shared/price", locals: { price: @price_with_tax, with_tax_text: true } %>
         </p>
         <p class="flex text-lg text-gray-900 sm:text-xl">
           <span>             
