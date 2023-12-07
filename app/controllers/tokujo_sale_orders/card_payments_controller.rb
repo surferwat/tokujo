@@ -23,7 +23,7 @@ class TokujoSaleOrders::CardPaymentsController < ApplicationController
       user = tokujo.user
       on_behalf_of = user.stripe_account_id
       stripe_customer_id = user_patron.stripe_customer_id
-      payment_intent = StripeApiCaller::PaymentIntent.new.create_payment_intent(amount: order.payment_amount.cents, stripe_customer_id: stripe_customer_id, metadata: {order_id: order_id}, on_behalf_of: on_behalf_of)
+      payment_intent = StripeApiCaller::PaymentIntent.new.create_payment_intent(amount: order.payment_amount_base, stripe_customer_id: stripe_customer_id, metadata: {order_id: order_id}, on_behalf_of: on_behalf_of)
       order.stripe_payment_intent_id = payment_intent.id
       order.save
     end

@@ -26,17 +26,17 @@ class OrderTest < ActiveSupport::TestCase
     assert @order.valid?
   end
 
-  test "payment_amount should be present and greater than 0" do
-    @order.payment_amount = ""
+  test "payment_amount_base should be present and greater than 0" do
+    @order.payment_amount_base = ""
     assert_not @order.valid?
 
-    @order.payment_amount = 0
+    @order.payment_amount_base = 0
     assert_not @order.valid?
 
-    @order.payment_amount = -1
+    @order.payment_amount_base = -1
     assert_not @order.valid?
 
-    @order.payment_amount = 9.99
+    @order.payment_amount_base = 9.99
     assert @order.valid?
   end
 
@@ -56,7 +56,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should create new instance when tokujo is open" do
-    order = Order.new(size: 1, payment_amount: 10000, tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "jpy", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
     order.save
     assert order.valid?
   end
@@ -64,7 +64,7 @@ class OrderTest < ActiveSupport::TestCase
   test "should not create new instance when tokujo is closed" do    
     @tokujo.status = 1
     @tokujo.save
-    order = Order.new(size: 1, payment_amount: 10000, tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "jpy", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
     order.save
     refute order.valid?
     assert_includes order.errors[:tokujo_id], "is closed"

@@ -22,16 +22,21 @@
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Tokujo ID</th>
-              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.id%></th>
-              <%= form.hidden_field :tokujo_id, value: @tokujo.id %>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo_id %></th>
+              <%= form.hidden_field :tokujo_id, value: @tokujo_id %>
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.menu_item.name%></th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @name %></th>
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Description</th>
-              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo.menu_item.description%></th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @description %></th>
+            </tr>
+            <tr>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Currency</th>
+              <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @payment_amount_currency %></th>
+              <%= form.hidden_field :payment_amount_currency, value: @payment_amount_currency %>
             </tr>
             <tr>
               <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th>

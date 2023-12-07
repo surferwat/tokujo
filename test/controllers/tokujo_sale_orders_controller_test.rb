@@ -32,6 +32,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
           order: {
             size: 8,
             payment_amount: 10000,
+            payment_amount_currency: "jpy",
             tokujo_id: @tokujo.id
           },
         }
@@ -46,7 +47,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
 
 
   test "should not create new order and not update checkout_session, if there is an existing order already tied to this checkout session" do  
-    order = Order.create(size: 8, payment_amount: 108, tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.create(size: 8, payment_amount_base: 108, payment_amount_currency: "jpy", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
     @checkout_session.order_id = order.id
     @checkout_session.save
 
@@ -58,6 +59,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
           order: {
             size: 8,
             payment_amount: 10000,
+            payment_amount_currency: "jpy",
             tokujo_id: @tokujo.id
           },
         }
@@ -79,6 +81,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
         order: {
           size: 8,
           payment_amount: 10000,
+          payment_amount_currency: "jpy",
           tokujo_id: @tokujo_immediate.id
         },
       }
@@ -96,6 +99,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
         order: {
           size: 8,
           payment_amount: 10000,
+          payment_amount_currency: "jpy",
           tokujo_id: @tokujo_delayed.id
         },
       }
@@ -112,6 +116,7 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
           order: {
             size: 8,
             payment_amount: 10000,
+            payment_amount_currency: "jpy",
             tokujo_id: @tokujo.id
           },
         }

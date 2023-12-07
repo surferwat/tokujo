@@ -7,7 +7,8 @@ class ChargePatronPaymentMethodsJob < ApplicationJob
       setup_intent = StripeApiCaller::SetupIntent.new.retrieve_setup_intent(order.stripe_setup_intent_id)
  
       payment_intent = StripeApiCaller::PaymentIntent.new.create_payment_intent(
-        amount: order.payment_amount.cents, # Use Money gem method, cents, to display value in cents, 
+        amount: order.payment_amount_base, # Use Money gem method, cents, to display value in cents, 
+        currency: order.payment_amount_currency,
         stripe_customer_id: setup_intent.customer, 
         payment_method_id: setup_intent.payment_method, 
         off_session: true,

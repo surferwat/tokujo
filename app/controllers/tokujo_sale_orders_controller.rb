@@ -20,6 +20,10 @@ class TokujoSaleOrdersController < ApplicationController
     @order = Order.new
     @tokujo = tokujo
     @patron_id = patron_id
+    @tokujo_id = tokujo.id
+    @name = tokujo.menu_item.name
+    @description = tokujo.menu_item.description
+    @payment_amount_currency = tokujo.menu_item.price_currency
     @size = size
     @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency)
     @total_price_with_tax = Money.new(total_price_with_tax, tokujo.menu_item.price_currency)
@@ -47,6 +51,12 @@ class TokujoSaleOrdersController < ApplicationController
       if checkout_session.order_id != nil
         order = Order.find(checkout_session.order_id)
       else
+        # Convert :price to internal representation
+        payment_amount_base = Monetize.parse(order_params[:payment_amount], order_params[:payment_amount_currency])
+        payment_amount_base = payment_amount_base.cents if order_params[:payment_amount_currency].downcase == "usd"
+        order_params[:payment_amount_base] = payment_amount_base
+		    order_params.delete(:payment_amount)
+        
         order = user_patron.orders.new(order_params)
         if order.save  
           # Update checkout session
@@ -112,6 +122,7 @@ class TokujoSaleOrdersController < ApplicationController
     params.require(:order).permit(
       :size, 
       :payment_amount, 
+      :payment_amount_currency,
       :tokujo_id
     )
   end
