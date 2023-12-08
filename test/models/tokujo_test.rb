@@ -7,20 +7,28 @@ class TokujoTest < ActiveSupport::TestCase
     @tokujo = tokujos(:tokujo_one)
   end
 
+
+
   # Validations
   test "should be valid" do 
     assert @tokujo.valid?
   end
+
+
 
   test "status should be present" do 
     @tokujo.status = nil
     assert_not @tokujo.valid?
   end
 
+
+
   test "payment_collection_timing should be present" do 
     @tokujo.payment_collection_timing = nil
     assert_not @tokujo.valid?
   end
+
+
 
   test "should not save a record with invalid attributes related to payment collection timing value of delayed" do
     tokujo_with_immediate = Tokujo.new
@@ -59,6 +67,8 @@ class TokujoTest < ActiveSupport::TestCase
     assert_not tokujo_with_delayed.save
   end
 
+
+
   test "should save a record with valid attributes related to payment collection timing value of delayed" do
     tokujo_with_immediate = Tokujo.new
     tokujo_with_immediate.user_id = @user.id
@@ -83,7 +93,38 @@ class TokujoTest < ActiveSupport::TestCase
     assert tokujo_with_delayed.save
   end
 
+
+
   # Callbacks
+  test "should update closed_at when status changes to closed" do
+    tokujo = Tokujo.new
+    tokujo.user_id = @user.id
+    tokujo.headline = "headline"
+    tokujo.menu_item_id = @menu_item.id
+    tokujo.payment_collection_timing = :immediate
+    tokujo.save
+
+    assert_nil tokujo.closed_at
+
+    tokujo.status = "closed"
+    tokujo.save
+
+    assert_not_nil tokujo.closed_at
+  end
+
+
+
+  test "should set closed_at to nil when status changes from closed to open" do
+    assert_not_nil @tokujo.closed_at
+
+    @tokujo.status = "open"
+    @tokujo.save
+
+    assert_nil @tokujo.closed_at
+  end
+
+
+
   test "should set default value for number_of_items_taken if payment_collection_timing value is delayed" do
     tokujo_with_delayed = Tokujo.new
     tokujo_with_delayed.user_id = @user.id
@@ -102,14 +143,20 @@ class TokujoTest < ActiveSupport::TestCase
     assert_equal 0, tokujo_with_delayed.number_of_items_taken
   end
 
+
+
   # Associations
   test "should belong to user" do
     assert_respond_to @tokujo, :user
   end
 
+
+
   test "should belong to menu_item" do
     assert_respond_to @tokujo, :menu_item
   end
+
+
 
   test "should have many orders" do 
     assert_respond_to @tokujo, :orders

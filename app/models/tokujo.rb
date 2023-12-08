@@ -8,6 +8,10 @@ class Tokujo < ApplicationRecord
   enum status: { open: 0, closed: 1 }
   enum payment_collection_timing: { immediate: 0, delayed: 1 }
 
+  # Callbacks
+  before_save :set_default_value_for_number_of_items_taken, if: :payment_collection_timing_is_delayed?
+  before_save :update_closed_at_if_closed
+
   # Validations
   validates :status, presence: true
   validates :headline, presence: true, uniqueness: true
@@ -16,14 +20,25 @@ class Tokujo < ApplicationRecord
   validates :payment_collection_timing, presence: true
   validate :payment_collection_timing_delayed_attributes
 
-  # Callbacks
-  before_save :set_default_value_for_number_of_items_taken, if: :payment_collection_timing_is_delayed?
-
   def set_default_value_for_number_of_items_taken
     self.number_of_items_taken ||= 0
   end
 
+
+
   private
+
+
+
+  def update_closed_at_if_closed
+    if status_changed? && status == "closed"
+      self.closed_at = Time.current
+    elsif status_changed? && status == "open"
+      self.closed_at = nil
+    end
+  end
+
+
 
   def payment_collection_timing_delayed_attributes
     case payment_collection_timing 
