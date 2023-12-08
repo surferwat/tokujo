@@ -115,12 +115,21 @@ class TokujoTest < ActiveSupport::TestCase
 
 
   test "should set closed_at to nil when status changes from closed to open" do
-    assert_not_nil @tokujo.closed_at
+    tokujo = Tokujo.new
+    tokujo.user_id = @user.id
+    tokujo.headline = "headline"
+    tokujo.menu_item_id = @menu_item.id
+    tokujo.payment_collection_timing = :immediate
+    tokujo.status = "closed"
+    tokujo.closed_at = Time.now
+    tokujo.save
 
-    @tokujo.status = "open"
-    @tokujo.save
+    assert_not_nil tokujo.closed_at
 
-    assert_nil @tokujo.closed_at
+    tokujo.status = "open"
+    tokujo.save
+
+    assert_nil tokujo.closed_at
   end
 
 
