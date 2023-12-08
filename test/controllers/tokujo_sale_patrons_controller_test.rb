@@ -77,7 +77,7 @@ class TokujoSalePatronsControllerTest < ActionDispatch::IntegrationTest
     checkout_session.user_patron_id = user_patron.id
     checkout_session.save
 
-    order = Order.create(tokujo_id: @tokujo.id, user_patron_id: user_patron.id, size: @size, payment_amount_base: 100)
+    order = Order.create(tokujo_id: @tokujo.id, user_patron_id: user_patron.id, size: @size, payment_amount_base: 100, payment_amount_currency: "usd")
     checkout_session.order_id = order.id
     checkout_session.save
 
@@ -111,7 +111,7 @@ class TokujoSalePatronsControllerTest < ActionDispatch::IntegrationTest
     checkout_session.user_patron_id = user_patron.id
     checkout_session.save
 
-    order = Order.create(tokujo_id: @tokujo.id, user_patron_id: user_patron.id, size: @size, payment_amount_base: 100)
+    order = Order.create(tokujo_id: @tokujo.id, user_patron_id: user_patron.id, size: @size, payment_amount_base: 100, payment_amount_currency: "usd")
     checkout_session.order_id = order.id
     checkout_session.save
 

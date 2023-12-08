@@ -17,21 +17,38 @@ class Order < ApplicationRecord
 
   # Status of the ordered item
   enum item_status: { payment_method_required: 0, payment_due: 1, payment_received: 2 }
+    
+  # Callbacks
+  before_validation :downcase_payment_amount_currency
 
   # Validations
   validates :size, presence: true, numericality: { greater_than: 0 }
-  validates :payment_amount, presence: true, numericality: { greater_than: 0 }
+  validates :payment_amount_base, presence: true, numericality: { greater_than: 0 }
+  validates :payment_amount_currency, presence: true
   validates :status, presence: true
   validates :item_status, presence: true
   validates :tokujo_id, presence: true
   validate :tokujo_must_be_open
   validate :not_all_items_taken
+  validate :payment_amount_currency_matches_price_currency
 
 
 
   private 
 
 
+
+  def downcase_payment_amount_currency
+    self.payment_amount_currency = payment_amount_currency.downcase if payment_amount_currency.present?
+  end
+
+
+
+  def payment_amount_currency_matches_price_currency
+    if tokujo.blank? || payment_amount_currency != tokujo.menu_item.price_currency
+      errors.add(:payment_amount_currency, "must match the currency of the underlying menu item")
+    end
+  end
   
   def tokujo_must_be_open
     if tokujo && tokujo.closed?

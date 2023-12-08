@@ -6,5 +6,5 @@ menu_item_one:
   max_ingredient_delivery_time: 1
   price_base: 10000
   price_with_tax_base: 10800
-  price_currency: USD
+  price_currency: usd
   user: user_one
