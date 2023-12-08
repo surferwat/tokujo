@@ -30,4 +30,11 @@ class CheckoutSessionTest < ActiveSupport::TestCase
     checkout_session.order_id = @order.id
     assert_equal checkout_session.order_id, @order.id
   end
+
+  # Validations
+  test "combination of user_patron_id and order_id must be unique" do
+    existing_checkout_session = CheckoutSession.create(user_patron_id: @user_patron.id, order_id: @order.id)
+    new_checkout_session = CheckoutSession.create(user_patron_id: @user_patron.id, order_id: @order.id)
+    assert_not new_checkout_session.valid?
+  end
 end
