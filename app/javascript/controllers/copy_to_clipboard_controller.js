@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "url" ]
 
-  copyToClipboard() {
+  copy() {
     const textField = this.urlTarget
     textField.select()
     try {
