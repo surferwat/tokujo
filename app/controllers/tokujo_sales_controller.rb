@@ -57,8 +57,12 @@ class TokujoSalesController < ApplicationController
     checkout_session = CheckoutSession.create(user_patron_id: nil, order_id: nil)
 
     # Make instance variables available in view
-    @tokujo = tokujo
+    @tokujo_id = tokujo.id
     @checkout_session_id = checkout_session.id
+    @tokujo_headline = tokujo.headline
+    @tokujo_description = tokujo.menu_item.description
+    @is_image_attached = tokujo.menu_item.image_one.attached?
+    @tokujo_image = tokujo.menu_item.image_one
     @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
 
     # Render appropriate view
@@ -66,6 +70,14 @@ class TokujoSalesController < ApplicationController
     when "immediate"
       render :show_for_immediate
     when "delayed"
+      # Make instance variables available in view
+      @number_of_items_remaining = tokujo.number_of_items_available - tokujo.number_of_items_taken
+      @number_of_items_available = tokujo.number_of_items_available
+      @order_period_starts_at = tokujo.order_period_starts_at.strftime("%m/%d/%Y")
+      @order_period_ends_at = tokujo.order_period_ends_at.strftime("%m/%d/%Y")
+      @eat_period_starts_at = tokujo.eat_period_starts_at.strftime("%m/%d/%Y")
+      @eat_period_ends_at = tokujo.eat_period_ends_at.strftime("%m/%d/%Y")
+
       render :show_for_delayed
     end
   end

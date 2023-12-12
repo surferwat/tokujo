@@ -1,15 +1,16 @@
 <% content_for :title do %>
 <% end %>
 
-<div class="mx-auto py-16 sm:px-6 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+<div class="mx-auto py-16 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
   
-  <!-- Tokujo details -->
-  <%= render partial: "details", locals: { tokujo_headline: @tokujo.headline, tokujo_description: @tokujo.menu_item.description } %>
+  <!-- Tokujo sales title -->
+  <%= render partial: "title", locals: { tokujo_headline: @tokujo_headline, tokujo_description: @tokujo_description } %>
 
   <!-- Tokujo image -->
-  <%= render partial: "image", locals: { tokujo_image_attached: @tokujo.menu_item.image_one.attached?, tokujo_image: @tokujo.menu_item.image_one } %>
+  <%= render partial: "image", locals: { tokujo_image_attached: @is_image_attached, tokujo_image: @tokujo_image } %>
 
-  <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
+  <!-- Tokujo sales body -->
+  <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg">
     <section aria-labelledby="options-heading">
       <div> 
         <p class="flex text-lg text-gray-900 sm:text-xl">
@@ -18,7 +19,7 @@
       </div>
       <!-- Tokujo form -->
       <div class="mt-10">
-        <%= render partial: "form", locals: { new_tokujo_sale_patron_path: new_tokujo_sale_patron_path, checkout_session_id: @checkout_session_id, tokujo_id: @tokujo.id } %>
+        <%= render partial: "form", locals: { new_tokujo_sale_patron_path: new_tokujo_sale_patron_path, checkout_session_id: @checkout_session_id, tokujo_id: @tokujo_id } %>
       </div>
     </section>
   </div>
