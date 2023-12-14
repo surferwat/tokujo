@@ -20,4 +20,12 @@ class ApplicationController < ActionController::Base
   def new_curr_aggr_placed_size(size, curr_aggr_placed_size)
     curr_aggr_placed_size != 0 ? curr_aggr_placed_size + size : size
   end
+
+
+
+  def set_instance_variables(variables)
+    variables.each do |name, value|
+      instance_variable_set("@#{name}", value)
+    end
+  end
 end
