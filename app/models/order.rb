@@ -1,4 +1,8 @@
 class Order < ApplicationRecord
+  # Concerns
+  include Downcaseable
+  self.downcase_attribute_name = :payment_amount_currency
+
   # Associations
   belongs_to :user_patron
   belongs_to :tokujo
@@ -17,9 +21,6 @@ class Order < ApplicationRecord
 
   # Status of the ordered item
   enum item_status: { payment_method_required: 0, payment_due: 1, payment_received: 2 }
-    
-  # Callbacks
-  before_validation :downcase_payment_amount_currency
 
   # Validations
   validates :size, presence: true, numericality: { greater_than: 0 }
@@ -35,12 +36,6 @@ class Order < ApplicationRecord
 
 
   private 
-
-
-
-  def downcase_payment_amount_currency
-    self.payment_amount_currency = payment_amount_currency.downcase if payment_amount_currency.present?
-  end
 
 
 
