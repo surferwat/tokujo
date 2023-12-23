@@ -63,7 +63,7 @@ class TokujoSalesController < ApplicationController
     @tokujo_description = tokujo.menu_item.description
     @is_image_attached = tokujo.menu_item.image_one.attached?
     @tokujo_image = tokujo.menu_item.image_one
-    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
+    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency).format
 
     # Render appropriate view
     case payment_collection_timing

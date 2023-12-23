@@ -83,7 +83,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_includes order.errors[:tokujo_id], "is closed"
   end
 
-  test "should not create new instance when payment_amount_currency does not match tokujo.menu_item.price_currency" do
+  test "should not create new instance when payment_amount_currency does not match tokujo.menu_item.currency" do
     order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "jpy", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
 
     refute order.valid?

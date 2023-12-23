@@ -16,18 +16,20 @@ class TokujoSaleOrdersController < ApplicationController
     tokujo = Tokujo.find(tokujo_id)
 
     # Set instance variables for views
-    @checkout_session_id = checkout_session.id
-    @order = Order.new
-    @tokujo = tokujo
-    @patron_id = patron_id
-    @tokujo_id = tokujo.id
-    @name = tokujo.menu_item.name
-    @description = tokujo.menu_item.description
-    @payment_amount_currency = tokujo.menu_item.price_currency
-    @size = size
-    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency)
-    @total_price_with_tax = Money.new(total_price_with_tax, tokujo.menu_item.price_currency)
-    @button_label = tokujo.payment_collection_timing == "immediate" ? "Proceed to payment" : "Proceed to card setup"
+    set_instance_variables(
+      checkout_session_id: checkout_session.id, 
+      order: Order.new, 
+      tokujo: Tokujo.find(tokujo_id),
+      patron_id: patron_id,
+      tokujo_id: tokujo.id,
+      name: tokujo.menu_item.name,
+      description: tokujo.menu_item.description,
+      payment_amount_currency: tokujo.menu_item.currency,
+      size: size, 
+      price_with_tax: Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency),
+      total_price_with_tax: total_price_with_tax, 
+      button_label: tokujo.payment_collection_timing == "immediate" ? "Proceed to payment" : "Proceed to card setup"
+    )
   end
 
 
@@ -63,7 +65,21 @@ class TokujoSaleOrdersController < ApplicationController
           update_checkout_session(checkout_session, order.id)
         else
           # Set instance variables for views
-          set_instance_variables(checkout_session.id, user_patron_id, order, Tokujo.find(tokujo_id), total_price_with_tax, UserPatron.new, "Proceed to card payment")
+          set_instance_variables(
+            checkout_session_id: checkout_session.id, 
+            patron_id: user_patron_id, 
+            order: order, 
+            tokujo: Tokujo.find(tokujo_id),
+            tokujo_id: tokujo.id,
+            name: tokujo.menu_item.name,
+            description: tokujo.menu_item.description,
+            payment_amount_currency: tokujo.menu_item.currency,
+            size: size, 
+            price_with_tax: Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency),
+            total_price_with_tax: total_price_with_tax, 
+            user_patron: UserPatron.new, 
+            button_label: "Proceed to payment"
+          )
   
           # Render new
           render :new, status: :unprocessable_entity
@@ -100,7 +116,21 @@ class TokujoSaleOrdersController < ApplicationController
           update_checkout_session(checkout_session, order.id)
         else
           # Set instance variables for views
-          set_instance_variables(checkout_session.id, user_patron_id, order, Tokujo.find(tokujo_id), total_price_with_tax, UserPatron.new, "Proceed to card setup")
+          set_instance_variables(
+            checkout_session_id: checkout_session.id, 
+            patron_id: user_patron_id, 
+            order: order, 
+            tokujo: Tokujo.find(tokujo_id),
+            tokujo_id: tokujo.id,
+            name: tokujo.menu_item.name,
+            description: tokujo.menu_item.description,
+            payment_amount_currency: tokujo.menu_item.currency,
+            size: size, 
+            price_with_tax: Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency),
+            total_price_with_tax: total_price_with_tax, 
+            user_patron: UserPatron.new, 
+            button_label: "Proceed to card setup"
+          )
   
           # Render new
           render :new, status: :unprocessable_entity
@@ -132,28 +162,6 @@ class TokujoSaleOrdersController < ApplicationController
   def check_max_aggr_size(size, curr_aggr_placed_size, max_aggr_size)
     new_aggr_size = new_curr_aggr_placed_size(size, curr_aggr_placed_size)
     new_aggr_size == max_aggr_size
-  end
-
-
-
-  def set_instance_variables(
-    checkout_session_id, 
-    user_patron_id, 
-    order, 
-    tokujo, 
-    size, 
-    total_price_with_tax, 
-    user_patron, 
-    button_label
-  )
-    @checkout_session_id = checkout_session_id
-    @patron_id = user_patron_id
-    @order = order
-    @tokujo = tokujo
-    @size = size
-    @total_price_with_tax = total_price_with_tax
-    @user_patron = user_patron
-    @button_label = button_label
   end
 
 

@@ -43,8 +43,8 @@ class MenuItemTest < ActiveSupport::TestCase
     assert @menu_item.valid?
   end
 
-  test "price_currency should be present" do 
-    @menu_item.price_currency = ""
+  test "currency should be present" do 
+    @menu_item.currency = ""
     assert_not @menu_item.valid?
   end
 

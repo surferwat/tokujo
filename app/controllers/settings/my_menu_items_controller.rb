@@ -29,8 +29,8 @@ class Settings::MyMenuItemsController < ApplicationController
     authorize :setting, :create?
 
     # Convert :price to internal representation
-    price_base = Monetize.parse(menu_item_params[:price], menu_item_params[:price_currency])
-    price_base = price_base.cents if menu_item_params[:price_currency].downcase == "usd"
+    price_base = Monetize.parse(menu_item_params[:price], menu_item_params[:currency])
+    price_base = price_base.cents if menu_item_params[:currency].downcase == "usd"
     menu_item_params[:price_base] = price_base
 		menu_item_params.delete(:price)
 
@@ -93,7 +93,7 @@ class Settings::MyMenuItemsController < ApplicationController
       :max_ingredient_storage_life,
       :max_ingredient_delivery_time,
       :price,
-      :price_currency,
+      :currency,
       :image_one,
     )
   end

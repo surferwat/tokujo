@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_07_071139) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_23_120926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,13 +69,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_07_071139) do
     t.integer "max_ingredient_storage_life", null: false
     t.integer "max_ingredient_delivery_time", null: false
     t.integer "price_base", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
     t.integer "price_with_tax_base", default: 0, null: false
-    t.string "price_with_tax_currency", default: "USD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.string "description"
+    t.string "currency", default: "usd"
     t.index ["user_id"], name: "index_menu_items_on_user_id"
   end
 

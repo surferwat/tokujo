@@ -14,9 +14,9 @@ class TokujoSaleOrders::SucceededMailer < ApplicationMailer
     @order_id = order.id
     @tokujo_headline = tokujo.headline
     @tokujo_description = tokujo.menu_item.description
-    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
+    @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency).format
     @size = order.size
-    @total_price_with_tax = Money.new(order.size.to_i * tokujo.menu_item.price_with_tax_base, tokujo.menu_item.price_currency).format
+    @total_price_with_tax = Money.new(order.size.to_i * tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency).format
 
     # Send mail
     mail(to: user_patron.email, subject: "Order #{order.id}")

@@ -31,7 +31,7 @@ class Order < ApplicationRecord
   validates :tokujo_id, presence: true
   validate :tokujo_must_be_open
   validate :not_all_items_taken
-  validate :payment_amount_currency_matches_price_currency
+  validate :payment_amount_currency_matches_currency
 
 
 
@@ -39,8 +39,8 @@ class Order < ApplicationRecord
 
 
 
-  def payment_amount_currency_matches_price_currency
-    if tokujo.blank? || payment_amount_currency != tokujo.menu_item.price_currency
+  def payment_amount_currency_matches_currency
+    if tokujo.blank? || payment_amount_currency != tokujo.menu_item.currency
       errors.add(:payment_amount_currency, "must match the currency of the underlying menu item")
     end
   end
