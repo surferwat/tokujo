@@ -1,12 +1,14 @@
 <% content_for :title do %>
-  Checkout - Order Summary
+  <%# Checkout - Order Summary %>
+  チェックアウト - 注文概要
 <% end %>
 
 <div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="space-y-3">
       <p>
-        Please review your order. 
+        <%# Please review your order.  %>
+        ご注文を確認してください。
       </p>
     </div>
 
@@ -16,39 +18,46 @@
         <table class="min-w-full">        
           <tbody class="divide-y divide-gray-200">
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Patron ID</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Patron ID</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">お客様ID</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @patron_id %></th>
               <%= hidden_field_tag :patron_id, @patron_id %>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Tokujo ID</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Tokujo ID</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">トクジョウ  ID</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @tokujo_id %></th>
               <%= form.hidden_field :tokujo_id, value: @tokujo_id %>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">料理名</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @name %></th>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Description</th>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">料理内容</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @description %></th>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Currency</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Currency</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">為替</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @payment_amount_currency %></th>
               <%= form.hidden_field :payment_amount_currency, value: @payment_amount_currency %>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Price (incl. tax)</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">価格 （税込）</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @price_with_tax, with_tax_text: false } %></th>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order size</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Order size</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">数量</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= @size %></th>
               <%= form.hidden_field :size, value: @size %>
             </tr>
             <tr>
-              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Total Price (incl. tax)</th>
+              <%# <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Total Price (incl. tax)</th> %>
+              <th scope="col" class="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">合計金額 （税込）</th>
               <td scope="col" class="py-3.5 px-3 text-left text-sm text-gray-900"><%= render partial: "shared/price", locals: { price: @total_price_with_tax, with_tax_text: false } %></th>
               <%= form.hidden_field :payment_amount, value: @total_price_with_tax %>
             </tr>
@@ -59,8 +68,10 @@
         
         <div class="grid gap-2 sm:flex sm:flex-row-reverse">
           <%# data: { turbo: false } is hack to make Stripe Checkout work with Rails 7 %>
-          <%= form.submit @button_label, data: { turbo: false } %>
-          <%= render partial: "shared/button_outline", locals: { text: "Back", href: tokujo_sale_path(@tokujo) } %>
+          <%# <%= form.submit @button_label, data: { turbo: false } %>
+          <%= form.submit "カードの設定に進む", data: { turbo: false } %>
+          <%# <%= render partial: "shared/button_outline", locals: { text: "Back", href: tokujo_sale_path(@tokujo) } %>
+          <%= render partial: "shared/button_outline", locals: { text: "戻る", href: tokujo_sale_path(@tokujo) } %>
         </div>
 
       <% end %>
