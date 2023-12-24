@@ -2,8 +2,8 @@ class MenuItem < ApplicationRecord
   TAX_FACTOR = 1.08 # 1 + consumption tax rate
   
   # Concerns
-  include Downcaseable
-  self.downcase_attribute_name = :currency
+  include Upcaseable
+  self.upcase_attribute_name = :currency
 
   # Associations
   belongs_to :user

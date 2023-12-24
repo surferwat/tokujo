@@ -38,7 +38,7 @@ class ChargePatronPaymentMethodsJobTest < ActiveJob::TestCase
     stripe_customer_id = StripeApiCaller::Customer.new.create_customer.id
     user_patron_id = UserPatron.create(email: "email@test.com", stripe_customer_id: stripe_customer_id).id
     tokujo_id = tokujos(:tokujo_one).id
-    order = Order.create(user_patron_id: user_patron_id, size: 8, payment_amount_base: 10000, payment_amount_currency: "usd", tokujo_id: tokujo_id)
+    order = Order.create(user_patron_id: user_patron_id, size: 8, payment_amount_base: 10000, payment_amount_currency: "USD", tokujo_id: tokujo_id)
     order.stripe_setup_intent_id = create_and_confirm_setup_intent(stripe_customer_id, order.id).id
     order.save
     order

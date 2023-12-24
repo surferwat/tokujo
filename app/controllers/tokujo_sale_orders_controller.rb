@@ -55,7 +55,7 @@ class TokujoSaleOrdersController < ApplicationController
       else
         # Convert :price to internal representation
         payment_amount_base = Monetize.parse(order_params[:payment_amount], order_params[:payment_amount_currency])
-        payment_amount_base = payment_amount_base.cents if order_params[:payment_amount_currency].downcase == "usd"
+        payment_amount_base = payment_amount_base.cents if order_params[:payment_amount_currency].upcase == "USD"
         order_params[:payment_amount_base] = payment_amount_base
 		    order_params.delete(:payment_amount)
         

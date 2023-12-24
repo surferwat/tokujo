@@ -1,8 +1,4 @@
 class Order < ApplicationRecord
-  # Concerns
-  include Downcaseable
-  self.downcase_attribute_name = :payment_amount_currency
-
   # Associations
   belongs_to :user_patron
   belongs_to :tokujo
@@ -18,9 +14,10 @@ class Order < ApplicationRecord
   #   expired = order has been canceled because the payment method wasnt provided prior to the closing of the tokujo OR the tokujo ended without fulfilling the orders needed
   #   closed = the associated tokujo has closed, payment has been collected, and correspondnig service has been rendered.
   enum status: { open: 0, canceled: 1, expired: 2, closed: 3 }
-
+  
   # Status of the ordered item
-  enum item_status: { payment_method_required: 0, payment_due: 1, payment_received: 2 }
+  enum item_status: { payment_method_required: 0, payment_due: 1, payment_received: 2 }   
+  enum payment_amount_currency: { USD: 0, JPY: 1 }
 
   # Validations
   validates :size, presence: true, numericality: { greater_than: 0 }
@@ -45,6 +42,8 @@ class Order < ApplicationRecord
     end
   end
   
+
+
   def tokujo_must_be_open
     if tokujo && tokujo.closed?
       errors.add(:tokujo_id, "is closed")

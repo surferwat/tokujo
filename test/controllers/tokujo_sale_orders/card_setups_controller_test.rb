@@ -6,7 +6,7 @@ class TokujoSaleOrders::CardSetupsControllerTest < ActionDispatch::IntegrationTe
     @tokujo = tokujos(:tokujo_one)
     @stripe_customer_id = StripeApiCaller::Customer.new.create_customer.id
     @user_patron = UserPatron.create(email: "email@test.com", stripe_customer_id: @stripe_customer_id)
-    @order = Order.create(user_patron_id: @user_patron.id, size: 8, payment_amount: 10000, tokujo_id: @tokujo.id)
+    @order = Order.create(user_patron_id: @user_patron.id, size: 8, payment_amount: 10000, payment_amount_currency: "USD", tokujo_id: @tokujo.id)
   end
   
   test "should get index" do

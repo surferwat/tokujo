@@ -56,6 +56,7 @@ class TokujoSalesControllerTest < ActionDispatch::IntegrationTest
     order = Order.create(
       size: 8,
       payment_amount: 10000,
+      payment_amount_currency: "USD",
       tokujo_id: tokujo.id,
       user_patron_id: user_patron.id
     )

@@ -7,14 +7,6 @@ class OrderTest < ActiveSupport::TestCase
     @user_patron = user_patrons(:user_patron_one)
   end
 
-  # Callbacks
-  test "payment_amount_currency is downcased before validation" do
-    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "USD", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
-    order.valid?
-
-    assert_equal "usd", order.payment_amount_currency
-  end
-
   # Validations
   test "should be valid" do
     assert @order.valid?
@@ -69,7 +61,7 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "should create new instance when tokujo is open" do
-    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "usd", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "USD", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
     order.save
     assert order.valid?
   end
@@ -77,14 +69,14 @@ class OrderTest < ActiveSupport::TestCase
   test "should not create new instance when tokujo is closed" do    
     @tokujo.status = 1
     @tokujo.save
-    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "usd", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "USD", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
     order.save
     refute order.valid?
     assert_includes order.errors[:tokujo_id], "is closed"
   end
 
   test "should not create new instance when payment_amount_currency does not match tokujo.menu_item.currency" do
-    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "jpy", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
+    order = Order.new(size: 1, payment_amount_base: 10000, payment_amount_currency: "JPY", tokujo_id: @tokujo.id, user_patron_id: @user_patron.id)
 
     refute order.valid?
     assert_includes order.errors[:payment_amount_currency], "must match the currency of the underlying menu item"

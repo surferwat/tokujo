@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_23_120926) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_24_060012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,7 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_23_120926) do
     t.bigint "user_patron_id", null: false
     t.string "stripe_setup_intent_id"
     t.string "stripe_payment_intent_id"
-    t.string "payment_amount_currency"
+    t.integer "payment_amount_currency"
     t.index ["tokujo_id"], name: "index_orders_on_tokujo_id"
     t.index ["user_patron_id"], name: "index_orders_on_user_patron_id"
   end

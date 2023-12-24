@@ -30,7 +30,7 @@ class Settings::MyMenuItemsController < ApplicationController
 
     # Convert :price to internal representation
     price_base = Monetize.parse(menu_item_params[:price], menu_item_params[:currency])
-    price_base = price_base.cents if menu_item_params[:currency].downcase == "usd"
+    price_base = price_base.cents if menu_item_params[:currency].upcase == "USD"
     menu_item_params[:price_base] = price_base
 		menu_item_params.delete(:price)
 
