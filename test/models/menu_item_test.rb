@@ -5,15 +5,30 @@ class MenuItemTest < ActiveSupport::TestCase
     @menu_item = menu_items(:menu_item_one)
   end
 
+  # Enums
+  test "currency enum values should be set correctly" do
+    menu_item = MenuItem.new
+
+    assert_equal "USD", menu_item.currency
+    menu_item.currency = "JPY"
+    assert_equal "JPY", menu_item.currency
+  end
+
+
+
   # Validations
   test "should be valid" do 
     assert @menu_item.valid?
   end
 
+
+
   test "name should be present" do 
     @menu_item.name = ""
     assert_not @menu_item.valid?
   end
+
+
 
   test "max_ingredient_storage_life should be present and greater than 0" do
     @menu_item.max_ingredient_storage_life = nil
@@ -29,6 +44,8 @@ class MenuItemTest < ActiveSupport::TestCase
     assert @menu_item.valid?
   end
 
+
+
   test "max_ingredient_delivery_time should be present and greater than 0" do
     @menu_item.max_ingredient_delivery_time = nil
     assert_not @menu_item.valid?
@@ -43,10 +60,14 @@ class MenuItemTest < ActiveSupport::TestCase
     assert @menu_item.valid?
   end
 
+
+
   test "currency should be present" do 
     @menu_item.currency = ""
     assert_not @menu_item.valid?
   end
+
+
 
   # Callbacks
   test "should update menu item price with tax when price is changed" do
@@ -56,10 +77,14 @@ class MenuItemTest < ActiveSupport::TestCase
     assert_equal expected_price_with_tax, @menu_item.price_with_tax_base
   end
 
+
+
   # Associations
   test "should belong to user" do
     assert_respond_to @menu_item, :user
   end
+
+
 
   test "should have one attached image" do
     assert_respond_to @menu_item, :image_one

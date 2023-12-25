@@ -1,5 +1,8 @@
+require "./lib/currency_type.rb"
+
 class Settings::MyMenuItemsController < ApplicationController
   before_action :get_menu_items, only: [ :index, :show, :create, :edit, :update ]
+  before_action :get_currency_options, only: [ :new, :edit ]
   
 
 
@@ -59,7 +62,13 @@ class Settings::MyMenuItemsController < ApplicationController
 
   def edit
     authorize :setting, :edit?
-    @menu_item = @menu_items.find(params[:id])
+    menu_item = @menu_items.find(params[:id])
+
+    # Set instance variables for view
+    set_instance_variables(
+      menu_item: menu_item,
+      currency: menu_item.currency
+    )
   end
 
 
@@ -102,5 +111,11 @@ class Settings::MyMenuItemsController < ApplicationController
   
   def get_menu_items
     @menu_items = Current.user.menu_items
+  end
+
+
+
+  def get_currency_options
+    @currency_options = CurrencyType::VALUES.map { |name, value| [name.to_s, name.to_s] }
   end
 end

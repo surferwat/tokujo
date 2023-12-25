@@ -1,3 +1,5 @@
+require "./lib/currency_type.rb"
+
 class MenuItem < ApplicationRecord
   TAX_FACTOR = 1.08 # 1 + consumption tax rate
   
@@ -13,6 +15,9 @@ class MenuItem < ApplicationRecord
   # Monetization
   monetize :price_base, with_model_currency: :currency
   monetize :price_with_tax_base, with_model_currency: :currency
+
+  # Enums
+  enum currency: CurrencyType::VALUES
 
   # Callbacks
   before_save :update_price_with_tax, if: :will_save_change_to_price_base?
