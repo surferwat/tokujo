@@ -17,10 +17,11 @@ class ChargePatronPaymentMethodsJob < ApplicationJob
         on_behalf_of: setup_intent.on_behalf_of
       )
 
-      if payment_intent.amount_received == payment_intent.amount
+      if (payment_intent.status == "succeeded") && (payment_intent.amount_received == payment_intent.amount)
         order.update_columns(item_status: :payment_received) # use update_columns instead of save because save would run all validations
+        # TODO: add Rails.logger.info
       else 
-        # QUESTION: How should we handle case when payment method that is stored cannot be processed?
+        # TODO: add Rails.logger.error
       end
     end
   end
