@@ -25,13 +25,21 @@ class StripeConnectAccountStatusSetter
     [status, stripe_account]
   end
 
+
+  
   private
+
+
 
   def get_stripe_connect_account(stripe_account_id)
     if !stripe_account_id.nil?
       stripe_account, e = StripeApiCaller::Account.new.retrieve_account(stripe_account_id)
       if !e.nil?
-        # TODO: Handle case where stripe account id attached to user is invalid.
+        # account ID does not exist
+        # TODO: Rails.logger.error, Account ID does not exist. For this stripe_account_id, 
+        # there was no corresponding account at Stripe. Next step is to investigate the 
+        # reason why (most likely user deleted their account through Stripe's dashboard) 
+        # and stripe_account_id should be set to nil. 
       end
     end
     stripe_account
