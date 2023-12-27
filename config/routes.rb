@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "main#index"
 
   # Dashboard
-  # Notice how the path name "dashboard" is different than the controller name "dashboards".
+  # NOTE: the path name "dashboard" is different than the controller name "dashboards".
   namespace :dashboards, as: "dashboard" do
     get "tokujos/:id", to: "tokujos#index", as: "tokujo" # resolves to dashboard_tokujo
     namespace :tokujos do

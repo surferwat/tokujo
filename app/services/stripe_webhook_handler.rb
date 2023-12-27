@@ -47,7 +47,7 @@ class StripeWebhookHandler
 
   def soft_delete_checkout_session(checkout_session)
     if !checkout_session.nil?
-      SoftDeleteCheckoutSessionJob.set(wait: 1.minute).perform_later(checkout_session)
+      SoftDeleteCheckoutSessionJob.perform_later(checkout_session)
     end
   end
 
