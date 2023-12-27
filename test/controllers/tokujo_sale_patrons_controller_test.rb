@@ -25,6 +25,14 @@ class TokujoSalePatronsControllerTest < ActionDispatch::IntegrationTest
 
 
 
+  test "should not get new when checkout_session_id exists but checkout session has been soft deleted" do
+    @checkout_session.update_column(:deleted_at, Time.now)
+    get new_tokujo_sale_patron_path(tokujo_id: @tokujo.id, checkout_session_id: @checkout_session.id, size: @size)
+    assert_redirected_to tokujo_sale_path(tokujo_id: @tokujo.id)
+  end
+
+
+
   # Case 1: If first time that patron is providing email address during this checkout session and email address provided does not exist in db
   test "should create new UserPatron object and update checkout_session.user_patron_id" do
     assert_nil @checkout_session.user_patron_id 

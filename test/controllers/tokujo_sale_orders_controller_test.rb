@@ -23,6 +23,14 @@ class TokujoSaleOrdersControllerTest < ActionDispatch::IntegrationTest
 
 
 
+  test "should not get new when checkout_session_id exists but checkout session has been soft deleted" do
+    @checkout_session.update_column(:deleted_at, Time.now)
+    get new_tokujo_sale_order_path(tokujo_id: @tokujo.id, patron_id: @user_patron.id, checkout_session_id:  @checkout_session.id, size: 8, total_price_with_tax: 10000)
+    assert_redirected_to tokujo_sale_path(tokujo_id: @tokujo.id)
+  end
+
+
+
   test "should create new order and update checkout_session, if there is no existing order tied to this checkout session" do  
     assert_nil @checkout_session.order_id
 
