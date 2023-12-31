@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require_relative "supports/vcr_setup"
+require "supports/helpers/stripe_helpers"
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers

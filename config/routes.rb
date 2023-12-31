@@ -125,5 +125,5 @@ Rails.application.routes.draw do
   post "tokujo_sale_orders/create", to: "tokujo_sale_orders#create", as: "tokujo_sale_orders" # resolves to tokujo_sale_orders
 
   # Webhooks
-  post "webhooks", to: "webhooks#create" # resolves to webhooks_stripe
+  post "webhooks", to: "webhooks#create" # resolves to webhooks
 end

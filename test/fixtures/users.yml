@@ -5,4 +5,4 @@ user_one:
   password_digest: <%= BCrypt::Password.create('password') %>
   password_reset_token: valid_token_123456789abcdefghijklmno
   password_reset_token_sent_at: <%= Time.current %>
-  stripe_account_id: acct_1NtjLkRQsD8r1Z10
+  stripe_account_id: acct_1NtjLkRQsD8r1Z10 # NOTE: This Account object was created on Sep 22, 7:04 PM at Stripe in Test mode.

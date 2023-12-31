@@ -32,7 +32,7 @@ module StripeApiCaller
       Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
     end
 
-    def create_setup_intent(stripe_customer_id: , metadata: , stripe_payment_method_id: nil, stripe_automatic_payment_methods: , on_behalf_of: )
+    def create_setup_intent(stripe_customer_id: , metadata: , stripe_payment_method_id: nil, stripe_automatic_payment_methods: { enabled: true, allow_redirects: "never" }, on_behalf_of: )
       setup_intent = Stripe::SetupIntent.create({
         customer: stripe_customer_id,
         metadata: metadata,

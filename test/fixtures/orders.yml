@@ -6,3 +6,12 @@ order_one:
   item_status: 0
   user_patron: user_patron_one
   tokujo: tokujo_one
+
+order_two:
+  size: 1
+  payment_amount_base: 10000
+  payment_amount_currency: USD
+  status: 0
+  item_status: 0
+  user_patron: user_patron_one
+  tokujo: tokujo_two

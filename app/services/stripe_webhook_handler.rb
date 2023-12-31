@@ -4,6 +4,9 @@ require 'stripe'
 require "./lib/stripe_account_onboarding_status.rb"
 
 class StripeWebhookHandler
+  class InvalidPayloadError < StandardError; end
+  class InvalidSignatureError < StandardError; end
+
   def evaluate_event(request)
     payload = request.body.read
     sig_header = request.env['HTTP_STRIPE_SIGNATURE']
@@ -18,12 +21,10 @@ class StripeWebhookHandler
       )
     rescue JSON::ParserError => e
       # Invalid payload
-      status 400
-      return
-    rescue Stripe::SignatureVerificationError => e
+      raise InvalidPayloadError, "Invalid payload"
+    rescue   => e
       # Invalid signature
-      status 400
-      return
+      raise InvalidSignatureError, "Invalid signature"
     end
 
     # Handle the event
@@ -90,9 +91,7 @@ class StripeWebhookHandler
       tokujo.save
 
       # The checkout session is finished as soon as the patron has reached this page, 
-      # so we need to soft delete the checkout session instance in our database. We want
-      # to provide some time for the server to render the relevant view for the client, 
-      # so add a time delay.
+      # so we need to soft delete the checkout session instance in our database.
       soft_delete_checkout_session(checkout_session)
     end
   end
@@ -125,9 +124,7 @@ class StripeWebhookHandler
     end
 
     # The checkout session is finished as soon as the patron has reached this page, 
-    # so we need to soft delete the checkout session instance in our database. We want
-    # to provide some time for the server to render the relevant view for the client, 
-    # so add a time delay.
+    # so we need to soft delete the checkout session instance in our database.
     soft_delete_checkout_session(checkout_session)
   end
 end

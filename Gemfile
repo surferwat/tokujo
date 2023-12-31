@@ -98,3 +98,7 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "sidekiq", "~> 7.2"
 
 gem "rqrcode", "~> 2.0"
+
+gem "vcr"
+
+gem "webmock"
