@@ -3,10 +3,11 @@
   model: @user,
   method: "post",
   url: sessions_forgot_password_path,
+  container_class_custom_part: nil,
   form_title: "Forgot your password",
   form_subtitle: "Enter your email address below and we will send you password reset instructions.",
   form_fields: [
-    ["text","email", :email, "Enter your email address", nil],
+    ["text","email", :email, "Enter your email address", nil,nil],
   ],
   form_footer: "If you don't see your reset email, then check your spam filter.",
   form_primary_button_label: "Email me reset instructions",

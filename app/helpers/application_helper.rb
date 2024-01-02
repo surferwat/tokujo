@@ -13,6 +13,11 @@ module ApplicationHelper
         form.label field[1]
       end
 
+      render_string_desc = capture do 
+        "<p class=\"text-slate-500\">#{field[0] == "select" ? field[6] : field[5] }</p>".html_safe
+      end
+
+
       case field[0]
       when "text"
         render_string_input = capture do
@@ -21,9 +26,10 @@ module ApplicationHelper
           form.text_field field[2], options
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
@@ -32,9 +38,10 @@ module ApplicationHelper
           form.password_field field[2], placeholder: field[3]
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
@@ -45,9 +52,10 @@ module ApplicationHelper
           form.select field[2], options_for_select(field[4], selected: field[5]), options
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
@@ -56,9 +64,10 @@ module ApplicationHelper
           form.file_field field[2]
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
@@ -69,9 +78,10 @@ module ApplicationHelper
           form.date_field field[2], options
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
@@ -82,9 +92,10 @@ module ApplicationHelper
           form.number_field field[2], options
         end
 
-        "<div>
+        "<div class=\"pb-2\">
           <div class=\"space-y-2\">
             #{render_string_label}
+            #{render_string_desc}
             #{render_string_input}
           </div>
         </div>"
