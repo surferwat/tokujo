@@ -1,5 +1,6 @@
 <%= link_to route_path do %>
-  <div class="h-36 items-center mt-3 sm:mt-0 px-6 py-5 shadow-md rounded-lg border border-gray-300 hover:border-gray-400 focus:outline-none">
-    <p class="text-lg font-medium text-gray-900"><%= list_item.public_send(attribute_name) %></p>
+  <div class="h-36 items-center mt-3 sm:mt-0 px-6 py-5 rounded-md border border-slate-400 focus:outline-none hover:bg-black hover:text-white">
+    <p class="text-lg font-medium text-current"><%= list_item.public_send(header) %></p>
+    <p class="text-sm font-medium text-current"><%= list_item.public_send(subhead).strftime("%m/%d/%y") %></p>
   </div>
 <% end %>
