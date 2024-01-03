@@ -134,9 +134,9 @@ module ApplicationHelper
         attribute[1].to_s
       end
       "<dl class=\"divide-y divide-gray-200\">
-        <div class=\"py-1 sm:grid sm:grid-cols-3\">
+        <div class=\"py-1 sm:grid sm:grid-cols-2\">
           <dt class=\"text-sm font-medium text-gray-500\">#{render_string_key}</dt>
-          <dd class=\"mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2\">#{render_string_value}</dd>
+          <dd class=\"mt-1 text-sm text-gray-900 sm:mt-0\">#{render_string_value}</dd>
         </div>
       </dl>"
     end.join.html_safe

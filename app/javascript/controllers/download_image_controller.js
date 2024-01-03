@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["image"];
+  static targets = ["image"]
 
   download() {
     const pngData = this.imageTarget.src;
