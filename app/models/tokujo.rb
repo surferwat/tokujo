@@ -153,8 +153,10 @@ class Tokujo < ApplicationRecord
 
  
   def validate_order_period_starts_at_not_in_past
-    if order_period_starts_at.present? && (order_period_starts_at < DateTime.current.beginning_of_day)
+    if order_period_starts_at_changed? && order_period_starts_at_was.nil? && (order_period_starts_at < DateTime.current.beginning_of_day)
       errors.add(:order_period_starts_at, "must be the current datetime or later")
+    elsif  order_period_starts_at_changed? && order_period_starts_at_was.present? && (order_period_starts_at < created_at)
+      errors.add(:order_period_starts_at, "must be the created datetime or later")
     end
   end
 
@@ -166,7 +168,7 @@ class Tokujo < ApplicationRecord
 
 
   def validate_order_period_ends_at_greater_than_order_period_starts_at
-    if order_period_ends_at.present? && order_period_starts_at.present? && order_period_ends_at <= order_period_starts_at
+    if order_period_ends_at.present? && order_period_starts_at.present? && (order_period_ends_at <= order_period_starts_at)
       errors.add(:order_period_ends_at, "must be greater than order_period_starts_at")
     end
   end

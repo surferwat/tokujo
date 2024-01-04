@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_25_111340) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_04_045534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,13 +114,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_25_111340) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "payment_collection_timing", null: false
     t.string "headline"
     t.integer "ingredients_procurement_time"
     t.integer "ingredients_expiration_time"
     t.datetime "order_period_starts_at"
     t.datetime "eat_period_starts_at"
     t.datetime "eat_period_ends_at"
+    t.integer "payment_collection_timing", default: 1
     t.index ["menu_item_id"], name: "index_tokujos_on_menu_item_id"
     t.index ["user_id"], name: "index_tokujos_on_user_id"
   end

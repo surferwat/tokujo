@@ -40,7 +40,7 @@ class TokujoSalesControllerTest < ActionDispatch::IntegrationTest
       payment_collection_timing: "delayed",
       ingredients_procurement_time: 3,
       ingredients_expiration_time: 10,
-      order_period_starts_at: Time.now, # Needs to be >= to current time, so add 1 day
+      order_period_starts_at: Time.now,
       order_period_ends_at: Time.now + 5.days,
       eat_period_starts_at: Time.now + 5.days + 4.days,
       eat_period_ends_at: Time.now + 5.days + 4.days + 9.days,

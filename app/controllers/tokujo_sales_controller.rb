@@ -79,6 +79,8 @@ class TokujoSalesController < ApplicationController
       @eat_period_ends_at = tokujo.eat_period_ends_at.strftime("%m/%d/%Y")
 
       render :show_for_delayed
+    else
+      raise ArgumentError
     end
   end
 end
