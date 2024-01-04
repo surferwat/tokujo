@@ -17,7 +17,7 @@ class Tokujo < ApplicationRecord
   validates :headline, presence: true, uniqueness: true
   validates :menu_item_id, presence: true
   validates :user_id, presence: true
-  validates :payment_collection_timing, presence: true
+  # validates :payment_collection_timing, presence: true NOTE: uncomment before releasing immediate payment collection timing feature
   validate :payment_collection_timing_delayed_attributes
 
   def set_default_value_for_number_of_items_taken
