@@ -1,7 +1,8 @@
 <% content_for :title do %>
+  ショップ
 <% end %>
 
-<div class="mx-auto py-16 sm:px-6 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+<div class="mx-auto py-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
   
   <!-- Tokujo sales title -->
   <%= render partial: "title", locals: { tokujo_headline: @tokujo_headline, tokujo_description: @tokujo_description } %>
@@ -11,12 +12,12 @@
 
   <!-- Tokujo sales body -->
   <div class="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg">
-    <section aria-labelledby="options-heading">
+    <section aria-labelledby="options-heading" class="space-y-3">
       <div> 
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg font-semibold text-gray-900">
           <%= render partial: "shared/price", locals: { price: @price_with_tax, with_tax_text: true } %>
         </p>
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg font-semibold text-gray-900">
           <span><%#= @number_of_items_remaining %></span>
           <%# <span>&nbspof</span> %>
           <span><%#= @number_of_items_available %></span>
@@ -26,21 +27,26 @@
           <span><%= @number_of_items_remaining %></span>
           <span>&nbsp点</span>
         </p>
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg text-gray-900">
           <%# Order period start date: <%= @order_period_starts_at %>
           注文期間開始日: <%= @order_period_starts_at %>
         <p>
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg text-gray-900">
           <%# Order period end date: <%= @order_period_ends_at %> 
           注文期間終了日:　<%= @order_period_ends_at %>
         <p>
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg text-gray-900">
           <%# Eat period start date: <%= @eat_period_starts_at %>
           ご来店可能期間の開始日:　<%= @eat_period_starts_at %>
         <p>
-        <p class="flex text-lg text-gray-900 sm:text-xl">
+        <p class="flex text-lg text-gray-900">
           <%# Eat period end date: <%= @eat_period_ends_at %>
           ご来店可能期間の終了日:　<%= @eat_period_ends_at %>
+        <p>
+      </div>
+      <div>
+        <p class="flex text-lg font-semibold text-gray-900">
+          ＊限定数が全て購入された場合にのみ、カードに請求されます
         <p>
       </div>
       <!-- Tokujo form -->

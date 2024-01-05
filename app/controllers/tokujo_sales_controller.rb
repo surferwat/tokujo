@@ -62,7 +62,7 @@ class TokujoSalesController < ApplicationController
     @tokujo_headline = tokujo.headline
     @tokujo_description = tokujo.menu_item.description
     @is_image_attached = tokujo.menu_item.image_one.attached?
-    @tokujo_image_url = @is_image_attached ? rails_blob_path(tokujo.menu_item.image_one, only_path: true) : nil
+    @tokujo_image_url = @is_image_attached ? rails_blob_path(tokujo.menu_item.image_one.variant(resize_and_pad: [300, 300], format: :png, saver: { subsample_mode: "on", strip: true, interlace: true, quality: 50 }), only_path: true) : nil
     @price_with_tax = Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency).format
 
     # Render appropriate view

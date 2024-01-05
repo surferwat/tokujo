@@ -10,7 +10,7 @@ module ApplicationHelper
   def form_fields(form,fields)
     fields.map do |field|
       render_string_label = capture do
-        form.label field[1]
+        form.label field[1] if field[1].present?
       end
 
       render_string_desc = capture do 
@@ -96,6 +96,16 @@ module ApplicationHelper
           <div class=\"space-y-2\">
             #{render_string_label}
             #{render_string_desc}
+            #{render_string_input}
+          </div>
+        </div>"
+      when "hidden"
+        render_string_input = capture do
+          form.hidden_field field[2]
+        end
+
+        "<div class=\"pb-2\">
+          <div class=\"space-y-2\">
             #{render_string_input}
           </div>
         </div>"

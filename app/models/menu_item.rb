@@ -2,7 +2,7 @@ require "./lib/currency_type.rb"
 
 class MenuItem < ApplicationRecord
   TAX_FACTOR = 1.08 # 1 + consumption tax rate
-  
+
   # Concerns
   include Upcaseable
   self.upcase_attribute_name = :currency

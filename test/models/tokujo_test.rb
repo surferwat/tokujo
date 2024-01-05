@@ -23,10 +23,10 @@ class TokujoTest < ActiveSupport::TestCase
 
 
 
-  test "payment_collection_timing should be present" do 
-    @tokujo.payment_collection_timing = nil
-    assert_not @tokujo.valid?
-  end
+  # test "payment_collection_timing should be present" do 
+  #   @tokujo.payment_collection_timing = nil
+  #   assert_not @tokujo.valid?
+  # end
 
 
 

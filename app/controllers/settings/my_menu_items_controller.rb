@@ -31,6 +31,8 @@ class Settings::MyMenuItemsController < ApplicationController
   def create
     authorize :setting, :create?
 
+    raise ArgumentError, "Currency cannot be nil" if menu_item_params[:currency].nil?
+
     # Convert :price to internal representation
     price_base = Monetize.parse(menu_item_params[:price], menu_item_params[:currency])
     price_base = price_base.cents if menu_item_params[:currency].upcase == "USD"
@@ -45,7 +47,12 @@ class Settings::MyMenuItemsController < ApplicationController
       begin
         @menu_item.image_one.attach(params[:menu_item][:image_one])
       rescue StandardError => e
+        # Set errors
         @menu_item.errors.add(:image_one, "Failed to upload image: #{e}")
+        
+        # Set instannce variables for view
+        get_currency_options
+        
         render :new, status: :unprocessable_entity and return
       end
     end
@@ -54,6 +61,9 @@ class Settings::MyMenuItemsController < ApplicationController
     if @menu_item.save
       redirect_to settings_my_menu_item_path(@menu_item), notice: "Successfully added menu item"
     else
+      # Set instannce variables for view
+      get_currency_options
+      
       render :new, status: :unprocessable_entity
     end
   end
@@ -104,6 +114,7 @@ class Settings::MyMenuItemsController < ApplicationController
       :price,
       :currency,
       :image_one,
+      :image
     )
   end
 
