@@ -2,7 +2,7 @@
   title: "Menu Items", 
   items: @menu_items, 
   keys: @keys, 
-  route_path_helper_method: :settings_my_menu_item_path,
+  route_path_helper_method: :menu_item_path,
   route_path_params: { "id" => "id" },
-  actions: [["Create menu item", settings_my_menu_item_new_path]] 
+  actions: [["Create menu item", new_menu_item_path]] 
 %>

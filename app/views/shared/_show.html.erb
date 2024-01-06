@@ -3,17 +3,23 @@
 <% end %>
  
 <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-flow-col-dense lg:grid-cols-3">
-  <div class="space-y-6 lg:col-start-1 lg:col-span-2">
-    <section>
-      <div class="bg-white overflow-hidden sm:rounded-lg">
-        <div class="py-5">
-          <%= detail_dl_rows(model_instance.attributes) %>
-        </div>
+  <section class="space-y-6 lg:col-start-1 lg:col-span-2">
+    <div class="bg-white overflow-hidden sm:rounded-lg">
+      <div class="py-5">
+        <%= detail_dl_rows(model_instance.attributes) %>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+  
+  <section class="lg:col-start-1 lg:col-span-3">
+    <% if image_url.present? %>
+      <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg"> 
+        <%= image_tag image_url, class: "object-cover w-full h-full" %>
+      </div>
+    <% end %>
+  </section>
 
-  <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
+  <section class="lg:col-start-3 lg:col-span-1">
     <%= render "shared/panel", actions: actions %>
   </section>
 </div>

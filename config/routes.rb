@@ -14,14 +14,13 @@ Rails.application.routes.draw do
         get "orders/:order_id", to: "orders#show", as: "order" # resolves to dashboard_tokujo_order
         get "patrons", to: "user_patrons#index", as: "user_patrons" # resolves to dashboard_tokujo_user_patrons
         get "patrons/:user_patron_id", to: "user_patrons#show", as: "user_patron" # resolves to dashboard_tokujo_user_patron
-        get "menu_items", to: "menu_items#index", as: "menu_items" # resolves to dashboard_tokujo_menu_item
       end
     end 
   end
   get "dashboard", to: "dashboards#index", as: "dashboard"
 
   # Menu Items
-  resources :menu_items, only: [ :index ]
+  resources :menu_items
 
   # Registrations
   get "sign-up", to: "registrations#new", as: "sign_up_new"
@@ -49,13 +48,6 @@ Rails.application.routes.draw do
 
     get "passwords/edit", to: "passwords#edit", as: "password_edit" # resolves to settings_password_edit
     patch "passwords/edit", to: "passwords#update", as: "passwords_update" # resolves to settings_passwords_update
-
-    get "my_menu_items", to: "my_menu_items#index", as: "my_menu_items" # resolves to settings_my_menu_items
-    get "my_menu_items/new", to: "my_menu_items#new", as: "my_menu_item_new" # resolves to settings_my_menu_item_new
-    post "my_menu_items", to: "my_menu_items#create"
-    get "my_menu_items/:id", to: "my_menu_items#show", as: "my_menu_item" # resolves to settings_my_menu_item
-    get "my_menu_items/:id/edit", to: "my_menu_items#edit", as: "my_menu_item_edit" # resolves to settings_my_menu_items
-    put "my_menu_items/:id/update", to: "my_menu_items#update", as: "my_menu_item_update" # resolves to settings_my_menu_items
   end
   get "settings", to: "settings#index"
 

@@ -72,6 +72,5 @@
   <section class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
     <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_orders_path(@tokujo.id), header: "Orders" } %>
     <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_user_patrons_path(@tokujo.id), header: "Patrons" } %>
-    <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_menu_items_path(@tokujo.id), header: "Menu Item" } %>
   </section>
 </div>

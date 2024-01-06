@@ -29,6 +29,7 @@ class MenuItem < ApplicationRecord
   validates :max_ingredient_delivery_time, presence: true, numericality: { greater_than: 0 }
   validates :price_base, presence: true, numericality: { greater_than: 0 }
   validates :currency, presence: true
+  validate :menu_item_limit, on: :create
 
 
 
@@ -44,5 +45,13 @@ class MenuItem < ApplicationRecord
 
   def update_with_tax(price_field, price_with_tax_field)
     send("#{price_with_tax_field}=", send(price_field) * TAX_FACTOR)
+  end
+
+
+
+  def menu_item_limit
+    if user.menu_items.count >= 1
+      errors.add(:base, "You can only create up to 1 item")
+    end
   end
 end

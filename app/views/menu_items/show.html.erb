@@ -1,0 +1,9 @@
+<%= render "shared/show", 
+  title: "Menu item detail", 
+  model_instance: @menu_item, 
+  actions: [
+    ["Edit this menu item", edit_menu_item_path],
+    ["Back to menu items", menu_items_path]
+  ],
+  image_url: @image_url
+%>

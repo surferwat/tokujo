@@ -12,9 +12,9 @@
     <h1 class="text-xl font-semibold">Your Menu Items</h1>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
       <% @menu_items&.each do |menu_item| %>
-        <%= render partial: "list_item", locals: { route_path: settings_my_menu_item_path(menu_item.id), list_item: menu_item, header: "name", subhead: "created_at" } %>
+        <%= render partial: "list_item", locals: { route_path: menu_item_path(menu_item.id), list_item: menu_item, header: "name", subhead: "created_at" } %>
       <% end %>
-      <%= render partial: "add_list_item", locals: { with_max: true, route_path: settings_my_menu_item_new_path, list_items: @menu_items, list_item_name: "menu item" } %>
+      <%= render partial: "add_list_item", locals: { with_max: true, route_path: new_menu_item_path, list_items: @menu_items, list_item_name: "menu item" } %>
     </div>
   </div>
 </div>

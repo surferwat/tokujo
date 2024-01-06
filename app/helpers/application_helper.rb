@@ -27,10 +27,14 @@ module ApplicationHelper
         end
 
         "<div class=\"pb-2\">
-          <div class=\"space-y-2\">
-            #{render_string_label}
-            #{render_string_desc}
-            #{render_string_input}
+          <div class=\"space-y-3\">
+            <div class=\"space-y-2\">
+              #{render_string_label}
+              #{render_string_desc}
+            </div>
+            <div>
+              #{render_string_input}
+            </div>
           </div>
         </div>"
       when "password"
@@ -39,10 +43,14 @@ module ApplicationHelper
         end
 
         "<div class=\"pb-2\">
-          <div class=\"space-y-2\">
-            #{render_string_label}
-            #{render_string_desc}
-            #{render_string_input}
+          <div class=\"space-y-3\">
+            <div class=\"space-y-2\">
+              #{render_string_label}
+              #{render_string_desc}
+            </div>
+            <div>
+              #{render_string_input}
+            </div>
           </div>
         </div>"
       when "select"
@@ -53,10 +61,14 @@ module ApplicationHelper
         end
 
         "<div class=\"pb-2\">
-          <div class=\"space-y-2\">
-            #{render_string_label}
-            #{render_string_desc}
-            #{render_string_input}
+          <div class=\"space-y-3\">
+            <div class=\"space-y-2\">
+              #{render_string_label}
+              #{render_string_desc}
+            </div>
+            <div>
+              #{render_string_input}
+            </div>
           </div>
         </div>"
       when "file"
@@ -65,10 +77,14 @@ module ApplicationHelper
         end
 
         "<div class=\"pb-2\">
-          <div class=\"space-y-2\">
-            #{render_string_label}
-            #{render_string_desc}
-            #{render_string_input}
+          <div class=\"space-y-3\">
+            <div class=\"space-y-2\">
+              #{render_string_label}
+              #{render_string_desc}
+            </div>
+            <div>
+              #{render_string_input}
+            </div>
           </div>
         </div>"
       when "date"
