@@ -106,3 +106,6 @@ gem "webmock"
 # Image storage
 gem "carrierwave", "~> 3.0"
 gem "fog-aws"
+
+# SVG
+gem "inline_svg"

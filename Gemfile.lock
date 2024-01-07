@@ -158,6 +158,9 @@ GEM
     importmap-rails (1.2.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
+    inline_svg (1.9.0)
+      activesupport (>= 3.0)
+      nokogiri (>= 1.6)
     io-console (0.6.0)
     irb (1.7.4)
       reline (>= 0.3.6)
@@ -358,6 +361,7 @@ DEPENDENCIES
   fog-aws
   image_processing (~> 1.2)
   importmap-rails
+  inline_svg
   jbuilder
   letter_opener
   money-rails (~> 1.12)
