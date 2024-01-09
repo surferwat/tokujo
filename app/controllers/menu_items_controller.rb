@@ -94,6 +94,7 @@ class MenuItemsController < ApplicationController
     authorize :menu_item, :update?
 
     menu_item = @menu_items.find(params[:id])
+    
     if menu_item.update(menu_item_params)
       redirect_to menu_item_path(menu_item), notice: "Successfully updated menu item"
     else
