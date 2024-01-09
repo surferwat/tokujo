@@ -3,23 +3,23 @@
   model: @tokujo,
   method: "put",
   url: tokujo_path(@tokujo),
-  container_class_custom_part: nil,
+  container_class_custom_part: "sm:max-w-xl",
   form_title: "",
   form_subtitle: "",
   form_fields: [
     # ["select",:payment_collection_timing,:payment_collection_timing,nil,@payment_collection_timing_options,@tokujo.payment_collection_timing],
-    ["text",:number_of_items_available,:number_of_items_available,"number of items available",nil,nil],
-    ["text",:number_of_days_to_procure_ingredients,:ingredients_procurement_time,"number of days to procure ingredients",nil,nil],
-    ["text",:number_of_days_until_ingredients_expiration, :ingredients_expiration_time,"nnumbr of days until expiration of ingredients",nil,nil],
-    ["date",:order_period_start_date,:order_period_starts_at,"tokujo order period start date",nil,nil],
-    ["date",:order_period_end_date,:order_period_ends_at,"tokujo order period end date",nil,nil],
-    ["date",:eat_period_start_date,:eat_period_starts_at,"tokujo eat period start date",nil,nil],
-    ["date",:eat_period_end_date,:eat_period_ends_at,"tokujo eat period end date",nil,nil]
+    ["text",:number_of_items_available,:number_of_items_available,nil,nil,"Enter a number for the maximum number of dishes available for sale for this event."],
+    ["text",:number_of_days_to_procure_ingredients,:ingredients_procurement_time,nil,nil,"Enter a number for the maximum number of days that it will take you to procure all of ingredients required to prepare the menu item in the number specified for the number of items available. This number helps to identify the earliest date for which customers will be able to eat your food."],
+    ["text",:number_of_days_until_ingredients_expiration, :ingredients_expiration_time,nil,nil,"Enter a number for the number of days until the expiry of the ingredient to first expire. This number helps to identify the latest date for which customers will be able eat your food."],
+    ["date",:order_period_start_date,:order_period_starts_at,nil,nil,"Provide a date for the start of the period during which orders for this menu item can be made by customers."],
+    ["date",:order_period_end_date,:order_period_ends_at,nil,nil,"Provide a date for the end of the period during which orders for this menu item can be made by customers."],
+    ["date",:eat_period_start_date,:eat_period_starts_at,nil,nil,"Provide a date for the start of the period during which the menu item can be eaten by customers."],
+    ["date",:eat_period_end_date,:eat_period_ends_at,nil,nil,"Provide a date for the end of the period during which the menu item can be eaten by customers."]
   ],
   form_footer: "",
   form_primary_button_label: "Save changes",
   form_secondary_button_label: "Back",
-  form_secondary_button_href: tokujo_path(@tokujo),
+  form_secondary_button_href: dashboard_tokujo_path(@tokujo),
   form_tertiary_button_label: "",
   form_tertiary_button_href: ""
 %>
