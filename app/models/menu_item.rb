@@ -50,7 +50,7 @@ class MenuItem < ApplicationRecord
 
 
   def menu_item_limit
-    if user.menu_items.count >= 1
+    if user.menu_items.count >= 1000
       errors.add(:base, "You can only create up to 1 item")
     end
   end

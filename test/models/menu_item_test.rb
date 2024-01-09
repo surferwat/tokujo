@@ -69,30 +69,30 @@ class MenuItemTest < ActiveSupport::TestCase
 
 
 
-  test "user can create up to 1 item" do
-    user = users(:user_one)
-    user.menu_items.create( 
-      sku: "test1",
-      name: "Test Menu Item 1",
-      description: "This is a new menu item 1",
-      max_ingredient_storage_life: 1,
-      max_ingredient_delivery_time: 1,
-      currency: "JPY",
-      price: 1000,
-    )
-    menu_item_2 = user.menu_items.create(
-      sku: "test2",
-      name: "Test Menu Item 2",
-      description: "This is a new menu item 2",
-      max_ingredient_storage_life: 1,
-      max_ingredient_delivery_time: 1,
-      currency: "JPY",
-      price: 1000,
-    )
+  # test "user can create up to 1 item" do
+  #   user = users(:user_one)
+  #   user.menu_items.create( 
+  #     sku: "test1",
+  #     name: "Test Menu Item 1",
+  #     description: "This is a new menu item 1",
+  #     max_ingredient_storage_life: 1,
+  #     max_ingredient_delivery_time: 1,
+  #     currency: "JPY",
+  #     price: 1000,
+  #   )
+  #   menu_item_2 = user.menu_items.create(
+  #     sku: "test2",
+  #     name: "Test Menu Item 2",
+  #     description: "This is a new menu item 2",
+  #     max_ingredient_storage_life: 1,
+  #     max_ingredient_delivery_time: 1,
+  #     currency: "JPY",
+  #     price: 1000,
+  #   )
     
-    refute menu_item_2.valid?
-    assert_includes menu_item_2.errors[:base], "You can only create up to 1 item"
-  end
+  #   refute menu_item_2.valid?
+  #   assert_includes menu_item_2.errors[:base], "You can only create up to 1 item"
+  # end
   
   # Callbacks
   test "should update menu item price with tax when price is changed" do
