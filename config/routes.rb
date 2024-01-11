@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   end
   get "dashboard", to: "dashboards#index", as: "dashboard"
 
+  # Earlies
+  resources :earlies, only: [:new, :create]
+
   # Menu Items
   resources :menu_items
 

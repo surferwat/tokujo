@@ -1,0 +1,2 @@
+module EarliesHelper
+end
