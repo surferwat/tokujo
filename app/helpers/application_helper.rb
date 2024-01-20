@@ -56,7 +56,7 @@ module ApplicationHelper
       when "select"
         render_string_input = capture do
           options = {}
-          options[:include_blank] = "Please make selection" if field[5].blank?
+          options[:include_blank] = t("helpers.application_helper.please_make_a_selection") if field[5].blank?
           form.select field[2], options_for_select(field[4], selected: field[5]), options
         end
 

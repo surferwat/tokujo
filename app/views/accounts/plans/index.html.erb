@@ -1,12 +1,12 @@
 <% content_for :title do %>
-  Plans
+  <%= t("views.accounts.plans.index.plans") %>
 <% end %>
 
 <div class="mt-8 min-h-full flex flex-col justify-center lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-lg">
     <div class="space-y-6">
       <div class="flex items-center space-x-3">
-        <p class="text-base">Looks like you've hit the limit for your account. Upgrade your plan. Coming soon.</p>
+        <p class="text-base"><%= t("views.accounts.plans.index.looks_like_you've_hit_the_limit_for_your_account_") %><%= t("views.accounts.plans.index.upgrade_your_plan_") %><%= t("views.accounts.plans.index.coming_soon_") %></p>
       </div>
     </div>
   </div>

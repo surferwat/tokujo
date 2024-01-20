@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  ショップ
+  <%= t("views.tokujo_sales.show_for_delayed.shop") %>
 <% end %>
 
 <div class="mx-auto py-16 lg:grid lg:grid-cols-2 lg:gap-x-8">
@@ -18,35 +18,24 @@
           <%= render partial: "shared/price", locals: { price: @price_with_tax, with_tax_text: true } %>
         </p>
         <p class="flex text-lg font-semibold text-gray-900">
-          <span><%#= @number_of_items_remaining %></span>
-          <%# <span>&nbspof</span> %>
-          <span><%#= @number_of_items_available %></span>
-          <%# <span>&nbspavailable</span> %>
-          <span><%= @number_of_items_available %></span>
-          <span>&nbsp点中、残り</span>
-          <span><%= @number_of_items_remaining %></span>
-          <span>&nbsp点</span>
+          <span><%= t("views.tokujo_sales.show_for_delayed.number_of_items_ratio", number_of_items_available: @number_of_items_available, number_of_items_remaining: @number_of_items_remaining)%></span>
         </p>
         <p class="flex text-lg text-gray-900">
-          <%# Order period start date: <%= @order_period_starts_at %>
-          注文期間開始日: <%= @order_period_starts_at %>
+          <%= t("views.tokujo_sales.show_for_delayed.order_period_start_date") %>: <%= @order_period_starts_at %>
         <p>
         <p class="flex text-lg text-gray-900">
-          <%# Order period end date: <%= @order_period_ends_at %> 
-          注文期間終了日:　<%= @order_period_ends_at %>
+          <%= t("views.tokujo_sales.show_for_delayed.order_period_end_date") %>: <%= @order_period_ends_at %>
         <p>
         <p class="flex text-lg text-gray-900">
-          <%# Eat period start date: <%= @eat_period_starts_at %>
-          ご来店可能期間の開始日:　<%= @eat_period_starts_at %>
+          <%= t("views.tokujo_sales.show_for_delayed.eat_period_start_date") %>: <%= @eat_period_starts_at %>
         <p>
         <p class="flex text-lg text-gray-900">
-          <%# Eat period end date: <%= @eat_period_ends_at %>
-          ご来店可能期間の終了日:　<%= @eat_period_ends_at %>
+          <%= t("views.tokujo_sales.show_for_delayed.eat_period_end_date") %>: <%= @eat_period_ends_at %>
         <p>
       </div>
       <div>
         <p class="flex text-lg font-semibold text-gray-900">
-          ＊限定数が全て購入された場合にのみ、カードに請求されます
+          ＊<%= t("views.tokujo_sales.show_for_delayed.card_will_be_charged_only_if_all_available_quantities_are_purchased") %>
         <p>
       </div>
       <!-- Tokujo form -->

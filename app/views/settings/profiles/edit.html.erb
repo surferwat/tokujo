@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Your profile
+  <%= t("views.settings.profiles.edit.profile") %>
 <% end %>
 
 <div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
@@ -12,21 +12,21 @@
         <%= render partial: "shared/form_errors", locals: { form: form } %>
 
         <div>
-          <%= form.label "username" %>
+          <%= form.label t("views.settings.profiles.edit.username") %>
           <div class="mt-1">
             <%= form.text_field :username %>
           </div>
         </div>
 
         <div>
-          <%= form.label "password"  %>
+          <%= form.label t("views.settings.profiles.edit.password")  %>
           <div class="mt-1">
-            <%= link_to  "Change your login info here", settings_password_edit_path, class: "w-full py-2 sm:text-sm underline" %>
+            <%= link_to  t("views.settings.profiles.edit.change_your_login_info_here"), settings_password_edit_path, class: "w-full py-2 sm:text-sm underline" %>
           </div>
         </div>
 
         <div>
-          <%= form.submit "Save changes" %>
+          <%= form.submit t("views.settings.profiles.edit.save_changes") %>
         </div>
       <% end %>
 

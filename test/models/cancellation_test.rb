@@ -1,6 +1,8 @@
 require "test_helper"
 
 class CancellationTest < ActiveSupport::TestCase
+  include ActionView::Helpers::TranslationHelper
+
   def setup
     @cancellation = cancellations(:cancellation_one)
   end
@@ -20,7 +22,7 @@ class CancellationTest < ActiveSupport::TestCase
     attributes.each do |attribute|
       record.send("#{attribute}=", nil)
       assert_not record.valid?
-      assert_includes record.errors[attribute], "can't be blank"
+      assert_includes record.errors[attribute], t("activerecord.errors.messages.blank")
     end
   end
 end

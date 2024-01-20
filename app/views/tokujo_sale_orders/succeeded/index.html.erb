@@ -1,14 +1,12 @@
 <% content_for :title do %>
-  <%# Your Order Succeeded %>
-  ご注文は正常に完了しました
+  <%= t("views.tokujo_sale_orders.succeeded.index.your_order_succeeded") %>
 <% end %>
 
 <div class="mt-8 min-h-full flex flex-col justify-center lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-lg">
     <div class="space-y-6">
       <div class="flex items-center space-x-3">
-        <%# <p class="text-base">Thank you. We have successfully processed your order. You should receive an email from us as soon as the required number of orders for this tokujo item are placed and your card is charged for the payment due.</p> %>
-        <p class="text-base">ありがとうございます。ご注文を正常に処理しました。このトクジョウの必要数のご注文が完了し、支払いの成功後、弊社からメールが届きます。</p>
+        <p class="text-base"><%= t("views.tokujo_sale_orders.succeeded.index.thank_you_") %> <%= t("views.tokujo_sale_orders.succeeded.index.we_have_successfully_processed_your_order_") %> <%= t("views.tokujo_sale_orders.succeeded.index.you_should_receive_an_email_from_us_as_soon_as_the_required_number_of_orders_for_this_tokujo_item_are_placed_and_your_card_is_charged_for_the_payment_due_") %></p>
       </div>
     </div>
   </div>

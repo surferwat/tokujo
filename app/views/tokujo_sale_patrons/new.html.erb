@@ -1,16 +1,12 @@
 <% content_for :title do %>
-  <%# Checkout - Provide Email Address %>
-  チェックアウト - メールアドレスを入力してください
+  <%= t("views.tokujo_sale_patrons.new.checkout") %> - <%= t("views.tokujo_sale_patrons.new.provide_email_address") %>
 <% end %>
 
 <div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="space-y-3">
       <p>
-        <%# Please provide your email address where we can send you an email with 
-        updates about the status of this Tokujo as well as your order.  %>
-        メールを送信できるメールアドレスを入力してください
-        このキャンペーンのステータスとご注文に関する最新情報をお知らせします。
+        <%= t("views.tokujo_sale_patrons.new.please_provide_your_email_address_where_we_can_send_you_an_email_with_updates_about_the_status_of_this_tokujo_as_well_as_your_order_") %>         
       </p>
     </div>
 
@@ -18,8 +14,7 @@
       <%= render partial: "shared/form_errors", locals: { form: form } %>
       
       <div class="mt-12 space-y-2 sm:mx-auto sm:max-w-lg">
-        <%# <%= form.label :email, nil, class: "block text-sm font-medium text-slate-800" %>
-        <%= form.label :eメール, nil, class: "block text-sm font-medium text-slate-800" %>
+        <%= form.label t("views.tokujo_sale_patrons.new.email").to_sym, nil, class: "block text-sm font-medium text-slate-800" %>
         <%= form.email_field :email, placeholder: "email@example.com", class: "w-full px-3 py-3 border border-slate-400 rounded-md shadow-sm text-base focus:outline-none focus:ring-gray-900 focus:border-gray-900" %>
       </div>
 
@@ -27,10 +22,8 @@
       
       <div class="grid gap-2 sm:flex sm:flex-row-reverse">
         <%# data: { turbo: false } is hack to make Stripe Checkout work with Rails 7 %>
-        <%# <%= form.submit "Next", data: { turbo: false } %>
-        <%= form.submit "次", data: { turbo: false } %>
-        <%# <%= render partial: "shared/button_outline", locals: { text: "Back", href: tokujo_sale_path(@tokujo) } %>
-        <%= render partial: "shared/button_outline", locals: { text: "戻る", href: tokujo_sale_path(@tokujo) } %>
+        <%= form.submit t("views.tokujo_sale_patrons.new.next"), data: { turbo: false } %>
+        <%= render partial: "shared/button_outline", locals: { text: t("views.tokujo_sale_patrons.new.back"), href: tokujo_sale_path(@tokujo) } %>
       </div>
     <% end %>
 

@@ -1,0 +1,316 @@
+ja:
+  # Active Record
+  activerecord:
+    errors:
+      messages:
+        blank: 空白にすることはできません
+
+
+
+  # Views
+  views:
+    shared:
+      _navbar_private:
+        home: ホーム
+        tokujos: トクジョウ
+        menu_items: メニューの品目
+        account: アカウント
+        settings: 設定
+      _panel:
+        action_panel: アクションパネル
+      _price:
+        incl_tax: 税込
+      _footer:
+        privacy_policy: プライバシーポリシー
+
+    main:
+      index:
+        supporting_new_menu_item_sales: 新メニューの販売サポート
+        we_enable_independent_restaurant_operators_to_sell_new_dishes_all_while_reducing_food_loss_: 過剰な食品ロスを削減できるから、食事メニューの工夫がしやすくなる。
+
+    earlies:
+      new:
+        email: メールアドレス
+        submit: サブミット
+    
+    registrations:
+      new: 
+        sign_up: 新規登録
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード再入力
+        create_account: 新規登録
+        already_have_account_: すでに登録済みですか？
+        log_in_: ログイン。
+
+    sessions:
+      new:
+        sign_in: ログイン
+        email: メールアドレス
+        password: パスワード
+        forgot_password_: パスワードをお忘れですか?
+      forgot_passwords:
+        new:
+          forgot_your_password_: パスワードをお忘れですか？
+          enter_your_email_address_below_and_we_will_send_you_password_reset_instructions_: お客様のメールアドレスを入力してください。パスワードのリセット手順をお送りします。
+          email: メールアドレス
+          enter_your_email_address: メールアドレス
+          if_you_don't_see_your_reset_email,_then_check_your_spam_filter_: リセット手順のメールが届かない場合は、迷惑メールに入っている可能性があります。
+          email_me_reset_instructions: 送信する
+          nevermind,_go_back: 前のページに戻る
+      reset_passwords:
+        edit:
+          reset_your_password: パスワード再設定
+          password: パスワード
+          password_confirmation: パスワード再入力
+          save_my_password: パスワードを保存
+    
+    settings:
+      index:
+        settings: 設定
+        my_profile: プロフィール情報
+        log_out: ログアウト
+      profiles:
+        edit:
+          profile: プロフィール情報
+          username: ユーザー名
+          password: パスワード
+          change_your_login_info_here: ログイン情報の変更はこちら
+          save_changes: 変更を保存
+      passwords:
+        edit:
+          change_your_password: パスワードの変更
+          password: パスワード
+          password_confirmation: パスワード再入力
+          update_password: パスワードを変更
+
+    accounts:
+      index:
+        account: アカウント設定
+        receive_payments: 入金を受け取る
+        cancel_this_account: アカウントを削除する
+      cancellations:
+        new:
+          cancel_account: アカウントを削除する
+          are_you_sure_you_want_to_cancel_your_account_: 本当にアカウントを削除しますか?
+          back: 戻る
+          cancel_my_account: 削除
+      cards:
+        index:
+          bank_account: 銀行口座追加
+          we_use_stripe_to_process_payments_: 支払いの処理にはStripeを使用しています。
+          charges: 売上の処理
+          payouts: 入金の利用可能
+      plans:
+        index:
+          plans: プラン
+          looks_like_you've_hit_the_limit_for_your_account_: アカウントの利用上限に達しました。
+          upgrade_your_plan_: プランをアップグレードしてください。
+          coming_soon_: 近日公開予定。
+
+    dashboards:
+      index:
+        your_tokujos: 貴方のトクジョウ
+        your_menu_items: 貴方のメニューの品目
+      _list_item:
+        created_on: 作成日
+      _add_list_item:
+        add_another_item: "%{list_item_name}を追加"
+      tokujos:
+        index:
+          edit_this_tokujo: このトクジョウを編集
+          tokujo_detail: トクジョウ詳細
+          sales_page_qr_code_&_url: 販売ページのQRコードとURL
+          qr_code: QRコード
+          url: URL
+          orders: 注文
+          patrons: 常連客
+        orders:
+          index:
+            orders: 注文
+          show:
+            order_detail: 注文詳細
+        patrons:
+          index:
+            patrons: 常連客
+          show:
+            patron_detail: 注文詳細
+
+    menu_items:
+      index:
+        menu_items: メニューの品目
+      new: 
+        add_menu_item: メニューの品目を追加
+        sku: 在庫管理単位
+        enter_the_item_identification_that_you_use_for_this_item_at_your_organization_: 組織でこのアイテムに使用する在庫管理単位を入力してください。
+        if_not_applicable,_then_leave_blank_: 該当しない場合は空白のままにしてください。
+        name: メニューの品目名
+        enter_the_name_of_this_menu_item_: このメニュー項目の名前を入力してください。
+        for_example,_tojinai_katsudon_: 例えば、とじないかつ丼。
+        description: メニューの品目説明
+        provide_a_description_of_this_menu_item_: このメニュー品目の説明を入力してください。
+        you_may_want_to_mention_any_defining_characteristics_or_key_ingredients_used_in_the_preparation_of_this_dish_: この料理の特徴や調理に使用される主要な材料について言及するとよいでしょう。
+        max_ingredient_storage_life: 材料の最大保存期間
+        max_ingredient_delivery_time: 材料の最大配達時間
+        price: 価格
+        enter_the_retail_price_before_tax_for_this_dish_: この料理の税抜小売価格を入力してください。
+        this_will_be_the_amount_+_local_consumption_tax_that_will_be_collected_from_the_customer_: お客様から徴収する金額＋地方消費税となります。
+        currency: 通貨
+        select_the_currency_unit_for_the_specified_price_: 指定した価格の通貨単位を選択します。
+        image_one: 画像
+        upload_an_image_of_this_dish_: この料理の画像をアップロードしてください。
+        the_uploaded_image_will_be_used_as_part_of_the_advert_for_any_tokujo_created_using_this_item_: アップロードされた画像は、このアイテムを使用して作成されたトクジョウの広告の一部として使用されます。
+        add_this_menu_item: このメニュー品目を追加
+        back: 戻る
+      edit:
+        update_menu_item: メニューの品目を編集
+        sku: 在庫管理単位
+        enter_the_item_identification_that_you_use_for_this_item_at_your_organization_: 組織でこのアイテムに使用する在庫管理単位を入力してください。
+        if_not_applicable,_then_leave_blank_: 該当しない場合は空白のままにしてください。
+        name: メニューの品目名
+        enter_the_name_of_this_menu_item_: このメニュー項目の名前を入力してください。
+        for_example,_tojinai_katsudon_: 例えば、とじないかつ丼。
+        description: メニューの品目説明
+        provide_a_description_of_this_menu_item_: このメニュー品目の説明を入力してください。
+        you_may_want_to_mention_any_defining_characteristics_or_key_ingredients_used_in_the_preparation_of_this_dish_: この料理の特徴や調理に使用される主要な材料について言及するとよいでしょう。
+        max_ingredient_storage_life: 材料の最大保存期間
+        max_ingredient_delivery_time: 材料の最大配達時間
+        currency: 通貨
+        select_the_currency_unit_for_the_specified_price_: 指定した価格の通貨単位を選択します。
+        image_one: 画像
+        upload_an_image_of_this_dish_: この料理の画像をアップロードしてください。
+        the_uploaded_image_will_be_used_as_part_of_the_advert_for_any_tokujo_created_using_this_item_: アップロードされた画像は、このアイテムを使用して作成されたトクジョウの広告の一部として使用されます。
+        save_changes: 変更内容を保存
+        back: 戻る
+      show:
+        menu_item_detail: メニュー品目の詳細
+        edit_this_menu_item: このメニュー項目を編集
+    
+    tokujos:
+      index:
+        tokujos: トクジョウ
+      new:
+        add_tokujo: トクジョウを追加
+        headline: ヘッドライン
+        provide_a_headline_to_grab_the_customer's_attention_and_encourage_them_to_engage_with_the_content_: コンテンツに興味を持ち、参加を促すためのヘッドラインを提供してください。
+        menu_item: メニューアイテム
+        select_one_item_from_your_menu_for_which_you_are_creating_the_tokujo_event_: トクジョウのイベントのもとになるメニュー品目を選択してください。
+        number_of_items_available: 利用可能なアイテムの数
+        enter_a_number_for_the_maximum_number_of_dishes_available_for_sale_for_this_event_: このイベントの販売可能な料理の最大数を入力してください。
+        number_of_days_to_procure_ingredients: 材料を調達するための日数
+        enter_a_number_for_the_maximum_number_of_days_that_it_will_take_you_to_procure_all_of_the_ingredients_required_to_prepare_the_menu_item_in_the_quantity_specified_for_the_number_of_items_available_: 材料を調達し、メニューアイテムを準備するためにかかる最大の日数を入力してください。
+        this_number_helps_to_identify_the_earliest_date_for_which_customers_will_be_able_to_eat_your_food_: この数値は、お客様が食事をすることができる最も早い日付を特定するのに役立ちます。
+        number_of_days_until_ingredients_expiration: 材料の賞味期限までの日数
+        enter_a_number_for_the_number_of_days_until_the_expiry_of_the_ingredient_to_first_expire_: 最初に賞味期限が切れる材料の賞味期限までの日数を入力してください。
+        this_number_helps_to_identify_the_latest_date_for_which_customers_will_be_able_to_eat_your_food_: この数値は、お客様が食事をすることができる最も遅い日付を特定するのに役立ちます。
+        order_period_start_date: 注文受付開始日
+        provide_a_date_for_the_start_of_the_period_during_which_orders_for_this_menu_item_can_be_made_by_customers_: このメニューアイテムの注文を受け付ける期間の開始日を提供してください。
+        order_period_end_date: 注文受付終了日
+        provide_a_date_for_the_end_of_the_period_during_which_orders_for_this_menu_item_can_be_made_by_customers_: このメニューアイテムの注文を受け付ける期間の終了日を提供してください。
+        eat_period_start_date: 食べる期間の開始日
+        provide_a_date_for_the_start_of_the_period_during_which_the_menu_item_can_be_eaten_by_customers_: お客様がメニューアイテムを食べることができる期間の開始日を提供してください。
+        eat_period_end_date: 食べる期間の終了日
+        provide_a_date_for_the_end_of_the_period_during_which_the_menu_item_can_be_eaten_by_customers_: メニューアイテムがお客様によって食べられる期間の終了日を提供してください。
+        back: 戻る
+        add_this_tokujo: このトクジョウを追加
+      edit:
+        update_tokujo: トクジョウを編集
+        number_of_items_available: 利用可能なアイテムの数
+        enter_a_number_for_the_maximum_number_of_dishes_available_for_sale_for_this_event_: このイベントの販売可能な料理の最大数を入力してください。
+        number_of_days_to_procure_ingredients: 材料を調達するための日数
+        enter_a_number_for_the_maximum_number_of_days_that_it_will_take_you_to_procure_all_of_the_ingredients_required_to_prepare_the_menu_item_in_the_quantity_specified_for_the_number_of_items_available_: 材料を調達し、メニューアイテムを準備するためにかかる最大の日数を入力してください。
+        this_number_helps_to_identify_the_earliest_date_for_which_customers_will_be_able_to_eat_your_food_: この数値は、お客様が食事をすることができる最も早い日付を特定するのに役立ちます。
+        number_of_days_until_ingredients_expiration: 材料の賞味期限までの日数
+        enter_a_number_for_the_number_of_days_until_the_expiry_of_the_ingredient_to_first_expire_: 最初に賞味期限が切れる材料の賞味期限までの日数を入力してください。
+        this_number_helps_to_identify_the_latest_date_for_which_customers_will_be_able_to_eat_your_food_: この数値は、お客様が食事をすることができる最も遅い日付を特定するのに役立ちます。
+        order_period_start_date: 注文受付開始日
+        provide_a_date_for_the_start_of_the_period_during_which_orders_for_this_menu_item_can_be_made_by_customers_: このメニューアイテムの注文を受け付ける期間の開始日を提供してください。
+        order_period_end_date: 注文受付終了日
+        provide_a_date_for_the_end_of_the_period_during_which_orders_for_this_menu_item_can_be_made_by_customers_: このメニューアイテムの注文を受け付ける期間の終了日を提供してください。
+        eat_period_start_date: 食べる期間の開始日
+        provide_a_date_for_the_start_of_the_period_during_which_the_menu_item_can_be_eaten_by_customers_: お客様がメニューアイテムを食べることができる期間の開始日を提供してください。
+        eat_period_end_date: 食べる期間の終了日
+        provide_a_date_for_the_end_of_the_period_during_which_the_menu_item_can_be_eaten_by_customers_: メニューアイテムがお客様によって食べられる期間の終了日を提供してください。
+        back: 戻る
+        save_changes: 変更内容を保存
+
+    tokujo_sales:
+      show_for_immediate:
+        shop: ショップ
+      show_for_delayed:
+        shop: ショップ
+        number_of_items_ratio: "%{number_of_items_remaining}点中、残り%{number_of_items_available}点"
+        order_period_start_date: 注文期間開始日
+        order_period_end_date: 注文期間終了日
+        eat_period_start_date: ご来店可能期間の開始日
+        eat_period_end_date: ご来店可能期間の終了日
+        card_will_be_charged_only_if_all_available_quantities_are_purchased: 限定数が全て購入された場合にのみ、カードに請求されます
+      _form:
+        size: 数量
+        proceed_to_checkout: チェックアウトに進む
+    
+    tokujo_sale_patrons:
+      new:
+        checkout: チェックアウト
+        provide_email_address: メールアドレスを入力してください
+        please_provide_your_email_address_where_we_can_send_you_an_email_with_updates_about_the_status_of_this_tokujo_as_well_as_your_order_: メールを送信できるメールアドレスを入力していただければ、このキャンペーンのステータスとご注文に関する最新情報をお知らせします。
+        email: メールアドレス
+        next: 次
+        back: 戻る
+    
+    tokujo_sale_orders:
+      new:
+        checkout: チェックアウト
+        order_summary: 注文概要
+        please_review_your_order_: ご注文を確認してください。
+        patron_id: 常連客ID
+        tokujo_id: トクジョウID
+        name: 料理名
+        description: 料理内容
+        currency: 為替
+        price_incl_tax: 価格（税込）
+        order_size: 数量
+        total_price: 合計金額（税込）
+        back: 戻る
+      card_payments:
+        index:
+          checkout: チェックアウト
+          card_payment: 支払い方法を設定
+      card_setups:
+        index:
+          checkout: チェックアウト
+          card_setup: 将来の支払いに備えて支払い方法を設定
+      succeeded:
+        index:
+          your_order_succeeded: ご注文は正常に完了しました
+          thank_you_: ありがとうございます。
+          we_have_successfully_processed_your_order_: ご注文を正常に処理しました。
+          you_should_receive_an_email_from_us_as_soon_as_the_required_number_of_orders_for_this_tokujo_item_are_placed_and_your_card_is_charged_for_the_payment_due_: このトクジョウの必要数のご注文が完了し、支払いの成功後、我々からメールが届きます。
+      _stripe_card_element_page:
+        enter_your_payment_details: お支払いの詳細を入力してください
+        complete_order: 注文を完了する
+
+
+
+
+  # Controllers
+  controllers:
+    accounts:
+      cards_controller:
+        index:
+          you_have_not_onboarded_your_bank_account_: 銀行口座をオンボーディングしていません。
+          go_onboard: 銀行口座を追加
+          you_have_onboarded_your_bank_account_: 銀行口座を登録しました。
+          you_have_started_the_onboarded_process,_but_are_still_missing_capabilities_or_required_verification_information_: オンボーディングプロセスを開始しましたが、まだ機能が不足しているか、必要な検証情報が不足しています。
+          go_fill_out_missing_information: 不足している情報を入力
+    tokujo_sale_orders_controller:
+      proceed_to_payment: カードの支払いに進む
+      proceed_to_card_setup: カードの設定に進む
+  
+
+
+
+  # Helpers
+  helpers:
+    application_helper:
+      please_make_a_selection: 選択してください

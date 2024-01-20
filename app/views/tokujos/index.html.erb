@@ -1,8 +1,7 @@
 <%= render "shared/directory", 
-  title: "Tokujos", 
+  title: t("views.tokujos.index.tokujos"), 
   items: @tokujos, 
   keys: @keys, 
   route_path_helper_method: :tokujo_path,
-  route_path_params: { "id" => "id" },
-  actions: [["Create tokujo", new_tokujo_path]] 
+  route_path_params: { "id" => "id" }
 %>

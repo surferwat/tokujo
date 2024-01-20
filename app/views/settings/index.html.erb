@@ -1,11 +1,11 @@
 <% content_for :title do %>
-  Settings
+  <%= t("views.settings.index.settings") %>
 <% end %>
 
 <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-flow-col-dense lg:grid-cols-3">
   <ul class="space-y-2">
     <li class="py-2 leading-none">
-      <%= link_to "My profile", settings_profile_edit_path, class: "text-base" %>
+      <%= link_to t("views.settings.index.my_profile"), settings_profile_edit_path, class: "text-base" %>
     </li>
     <%# <li class="py-2 leading-none">
       link_to "My orders", my_orders_path
@@ -14,7 +14,7 @@
       link_to "Set up payment method", payments_path
     </li> %>
     <li class="py-2 leading-none">
-      <%= button_to "Log out" , session_path, method: :delete, class: "text-base" %>
+      <%= button_to t("views.settings.index.log_out"), session_path, method: :delete, class: "text-base" %>
     </li>
   </ul>
 </div>

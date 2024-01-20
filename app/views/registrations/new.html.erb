@@ -4,17 +4,17 @@
   method: "post",
   url: sign_ups_path,
   container_class_custom_part: nil,
-  form_title: "Sign up",
+  form_title: t("views.registrations.new.sign_up"),
   form_subtitle: "",
   form_fields: [
-    ["text","email", :email, "email", nil,nil],
-    ["password", "password", :password, "password", nil,nil],
-    ["password", "password_confirmation", :password_confirmation, "password", nil.nil],
+    ["text",t("views.registrations.new.email"), :email, t("views.registrations.new.email"), nil,nil],
+    ["password", t("views.registrations.new.password"), :password, t("views.registrations.new.password"), nil,nil],
+    ["password", t("views.registrations.new.password_confirmation"), :password_confirmation, t("views.registrations.new.password"), nil,nil],
   ],
   form_footer: "",
-  form_primary_button_label: "Create Account",
+  form_primary_button_label: t("views.registrations.new.create_account"),
   form_secondary_button_label: "",
   form_secondary_button_href: "",
-  form_tertiary_button_label: "Already have account? Log in.",
+  form_tertiary_button_label: t("views.registrations.new.already_have_account_") + " " + t("views.registrations.new.log_in_"),
   form_tertiary_button_href: session_new_path
 %>

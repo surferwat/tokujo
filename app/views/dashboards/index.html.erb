@@ -1,6 +1,6 @@
 <div class="space-y-12">
   <div class="space-y-8">
-    <h1 class="text-xl font-semibold">Your Tokujos</h1>
+    <h1 class="text-xl font-semibold"><%= t("views.dashboards.index.your_tokujos") %></h1>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
       <% @tokujos&.each do |tokujo| %>
         <%= render partial: "list_item", locals: { route_path: dashboard_tokujo_path(tokujo.id), list_item: tokujo, header: "headline", subhead: "created_at" } %>
@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="space-y-8">
-    <h1 class="text-xl font-semibold">Your Menu Items</h1>
+    <h1 class="text-xl font-semibold"><%= t("views.dashboards.index.your_menu_items") %></h1>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
       <% @menu_items&.each do |menu_item| %>
         <%= render partial: "list_item", locals: { route_path: menu_item_path(menu_item.id), list_item: menu_item, header: "name", subhead: "created_at" } %>

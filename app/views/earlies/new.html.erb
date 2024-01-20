@@ -5,7 +5,7 @@
         <div class="space-y-6">
           <div class="space-y-2 items-center">
             <h1 class="text-base">
-              <%# Currently under development. Provide your email as an indication that you would find this service of use to your business. It would motivate us even more! %>
+              <%# Provide your email as an indication that you would find this service of use to your business. It would motivate us even more! %>
               このサービスがお役に立つと考えられる場合は、お手数ですが電子メールを提供してください。それは私たちにとって一層のモチベーションとなります。
             </h1>
           </div>
@@ -14,12 +14,10 @@
             <div class="h-18 sm:flex items-center">
               <div>
                 <%= form.label :email, class: "sr-only" %>
-                <%# <%= form.text_field :email, placeholder: "Email" %>
-                <%= form.text_field :email, placeholder: "Eメール" %>
+                <%= form.text_field :email, placeholder: t("views.earlies.new.email") %>
               </div>
               <div class="mt-4 sm:mt-0 sm:ml-3">
-                <%# <%= form.submit "Submit", type: "submit" %>
-                <%= form.submit "サブミット", type: "submit" %>
+                <%= form.submit t("views.earlies.new.submit") , type: "submit" %>
               </div>
             </div>
           <% end %>

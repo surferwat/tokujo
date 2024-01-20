@@ -13,7 +13,7 @@
           </button>
         </div>
         <div class="col-span-1 grid py-3">
-          <%= link_to "Edit this tokujo", edit_tokujo_path(@tokujo.id), class: "px-3 py-1 text-white text-base font-light hover:bg-black" %>
+          <%= link_to t("views.dashboards.tokujos.index.edit_this_tokujo"), edit_tokujo_path(@tokujo.id), class: "px-3 py-1 text-white text-base font-light hover:bg-black" %>
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@
 <div class="space-y-9 mt-3">
   <section class="flex flex-col sm:grid sm:gap-2 lg:grid-flow-col-dense lg:grid-cols-3">
     <div class="sm:col-start-1 sm:col-span-2">
-      <h1 class="py-3 text-lg font-medium text-gray-900">Tokujo detail</h1>
+      <h1 class="py-3 text-lg font-medium text-gray-900"><%= t("views.dashboards.tokujos.index.tokujo_detail") %></h1>
       <div class="space-y-6">
         <div class="bg-white sm:rounded-lg">
           <div class="py-5">
@@ -35,10 +35,10 @@
     </div>
 
     <div class="sm:col-start-3">
-      <h1 class="py-3 text-lg font-medium text-gray-900">Sales page QR code & URL</h1>
+      <h1 class="py-3 text-lg font-medium text-gray-900"><%= t("views.dashboards.tokujos.index.sales_page_qr_code_&_url") %></h1>
     
       <div data-controller="download-image">
-        <h1 class="py-3 text-lg font-medium text-gray-900">QR code</h1>
+        <h1 class="py-3 text-lg font-medium text-gray-900"><%= t("views.dashboards.tokujos.index.qr_code") %></h1>
         <div class="flex items-center space-x-2">
           <%= image_tag @tokujo_sales_qr_code_png_url,  {data: { download_image_target: "image" }}  %>
           <button data-action="click->download-image#download">
@@ -48,7 +48,7 @@
       </div>
 
        <div data-controller="copy-to-clipboard" class="lg:col-start-3 lg:col-span-1">
-        <h1 class="py-3 text-lg font-medium text-gray-900">URL</h1>
+        <h1 class="py-3 text-lg font-medium text-gray-900"><%= t("views.dashboards.tokujos.index.url") %></h1>
         <div class="flex items-center space-x-2">
           <%= text_field_tag nil, @tokujo_sales_url, {data: { copy_to_clipboard_target: "url" }, class: "appearance-none block w-full px-3 border border-slate-400 rounded-md shadow-sm text-base placeholder-gray-400 focus:outline-none focus:ring-gray-900 focus:border-gray-900", disabled: true} %>
           <button data-action="click->copy-to-clipboard#copy">
@@ -64,7 +64,7 @@
 
 
   <section class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4">
-    <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_orders_path(@tokujo.id), header: "Orders" } %>
-    <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_user_patrons_path(@tokujo.id), header: "Patrons" } %>
+    <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_orders_path(@tokujo.id), header: t("views.dashboards.tokujos.index.orders") } %>
+    <%= render partial: "card_square", locals: { route_path: dashboard_tokujos_user_patrons_path(@tokujo.id), header: t("views.dashboards.tokujos.index.patrons") } %>
   </section>
 </div>

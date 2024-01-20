@@ -1,12 +1,12 @@
 <% content_for :title do %>
-  Bank account
+  <%= t("views.accounts.cards.index.bank_account") %>
 <% end %>
 
 <div class="mt-8 min-h-full flex flex-col justify-center lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-lg">
     <div class="space-y-6">
       <div class="flex items-center space-x-3">
-        <p class="text-base">We use Stripe to process payments.</p>
+        <p class="text-base"><%= t("views.accounts.cards.index.we_use_stripe_to_process_payments_") %></p>
       </div>
       <div class="flex items-center space-x-3">
         <p class="text-base"><%= @message %></p>
@@ -17,7 +17,7 @@
         <p class="text-base">type <%= @stripe_account.type %></p>
       </div>
       <div class="space-x-3">
-        <p class="text-base">Charges</p>
+        <p class="text-base"><%= t("views.accounts.cards.index.charges") %></p>
         <p class="text-base">charges_enabled <%= @stripe_account.charges_enabled %></p>
         <p class="text-base">details_submitted <%= @stripe_account.details_submitted %></p>
         <p class="text-base">Futures requirements</p>
@@ -30,7 +30,7 @@
         <p class="text-base">pending_verification <%= @stripe_account.future_requirements.pending_verification %></p>
       </div>
       <div class="space-x-3">
-        <p class="text-base">Payouts</p>
+        <p class="text-base"><%= t("views.accounts.cards.index.payouts") %></p>
         <p class="text-base">payouts_enabled <%= @stripe_account.payouts_enabled %></p>
         <p class="text-base">currently_due <%= @stripe_account.requirements.currently_due %></p>
         <p class="text-base">disabled_reason <%= @stripe_account.requirements.disabled_reason %></p>

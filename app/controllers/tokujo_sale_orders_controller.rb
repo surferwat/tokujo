@@ -28,7 +28,7 @@ class TokujoSaleOrdersController < ApplicationController
       size: size, 
       price_with_tax: Money.new(tokujo.menu_item.price_with_tax_base, tokujo.menu_item.currency),
       total_price_with_tax: total_price_with_tax, 
-      button_label: tokujo.payment_collection_timing == "immediate" ? "Proceed to payment" : "Proceed to card setup"
+      button_label: tokujo.payment_collection_timing == "immediate" ? t("controllers.tokujo_sale_orders_controller.proceed_to_payment") : t("controllers.tokujo_sale_orders_controller.proceed_to_card_setup") 
     )
   end
 

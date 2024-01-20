@@ -1,21 +1,21 @@
 <div class="sticky top-0 z-10 h-16 flex px-4 justify-between items-center  bg-white shadow">
   <div class="flex mx-auto space-x-3">
     <%= link_to dashboard_path do %>
-      <div class="flex space-x-1"><%= image_tag("home_FILL0_wght400_GRAD0_opsz24.svg")%> <span>Home</span></div>
+      <div class="flex space-x-1"><%= image_tag("home_FILL0_wght400_GRAD0_opsz24.svg")%> <span><%= t("views.shared._navbar_private.home") %></span></div>
     <% end %>
     <%= link_to tokujos_path do %>
-      <div class="flex space-x-1"><%= image_tag("event_FILL0_wght400_GRAD0_opsz24.svg")%> <span>Tokujos</span></div>
+      <div class="flex space-x-1"><%= image_tag("event_FILL0_wght400_GRAD0_opsz24.svg")%> <span><%= t("views.shared._navbar_private.tokujos") %></span></div>
     <% end %>
     <%= link_to menu_items_path do %>
-      <div class="flex space-x-1"><%= image_tag("rice_bowl_FILL0_wght400_GRAD0_opsz24.svg")%> <span>Menu Items</span></div>
+      <div class="flex space-x-1"><%= image_tag("rice_bowl_FILL0_wght400_GRAD0_opsz24.svg")%> <span><%= t("views.shared._navbar_private.menu_items") %></span></div>
     <% end %>
   </div>
   <div class="flex space-x-3">
     <%= link_to accounts_path do %>
-      <div class="flex space-x-1"><%= image_tag("account_circle_FILL0_wght400_GRAD0_opsz24.svg")%> <span>Account</span></div>
+      <div class="flex space-x-1"><%= image_tag("account_circle_FILL0_wght400_GRAD0_opsz24.svg")%> <span><%= t("views.shared._navbar_private.account") %></span></div>
     <% end %>
     <%= link_to settings_path do %>
-      <div class="flex space-x-1"><%= image_tag("settings_FILL0_wght400_GRAD0_opsz24.svg")%> <span>Settings</span></div>
+      <div class="flex space-x-1"><%= image_tag("settings_FILL0_wght400_GRAD0_opsz24.svg")%> <span><%= t("views.shared._navbar_private.settings") %></span></div>
     <% end %>
   </div>
 </div>

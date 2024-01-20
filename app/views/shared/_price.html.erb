@@ -2,7 +2,6 @@
 <span>
     <span><%= price %></span>
     <% if with_tax_text %>
-        <%# <span>&nbsp(incl. tax)</span> %>
-        <span>&nbsp(税込)</span>
+      <span>&nbsp(<%= t("views.shared._price.incl_tax")%>)</span>
     <% end %>
 </span> 

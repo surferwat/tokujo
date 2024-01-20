@@ -9,7 +9,7 @@
       <div class="space-y-6">
         <div class="space-y-2 items-center">
           <%# <h1 class="text-xl font-bold">Enter your payment details</h1> %>
-          <h1 class="text-xl font-bold">お支払いの詳細を入力してください</h1>
+          <h1 class="text-xl font-bold"><%= t("views.tokujo_sale_orders._stripe_card_element_page.enter_your_payment_details") %></h1>
           <p class="text-base"></p>
         </div>
         
@@ -35,7 +35,7 @@
           
           <div class="grid gap-2 sm:flex sm:flex-row-reverse">
             <%# <%= form.submit "Complete order" %>
-            <%= form.submit "注文を完了する" %>
+            <%= form.submit t("views.tokujo_sale_orders._stripe_card_element_page.complete_order") %>
           </div>
         <% end %>
       </div>
