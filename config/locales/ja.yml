@@ -31,7 +31,10 @@ ja:
     earlies:
       new:
         email: メールアドレス
-        submit: サブミット
+        schedule_a_demo: デモを予約
+        would_you_like_to_reserve_a_demo_: デモを予約しませんか？
+        preview_our_services_with_a_demo_tailored_to_your_challenges_: お客様の課題に合わせてカスタマイズしたデモで、サービスをプリービューできます。
+        please_enter_your_email_address_so_we_can_adjust_the_schedule_: 日程を調整させていただきますので、メールアドレスを入力してください。
     
     registrations:
       new: 

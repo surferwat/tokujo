@@ -5,8 +5,7 @@
         <div class="space-y-6">
           <div class="space-y-2 items-center">
             <h1 class="text-base">
-              <%# Provide your email as an indication that you would find this service of use to your business. It would motivate us even more! %>
-              このサービスがお役に立つと考えられる場合は、お手数ですが電子メールを提供してください。それは私たちにとって一層のモチベーションとなります。
+              <%= t("views.earlies.new.would_you_like_to_reserve_a_demo_") %> <%= t("views.earlies.new.preview_our_services_with_a_demo_tailored_to_your_challenges_") %> <%= t("views.earlies.new.please_enter_your_email_address_so_we_can_adjust_the_schedule_") %> 
             </h1>
           </div>
           <%= form_with class: "space-y-3", model: @early, url: earlies_path do |form| %>
@@ -17,7 +16,7 @@
                 <%= form.text_field :email, placeholder: t("views.earlies.new.email") %>
               </div>
               <div class="mt-4 sm:mt-0 sm:ml-3">
-                <%= form.submit t("views.earlies.new.submit") , type: "submit" %>
+                <%= form.submit t("views.earlies.new.schedule_a_demo") , type: "submit" %>
               </div>
             </div>
           <% end %>
