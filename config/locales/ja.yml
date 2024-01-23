@@ -9,6 +9,14 @@ ja:
 
   # Views
   views:
+    business_informations:
+      index:
+        business_information: 事業者情報
+        founder: 創業者
+        launched_ablejo_: ablejoを創業。
+        previously,_worked_at_a_foreign_owned_private_equity_firm_as_an_investor_: 創業前は、外資系プライベートエクイティ会社にて投資に従事。
+        previously,_studied_mathematics_and_computer_science_: 創業前は、数学やコンピュータ科学に従事。
+
     shared:
       _navbar_private:
         home: ホーム
@@ -21,6 +29,7 @@ ja:
       _price:
         incl_tax: 税込
       _footer:
+        business_information: 事業者情報
         privacy_policy: プライバシーポリシー
 
     main:
@@ -295,7 +304,6 @@ ja:
 
 
 
-
   # Controllers
   controllers:
     accounts:
@@ -310,7 +318,6 @@ ja:
       proceed_to_payment: カードの支払いに進む
       proceed_to_card_setup: カードの設定に進む
   
-
 
 
   # Helpers

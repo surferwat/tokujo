@@ -1,0 +1,26 @@
+<% content_for :title do %>
+  <%= t("views.business_informations.index.business_information") %>
+<% end %>
+
+<div class="mt-8 grid grid-cols-1 gap-6 lg:grid-flow-col-dense">
+  <div class="sm:max-w-xl">
+      
+      <div class="space-y-2">
+        <p class="pb-2">チーム</p>
+        <div class="grid grid-cols-3 gap-3">
+            <div class="rounded-lg aspect-w-1 aspect-h-1"> 
+              <% if @team_0_profile_pic_url .present? %>
+                <%= image_tag @team_0_profile_pic_url , class: "object-cover w-full h-full" %>
+              <% else %>
+                <%= image_tag @default_profile_pic_url , class: "object-cover w-full h-full" %>
+              <% end %>
+            </div>
+          <div class="space-y-2 col-span-2">
+            <p><%= t("views.business_informations.index.founder") %></p>
+            <p><%= @team_0_name %></p>
+            <p><%= t("views.business_informations.index.launched_ablejo_") %> <%= t("views.business_informations.index.previously,_studied_mathematics_and_computer_science_") %></p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "main#index"
 
+  # Business Information
+  resources :business_informations, only: [:index]
+  
   # Dashboard
   # NOTE: the path name "dashboard" is different than the controller name "dashboards".
   namespace :dashboards, as: "dashboard" do

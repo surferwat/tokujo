@@ -5,6 +5,8 @@
       <p class="text-sm text-gray-400">&copy; 2023 ablejo All rights reserved.</p>
       <p class="text-white sm:text-slate-300">|</p>
       <div class="flex space-x-2">
+        <%= render partial: "shared/footer_link", locals: { text: t("views.shared._footer.business_information"), href: business_informations_path } %>
+        <p class="text-slate-300">|</p>
         <%= render partial: "shared/footer_link", locals: { text: t("views.shared._footer.privacy_policy"), href: policies_path } %>
         <p class="text-slate-300">|</p>
         <a href="https://www.twitter.com/ablejohq" class="text-gray-400 hover:text-gray-500">
