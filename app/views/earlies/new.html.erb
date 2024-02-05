@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "new_early" do %>
-  <div class="min-h-full flex flex-col justify-center py-12 lg:px-8">
+  <div class="min-h-full flex flex-col justify-center lg:px-8">
     <div id="container" class="<%= form_page_container_class(nil)%>">
       <div class="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10">
         <div class="space-y-6">
           <div class="space-y-2 items-center">
             <h1 class="text-base">
-              <%= t("views.earlies.new.would_you_like_to_reserve_a_demo_") %> <%= t("views.earlies.new.preview_our_services_with_a_demo_tailored_to_your_challenges_") %> <%= t("views.earlies.new.please_enter_your_email_address_so_we_can_adjust_the_schedule_") %> 
+              <%= t("views.earlies.new.preview_our_services_with_a_demo_tailored_to_your_challenges_") %> <%= t("views.earlies.new.please_enter_your_email_address_so_we_can_adjust_the_schedule_") %> 
             </h1>
           </div>
           <%= form_with class: "space-y-3", model: @early, url: earlies_path do |form| %>
