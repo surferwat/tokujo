@@ -3,14 +3,18 @@
     <table class="min-w-full divide-y divide-gray-300">
       <thead class="bg-gray-50">
         <tr>
-          <%= table_headers(keys)%>
+          <% columns_to_display.map do |text| %>
+            <th scope="col" class="py-3.5 pr-3 text-left font-semibold text-gray-900 sm:pl-3"><%= t("views.#{view_name}.index.#{text}") %></th>
+          <% end %>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200 bg-white">
         <% items&.each do |item| %>
           <tr class="hover:bg-gray-100 cursor-pointer">
             <% url_params = route_path_params.transform_keys(&:to_sym).transform_values { |key| item.send(key) } %>
-            <%= td_for_row(send(route_path_helper_method, url_params), item.attributes.values) %>
+            <% item.attributes.slice(*columns_to_display).values.map do |text| %>
+              <td class="p-3 text-gray-500"><a href="#{send(route_path_helper_method, url_params)}"> <%= text %></a></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

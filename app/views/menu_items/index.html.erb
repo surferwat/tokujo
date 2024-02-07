@@ -1,7 +1,8 @@
 <%= render "shared/directory", 
   title: t("views.menu_items.index.menu_items"), 
   items: @menu_items, 
-  keys: @keys, 
+  columns_to_display: @columns_to_display, 
+  view_name: @view_name,
   route_path_helper_method: :menu_item_path,
   route_path_params: { "id" => "id" },
   actions: [["Create menu item", new_menu_item_path]] 

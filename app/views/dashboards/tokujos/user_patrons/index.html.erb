@@ -1,7 +1,8 @@
 <%= render "shared/directory", 
   title: t("views.dashboards.tokujos.patrons.index.patrons"), 
   items: @user_patrons, 
-  keys: @keys, 
+  columns_to_display: @columns_to_display, 
+  view_name: @view_name,
   route_path_helper_method: :dashboard_tokujos_user_patron_path,
   route_path_params: { "id" => "tokujo_id", "user_patron_id" => "id" }
 %>

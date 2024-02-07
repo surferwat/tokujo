@@ -140,17 +140,31 @@ ja:
         orders:
           index:
             orders: 注文
+            id: 番号
+            status: 状況
+            item_status: 商品状況
+            size: 数
+            payment_amount_currency: 支払い金額通貨
+            payment_amount_base: 支払い金額
+            created_at: 作成日
+            user_patron_id: 常連客
           show:
             order_detail: 注文詳細
         patrons:
           index:
             patrons: 常連客
+            email: メールアド
+            created_at: 作成日
           show:
             patron_detail: 注文詳細
 
     menu_items:
       index:
         menu_items: メニューの品目
+        sku: 在庫管理単位
+        name: 品物名
+        created_at: 作成日
+        updated_at: 更新日
       new: 
         add_menu_item: メニューの品目を追加
         sku: 在庫管理単位
@@ -201,6 +215,10 @@ ja:
     tokujos:
       index:
         tokujos: トクジョウ
+        headline: 見出し
+        status: 状況
+        created_at: 作成日
+        updated_at: 更新日
       new:
         add_tokujo: トクジョウを追加
         headline: ヘッドライン

@@ -8,7 +8,8 @@ class MenuItemsController < ApplicationController
     authorize :menu_item, :index?
 
     # Set instance variables for view
-    @keys = MenuItem.column_names
+    @columns_to_display = ["sku","name","created_at","updated_at"]
+    @view_name = "menu_items"
     @menu_items = MenuItem.where(user_id: Current.user.id)
   end
 

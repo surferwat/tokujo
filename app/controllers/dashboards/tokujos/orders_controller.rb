@@ -6,7 +6,8 @@ class Dashboards::Tokujos::OrdersController < ApplicationController
 
     # Set instance variables for view
     @orders = tokujo.orders
-    @keys = Order.column_names
+    @view_name = "dashboards.tokujos.orders"
+    @columns_to_display = ["id","status","item_status","size","payment_amount_currency","payment_amount_base", "created_at","user_patron_id"]
   end
 
 

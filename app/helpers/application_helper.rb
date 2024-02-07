@@ -167,33 +167,4 @@ module ApplicationHelper
       </dl>"
     end.join.html_safe
   end
-
-
-
-  # NOTE: Placing the link tag inside of the td tag maintains valid html table 
-  # construction but seems like a bit of a hack.
-  def td_for_row(route_path_helper_method, texts)
-    return if texts.blank?
-
-    texts.map do |text|
-      "<td class=\"px-3 text-sm text-gray-500\"><a href=\"#{route_path_helper_method}\">#{text}</a></td>"
-    end.join.html_safe
-  end 
-
-
-
-  def table_headers(texts)
-    return if texts.blank?
-
-    count = 0
-    texts.map do |text|
-      if count == 0
-        "<th scope=\"col\" class=\"py-3.5 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3 \">#{text}</th>"
-      elsif count == texts.size
-        "<th scope=\"col\" class=\"py-3.5 text-left text-sm font-semibold text-gray-900\">#{text}</th>"
-      else
-        "<th scope=\"col\" class=\"py-3.5 text-left text-sm font-semibold text-gray-900\">#{text}</th>"
-      end
-    end.join.html_safe
-  end
 end

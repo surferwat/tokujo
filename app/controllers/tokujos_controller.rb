@@ -7,7 +7,8 @@ class TokujosController < ApplicationController
     authorize :tokujo, :index?
 
     # Set instance variables for view
-    @keys = Tokujo.column_names
+    @columns_to_display = ["headline","status","created_at","updated_at"]
+    @view_name = "tokujos"
     @tokujos = Tokujo.where(user_id: Current.user.id)
   end
 

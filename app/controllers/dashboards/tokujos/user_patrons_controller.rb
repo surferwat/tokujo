@@ -5,8 +5,9 @@ class Dashboards::Tokujos::UserPatronsController < ApplicationController
     tokujo = Tokujo.find(params[:id])
 
     # Set instance variables for view
+    @columns_to_display = ["email","created"]
+    @view_name = "dashboards.tokujos.user_patrons"
     @user_patrons = UserPatron.joins(orders: :user_patron).where(user_patrons: { id: tokujo.orders.pluck(:id) })
-    @keys = UserPatron.column_names
   end
 
 
